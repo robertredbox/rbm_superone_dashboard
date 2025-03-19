@@ -53,12 +53,14 @@ const processAppTweakData = (timeRange: string) => {
     dailyDownloads = fullDailyDownloads.slice(-7);
   }
   
-  // Calculate time-adjusted date range
-  const timeAdjustedStartDate = new Date(startDate);
+  // Calculate time-adjusted start date
+  let timeAdjustedStartDate = new Date(startDate);
   if (timeRange === '30d') {
-    timeAdjustedStartDate.setDate(endDate.getDate() - 30 + 1);
+    // For 30 days, start from Feb 16, 2025 (30 days before Mar 17, 2025)
+    timeAdjustedStartDate = new Date('2025-02-16');
   } else if (timeRange === '7d') {
-    timeAdjustedStartDate.setDate(endDate.getDate() - 7 + 1);
+    // For 7 days, start from Mar 11, 2025 (7 days before Mar 17, 2025)
+    timeAdjustedStartDate = new Date('2025-03-11');
   }
   
   // Calculate cumulative downloads for the selected period
@@ -74,14 +76,15 @@ const processAppTweakData = (timeRange: string) => {
   const interval = timeRange === '7d' ? 1 : timeRange === '30d' ? 3 : 7;
   
   for (let i = 0; i < dailyDownloads.length; i += interval) {
+    // Create date for this data point
     const date = new Date(timeAdjustedStartDate);
-    date.setDate(date.getDate() + i);
+    date.setDate(timeAdjustedStartDate.getDate() + i);
     
     // Format date as 'MMM D' (e.g., 'Dec 18')
     const formattedDate = `${date.toLocaleString('en-US', { month: 'short' })} ${date.getDate()}`;
     
     // Calculate downloads for this interval (daily, every 3 days, or weekly)
-    const intervalDownloads = dailyDownloads.slice(i, i + interval).reduce((sum, val) => sum + val, 0);
+    const intervalDownloads = dailyDownloads.slice(i, Math.min(i + interval, dailyDownloads.length)).reduce((sum, val) => sum + val, 0);
     
     // Simulated ranking - calculate based on progress through the selected period
     const baseRanking = timeRange === '7d' ? 70 : timeRange === '30d' ? 80 : 120;
@@ -113,7 +116,7 @@ const processAppTweakData = (timeRange: string) => {
   
   // Calculate date of peak downloads
   const peakDate = new Date(timeAdjustedStartDate);
-  peakDate.setDate(peakDate.getDate() + maxDownloadsIndex);
+  peakDate.setDate(timeAdjustedStartDate.getDate() + maxDownloadsIndex);
   const peakDateFormatted = `${peakDate.toLocaleString('en-US', { month: 'short' })} ${peakDate.getDate()}`;
   
   // Calculate growth rate based on first half vs second half of the period
