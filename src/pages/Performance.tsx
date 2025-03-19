@@ -84,25 +84,20 @@ const processAppTweakData = () => {
 };
 
 const Performance = () => {
-  const [timeRange, setTimeRange] = useState<string>('30d');
+  const [timeRange, setTimeRange] = useState<string>('90d');
+  const [performanceData, setPerformanceData] = useState({
+    chartData: [],
+    totalDownloads: '0',
+    avgDailyDownloads: 0,
+    peakDownloads: 0,
+    peakDownloadsDate: ''
+  });
 
-  // Real performance data based on Squid Game: Unleashed metrics
-  const performanceData = [
-    { date: 'Dec 17', downloads: 45800, ranking: 133 },
-    { date: 'Dec 24', downloads: 52600, ranking: 122 },
-    { date: 'Dec 31', downloads: 67300, ranking: 103 },
-    { date: 'Jan 7', downloads: 78500, ranking: 95 },
-    { date: 'Jan 14', downloads: 85200, ranking: 85 },
-    { date: 'Jan 21', downloads: 91600, ranking: 81 },
-    { date: 'Jan 28', downloads: 94300, ranking: 76 },
-    { date: 'Feb 4', downloads: 96800, ranking: 65 },
-    { date: 'Feb 11', downloads: 98500, ranking: 59 },
-    { date: 'Feb 18', downloads: 102700, ranking: 53 },
-    { date: 'Feb 25', downloads: 105300, ranking: 48 },
-    { date: 'Mar 4', downloads: 110800, ranking: 42 },
-    { date: 'Mar 11', downloads: 117200, ranking: 37 },
-    { date: 'Mar 18', downloads: 124500, ranking: 32 },
-  ];
+  useEffect(() => {
+    // Process data when component mounts or time range changes
+    const data = processAppTweakData();
+    setPerformanceData(data);
+  }, [timeRange]);
 
   // Format the time range for display
   const getTimeRangeDisplay = () => {
@@ -116,7 +111,7 @@ const Performance = () => {
       case '1y':
         return 'Last year';
       default:
-        return 'Last 30 days';
+        return 'Last 90 days';
     }
   };
 
@@ -131,7 +126,7 @@ const Performance = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Downloads"
-          value="3.7M"
+          value={performanceData.totalDownloads}
           change={18.3}
           trend="up"
           description={`Total downloads for ${getTimeRangeDisplay().toLowerCase()}`}
@@ -165,7 +160,7 @@ const Performance = () => {
 
       <div className="grid grid-cols-1 gap-6">
         <PerformanceChart 
-          data={performanceData} 
+          data={performanceData.chartData} 
           timeRange={getTimeRangeDisplay()}
           className="w-full"
         />
@@ -177,11 +172,11 @@ const Performance = () => {
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Avg. Daily Downloads</span>
-              <span className="font-sans font-medium">87,371</span>
+              <span className="font-sans font-medium">{performanceData.avgDailyDownloads.toLocaleString()}</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Peak Download Day</span>
-              <span className="font-sans font-medium">Mar 18 (124,500)</span>
+              <span className="font-sans font-medium">{performanceData.peakDownloadsDate} ({performanceData.peakDownloads.toLocaleString()})</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Ranking Improvement</span>
