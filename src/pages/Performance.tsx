@@ -15,33 +15,109 @@ const FontLinks = () => (
 
 // SuperOne app data processing to handle different time ranges
 const processAppTweakData = (timeRange: string) => {
-  // Create dates from Dec 18, 2024 to Mar 17, 2025 (90 days)
-  const startDate = new Date('2024-12-18');
-  const endDate = new Date('2025-03-17');
+  // Create dates from Dec 19, 2024 to Mar 18, 2025 (90 days)
+  const startDate = new Date('2024-12-19');
+  const endDate = new Date('2025-03-18');
   
-  // Daily downloads from analysis (full 90 days of data)
-  // Note that we've mapped the weekly pattern from analysis to generate a realistic daily pattern
+  // Daily downloads from the actual iOS data screenshots
   const fullDailyDownloads = [
-    // December (starting from 18th)
-    11, 14, 17, 9, 21, 13, 16, // Week 1 (Dec 18-24)
-    12, 15, 18, 10, 22, 14, 17, // Week 2 (Dec 25-31)
+    // December (starting from 19th)
+    14, // Dec 19, 2024
+    8,  // Dec 20, 2024
+    17, // Dec 21, 2024
+    21, // Dec 22, 2024
+    14, // Dec 23, 2024
+    5,  // Dec 24, 2024
+    17, // Dec 25, 2024
+    10, // Dec 26, 2024
+    17, // Dec 27, 2024
+    8,  // Dec 28, 2024
+    7,  // Dec 29, 2024
+    7,  // Dec 30, 2024
+    18, // Dec 31, 2024
     
-    // January
-    18, 22, 27, 14, 32, 19, 24, // Week 3 (Jan 1-7)
-    35, 43, 52, 29, 67, 40, 49, // Week 4 (Jan 8-14)
-    88, 109, 132, 73, 170, 102, 126, // Week 5 (Jan 15-21)
+    // January 2025
+    13, // Jan 1, 2025
+    13, // Jan 2, 2025
+    10, // Jan 3, 2025
+    7,  // Jan 4, 2025
+    8,  // Jan 5, 2025
+    20, // Jan 6, 2025
+    11, // Jan 7, 2025
+    18, // Jan 8, 2025
+    15, // Jan 9, 2025
+    15, // Jan 10, 2025
+    11, // Jan 11, 2025
+    18, // Jan 12, 2025
+    17, // Jan 13, 2025
+    22, // Jan 14, 2025
+    22, // Jan 15, 2025
+    27, // Jan 16, 2025
+    39, // Jan 17, 2025
+    40, // Jan 18, 2025
+    27, // Jan 19, 2025
+    68, // Jan 20, 2025
+    62, // Jan 21, 2025
+    43, // Jan 22, 2025
+    24, // Jan 23, 2025
+    41, // Jan 24, 2025
+    13, // Jan 25, 2025
+    27, // Jan 26, 2025
+    41, // Jan 27, 2025
+    27, // Jan 28, 2025
+    22, // Jan 29, 2025
+    170, // Jan 30, 2025
+    186, // Jan 31, 2025
     
-    // February
-    125, 155, 187, 104, 241, 145, 179, // Week 6 (Jan 22-28)
-    114, 141, 170, 95, 220, 132, 163, // Week 7 (Jan 29-Feb 4)
-    107, 132, 160, 89, 206, 124, 153, // Week 8 (Feb 5-11)
+    // February 2025
+    98, // Feb 1, 2025
+    70, // Feb 2, 2025
+    87, // Feb 3, 2025
+    68, // Feb 4, 2025
+    43, // Feb 5, 2025
+    48, // Feb 6, 2025
+    81, // Feb 7, 2025
+    45, // Feb 8, 2025
+    43, // Feb 9, 2025
+    51, // Feb 10, 2025
+    29, // Feb 11, 2025
+    28, // Feb 12, 2025
+    29, // Feb 13, 2025
+    20, // Feb 14, 2025
+    19, // Feb 15, 2025
+    26, // Feb 16, 2025
+    22, // Feb 17, 2025
+    29, // Feb 18, 2025
+    14, // Feb 19, 2025
+    22, // Feb 20, 2025
+    27, // Feb 21, 2025
+    29, // Feb 22, 2025
+    20, // Feb 23, 2025
+    26, // Feb 24, 2025
+    14, // Feb 25, 2025
+    22, // Feb 26, 2025
+    14, // Feb 27, 2025
+    18, // Feb 28, 2025
     
-    // March (up to 17th)
-    83, 103, 124, 69, 160, 96, 119, // Week 9 (Feb 12-18)
-    47, 58, 70, 39, 90, 54, 67, // Week 10 (Feb 19-25)
-    32, 40, 48, 27, 62, 37, 46, // Week 11 (Feb 26-Mar 4)
-    28, 35, 42, 23, 54, 32, 40, // Week 12 (Mar 5-11)
-    25, 31, 37, 21, 48, 29, 36  // Week 13 (Mar 12-17, partial week)
+    // March 2025 (through March 18)
+    31, // Mar 1, 2025
+    17, // Mar 2, 2025
+    33, // Mar 3, 2025
+    25, // Mar 4, 2025
+    28, // Mar 5, 2025
+    25, // Mar 6, 2025
+    35, // Mar 7, 2025
+    25, // Mar 8, 2025
+    43, // Mar 9, 2025
+    50, // Mar 10, 2025
+    40, // Mar 11, 2025
+    49, // Mar 12, 2025
+    68, // Mar 13, 2025
+    45, // Mar 14, 2025
+    80, // Mar 15, 2025
+    82, // Mar 16, 2025
+    87, // Mar 17, 2025
+    74  // Mar 18, 2025
   ];
   
   // Filter data based on selected time range
@@ -56,11 +132,11 @@ const processAppTweakData = (timeRange: string) => {
   // Calculate time-adjusted start date
   let timeAdjustedStartDate = new Date(startDate);
   if (timeRange === '30d') {
-    // For 30 days, start from Feb 16, 2025 (30 days before Mar 17, 2025)
-    timeAdjustedStartDate = new Date('2025-02-16');
+    // For 30 days, start from Feb 17, 2025 (30 days before Mar 18, 2025)
+    timeAdjustedStartDate = new Date('2025-02-17');
   } else if (timeRange === '7d') {
-    // For 7 days, start from Mar 11, 2025 (7 days before Mar 17, 2025)
-    timeAdjustedStartDate = new Date('2025-03-11');
+    // For 7 days, start from Mar 12, 2025 (7 days before Mar 18, 2025)
+    timeAdjustedStartDate = new Date('2025-03-12');
   }
   
   // Calculate cumulative downloads for the selected period
@@ -80,7 +156,7 @@ const processAppTweakData = (timeRange: string) => {
     const date = new Date(timeAdjustedStartDate);
     date.setDate(timeAdjustedStartDate.getDate() + i);
     
-    // Format date as 'MMM D' (e.g., 'Dec 18')
+    // Format date as 'MMM D' (e.g., 'Dec 19')
     const formattedDate = `${date.toLocaleString('en-US', { month: 'short' })} ${date.getDate()}`;
     
     // Calculate downloads for this interval (daily, every 3 days, or weekly)
@@ -99,7 +175,7 @@ const processAppTweakData = (timeRange: string) => {
     });
   }
   
-  // Get sum of all downloads for the period
+  // Get sum of all downloads for the period - from screenshot: 3,088 total
   const totalDownloadsSum = dailyDownloads.reduce((sum, val) => sum + val, 0);
   
   // Format with appropriate suffix
@@ -240,11 +316,11 @@ const Performance = () => {
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Top Market</span>
-              <span className="font-sans font-medium">Germany (21.5%)</span>
+              <span className="font-sans font-medium">Germany (21.0%)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Peak Download Period</span>
-              <span className="font-sans font-medium text-green-500">Mid-Jan to Mid-Feb</span>
+              <span className="font-sans font-medium text-green-500">Late Jan to Early Feb</span>
             </li>
           </ul>
         </div>
@@ -257,11 +333,11 @@ const Performance = () => {
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Emerging Region</span>
-              <span className="font-sans font-medium">Africa (10.4%)</span>
+              <span className="font-sans font-medium">Africa (15.2%)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Download Days</span>
-              <span className="font-sans font-medium text-green-500">Mon, Thu, Fri</span>
+              <span className="font-sans font-medium text-green-500">Fri, Sat, Mon</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Top 3 Countries</span>
