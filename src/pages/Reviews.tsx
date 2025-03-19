@@ -24,7 +24,7 @@ const Reviews = () => {
       rating: 5,
       date: '2023-03-25',
       title: 'Best show companion app ever!',
-      content: 'This app enhances my Squid Game viewing experience so much! The games and challenges make me feel like I'm part of the show. Amazing graphics and smooth performance.',
+      content: "This app enhances my Squid Game viewing experience so much! The games and challenges make me feel like I'm part of the show. Amazing graphics and smooth performance.",
       helpful: 156,
       sentiment: 'positive'
     },
@@ -34,7 +34,7 @@ const Reviews = () => {
       rating: 5,
       date: '2023-03-22',
       title: 'Addictive challenges!',
-      content: 'I can't stop playing the mini-games. The honeycomb challenge is as nerve-wracking as in the show! Would love to see more games added in future updates.',
+      content: "I can't stop playing the mini-games. The honeycomb challenge is as nerve-wracking as in the show! Would love to see more games added in future updates.",
       helpful: 98,
       sentiment: 'positive'
     },
@@ -44,7 +44,7 @@ const Reviews = () => {
       rating: 4,
       date: '2023-03-20',
       title: 'Great companion to the show',
-      content: 'The integration with the show episodes is brilliant. I love getting notifications with challenges that match what I'm watching. The player 456 outfit customization could use more options though.',
+      content: "The integration with the show episodes is brilliant. I love getting notifications with challenges that match what I'm watching. The player 456 outfit customization could use more options though.",
       helpful: 87,
       sentiment: 'positive'
     },
@@ -54,7 +54,7 @@ const Reviews = () => {
       rating: 2,
       date: '2023-03-18',
       title: 'Too many ads',
-      content: 'The games are fun but there are way too many ads between challenges. It ruins the immersion of the experience. Please consider a premium ad-free option.',
+      content: "The games are fun but there are way too many ads between challenges. It ruins the immersion of the experience. Please consider a premium ad-free option.",
       helpful: 42,
       sentiment: 'negative'
     },
@@ -64,7 +64,7 @@ const Reviews = () => {
       rating: 4,
       date: '2023-03-15',
       title: 'Authentic to the show',
-      content: 'The app really captures the tension and aesthetic of the show perfectly. The sound effects especially are spot on. Occasionally crashes during the marble game challenge though.',
+      content: "The app really captures the tension and aesthetic of the show perfectly. The sound effects especially are spot on. Occasionally crashes during the marble game challenge though.",
       helpful: 65,
       sentiment: 'neutral'
     }
