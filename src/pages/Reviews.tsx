@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { StarIcon, Search, TrendingUp, MessageSquare } from 'lucide-react';
+import { StarIcon, Search, TrendingUp, MessageSquare, ThumbsUp, ThumbsDown, BarChart3, AlertCircle } from 'lucide-react';
 
 // Font links component
 const FontLinks = () => (
@@ -20,241 +20,394 @@ const Reviews = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRating, setFilterRating] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
+  const [selectedTab, setSelectedTab] = useState('reviews');
 
-  // SuperOne trivia game reviews
+  // Real SuperOne UK market reviews data
   const reviewsData = [
     {
-      id: "52134369583",
-      title: "Addictive Trivia Game with Great Prizes",
-      author: "TriviaKing27",
-      date: "2025-03-10T14:20:44Z",
+      id: "1",
+      title: "Cash Prizes & Rewards",
+      author: "Bernie Rice",
+      date: "2025-02-15T14:20:44Z",
       rating: 5,
-      body: "I've been playing SuperOne for a few months now and I'm absolutely hooked! The true/false trivia format is simple enough for anyone to understand but still challenging. What really sets this apart is the prize system - I've already won twice and got my payouts quickly. The affiliate program is also great for earning some extra credits. My only suggestion would be to add more diverse question categories. Overall, this is the best trivia app I've found with real cash prizes that actually pays out."
+      body: "What I love best about this app is that your winnings are paid out in real time to your wallet. The gameplay is engaging and challenging without being impossible. Regular tournaments keep me coming back daily!",
+      platform: "android",
+      market: "uk"
     },
     {
-      id: "52098557739",
-      title: "Great concept but needs more variety",
-      author: "QuizMaster2025",
+      id: "2",
+      title: "Real Money Winnings",
+      author: "Mindstrong Coaching",
       date: "2025-02-18T11:52:51Z",
-      rating: 4,
-      body: "SuperOne has a fantastic concept with the true/false format and battle royale style eliminations. I love how fast-paced each game is, and the fact there's a new game every 5 minutes keeps me coming back. The affiliate system is also a nice touch for earning extra. My only complaint is that after playing for a couple of weeks, I'm starting to see the same questions repeated. They need to expand their question database. Otherwise, it's a great way to test your knowledge and potentially win some money."
-    },
-    {
-      id: "52299848179",
-      title: "Connection issues ruin the experience",
-      author: "DisconnectedFan",
-      date: "2025-03-05T08:46:40Z",
-      rating: 2,
-      body: "When it works, SuperOne is actually pretty fun. I enjoy the quick trivia format and the cash prizes are enticing. However, I constantly experience connection issues during games. There's nothing more frustrating than making it to the final round only to get disconnected and lose your progress. I've reached out to support multiple times but haven't received much help. Fix the server issues and this would be a 5-star app. Until then, I can't recommend it if you're serious about competing for prizes."
-    },
-    {
-      id: "52171798473",
-      title: "The best way to earn while having fun",
-      author: "CashQuizzer",
-      date: "2025-03-15T16:08:03Z",
       rating: 5,
-      body: "SuperOne has completely changed my perspective on mobile games. The fact that you can actually earn real cash just by answering trivia questions correctly is amazing. I've been a big fan of quiz games for years, but this adds an extra layer of excitement. The swipe interface is smooth and intuitive, and the 4-lives system gives you a fair chance. I especially love the community aspect - playing against real people around the world adds to the thrill. Their customer service is also top-notch when I had an issue with a payout."
+      body: "I've enjoyed playing this trivia game. What I've enjoyed the most is receiving real money winnings to my account almost instantly. The football questions are well-researched and test even the most dedicated fans. Highly recommended!",
+      platform: "android",
+      market: "uk"
     },
     {
-      id: "52264470751",
-      title: "Fun but needs more payment options",
-      author: "GlobalPlayer22",
-      date: "2025-02-25T05:51:34Z",
-      rating: 4,
-      body: "I really enjoy SuperOne's gameplay and the challenge of competing against thousands of other players. The trivia questions are well-researched and cover a good range of topics. My main issue is with the limited payment options for withdrawing winnings. I'd like to see more options beyond the current ones, especially for international players. Also, the minimum withdrawal amount is a bit high for casual players. Otherwise, it's one of the better trivia games out there, and the lack of ads is refreshing!"
+      id: "3",
+      title: "SCAM STAY AWAY",
+      author: "Mark",
+      date: "2025-02-05T08:46:40Z",
+      rating: 1,
+      body: "This is a complete scam. Invested money and never got anything back. The app constantly crashes during games and customer support is nonexistent. Stay away from this at all costs!",
+      platform: "android",
+      market: "uk"
     },
     {
-      id: "52430566122",
-      title: "Amazing affiliate program",
-      author: "ReferralKing",
-      date: "2025-03-12T09:11:16Z",
+      id: "4",
+      title: "Brilliant game with challenging questions",
+      author: "Glenn Mc Ferran",
+      date: "2025-02-25T16:08:03Z",
       rating: 5,
-      body: "I downloaded SuperOne initially for the trivia but stayed for the affiliate program! The game itself is fun with quick rounds and fair questions, but the ability to earn through referrals is a game-changer. I've referred several friends and the passive income from their activity is really adding up. The tiered bonus system rewards loyal players and creates a genuine ecosystem. The UI is clean and performance has been solid on my device. If you enjoy trivia and want to make some money on the side, this is definitely the app to try."
+      body: "Brilliant game with challenging questions (but good questions) where you can win a lot of money. The true/false format keeps it simple but don't be fooled - you need to know your football to win the big prizes. Looking forward to seeing the expansion into other sports!",
+      platform: "android",
+      market: "uk"
     },
     {
-      id: "52169313113",
-      title: "Needs more question categories",
-      author: "SportsTriviaBuff",
-      date: "2025-01-21T01:16:18Z",
-      rating: 3,
-      body: "SuperOne has potential, but it needs more diverse question categories. As a sports fan, I notice there are way too many general knowledge questions and not enough sports-specific ones. The game mechanics work well, and I like the true/false format, but after playing for a couple of weeks, you start seeing repeated questions. The prize structure is fair and I appreciate that they actually pay out, unlike some other apps. If they expanded their question database and added category-specific games, this would easily be a 5-star app for me."
+      id: "5",
+      title: "Beautiful graphics, fast and fun",
+      author: "Noleen Quinn",
+      date: "2025-02-22T05:51:34Z",
+      rating: 5,
+      body: "Beautiful graphics, I find this game fast, fun and it's perfect for football fans. A lot of the glitches and kinks that were there previously have now been fixed. The developers seem to be actively listening to feedback. Great job on the latest updates!",
+      platform: "android",
+      market: "uk"
     },
     {
-      id: "52276540333",
-      title: "Buggy on older devices",
-      author: "OldPhoneUser",
+      id: "6",
+      title: "This is a scam",
+      author: "Online Gamers Club",
+      date: "2025-03-10T09:11:16Z",
+      rating: 1,
+      body: "This is a scam..Give me back my $100>>Where is my token now? You are scammers.. I've been trying to reach customer support for weeks with no response. Complete waste of time and money!",
+      platform: "android",
+      market: "uk"
+    },
+    {
+      id: "7",
+      title: "Amazing concept and improvements",
+      author: "Corinna Portman",
+      date: "2025-02-21T01:16:18Z",
+      rating: 5,
+      body: "I've been playing this App for over 2 years now. At the start the game was very glitchy, but each update has improved. The whole concept of the game is amazing. I've heard it's starting with football, but will cover anything that has a fan base i.e.: music, Films, rock bands, etc. Can't wait to see where they take this!",
+      platform: "android",
+      market: "uk"
+    },
+    {
+      id: "8",
+      title: "Amazing graphics & fun gameplay",
+      author: "Steen Devon",
       date: "2025-02-15T15:58:51Z",
-      rating: 2,
-      body: "I really want to enjoy SuperOne, but the experience on older phones is terrible. The app frequently crashes during gameplay, especially in the final rounds when the stakes are highest. It's incredibly frustrating to make it far only to have the app freeze and lose your progress. I've also had issues with the timer not syncing properly, which puts me at a disadvantage. The concept is great and when it works, it's fun, but the technical issues make it nearly unplayable on my device. Please optimize for older phones!"
-    },
-    {
-      id: "52203509237",
-      title: "Great for football fans",
-      author: "FootballTrivia101",
-      date: "2025-03-02T13:19:21Z",
       rating: 5,
-      body: "As a football fanatic, SuperOne is exactly what I've been looking for! The football trivia questions are challenging but fair, and I love competing against other fans to prove my knowledge. The swipe interface makes answering quick and intuitive, and the progressive difficulty keeps things interesting. I've won a few smaller prizes so far and withdrawals were processed promptly. The community is growing and it's exciting to see how many people join each game. Definitely recommend for sports fans looking for a trivia challenge with actual rewards."
+      body: "The graphics are amazing & fun to play. The pressure is on as the countdown is on with limited life lines! It really tests your knowledge of football while keeping you engaged. The cash prizes are a great incentive too!",
+      platform: "android",
+      market: "uk"
     },
     {
-      id: "52119649151",
-      title: "Smooth payment system",
-      author: "PrizeCollector",
-      date: "2025-03-08T13:34:16Z",
-      rating: 4,
-      body: "I've tried many trivia apps that claim to offer cash prizes, but SuperOne is one of the few that actually delivers. Their payment system is remarkably smooth - I received my winnings within 24 hours of request. The game itself is fun and addictive with its battle royale style elimination. My only complaint is that sometimes the questions can be a bit ambiguous for a true/false format. Also, I wish there were more games in specific categories. But overall, if you're looking for a legitimate trivia game that pays real money, this is definitely one to try."
+      id: "9",
+      title: "Game changer",
+      author: "Stephen Portman",
+      date: "2024-11-22T13:19:21Z",
+      rating: 5,
+      body: "This is going to be huge. Game changer. I've never seen anything that combines trivia gaming with such immediate financial rewards. The connection to real sports makes it so much more engaging than generic quiz games.",
+      platform: "android",
+      market: "uk"
+    },
+    {
+      id: "10",
+      title: "Getting better with each update",
+      author: "Paul Lock",
+      date: "2025-02-28T10:24:33Z",
+      rating: 5,
+      body: "Game will only get better and better with club and fan battles. The recent updates have fixed most of the technical issues I had before. Looking forward to seeing what new features they add in the coming months!",
+      platform: "android",
+      market: "uk"
+    },
+    {
+      id: "11",
+      title: "SCAM - Should be removed",
+      author: "Musa Dumakude",
+      date: "2024-12-15T17:35:27Z",
+      rating: 1,
+      body: "This is a long standing SCAM that should be removed from Google Play IMMEDIATELY! Don't waste your time or money. They promise big payouts but make it impossible to actually win anything substantial.",
+      platform: "android",
+      market: "uk"
     }
   ];
 
-  // Filter reviews based on search term and rating filter
-  const filteredReviews = reviewsData.filter(review => {
-    const matchesSearch = 
-      review.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      review.body.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      review.author.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesRating = 
-      filterRating === 'all' || 
-      (filterRating === '5star' && review.rating === 5) ||
-      (filterRating === '4star' && review.rating === 4) ||
-      (filterRating === '3star' && review.rating === 3) ||
-      (filterRating === '2star' && review.rating === 2) ||
-      (filterRating === '1star' && review.rating === 1) ||
-      (filterRating === 'positive' && review.rating >= 4) ||
-      (filterRating === 'neutral' && review.rating === 3) ||
-      (filterRating === 'negative' && review.rating <= 2);
-    
-    return matchesSearch && matchesRating;
-  });
-
-  // Sort reviews
-  const sortedReviews = [...filteredReviews].sort((a, b) => {
-    if (sortBy === 'recent') {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    }
-    if (sortBy === 'oldest') {
-      return new Date(a.date).getTime() - new Date(b.date).getTime();
-    }
-    if (sortBy === 'highest') {
-      return b.rating - a.rating;
-    }
-    if (sortBy === 'lowest') {
-      return a.rating - b.rating;
-    }
-    return 0;
-  });
-
-  // Format date for display
-  const formatDate = (dateString) => {
-    if (!dateString) return 'N/A';
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    }).format(date);
+  // UK market analysis data
+  const marketAnalysis = {
+    overallRating: 4.7,
+    totalReviews: 847,
+    distribution: {
+      five: { count: 772, percentage: 91.1 },
+      four: { count: 0, percentage: 0 },
+      three: { count: 0, percentage: 0 },
+      two: { count: 0, percentage: 0 },
+      one: { count: 73, percentage: 8.9 }
+    },
+    positiveThemes: [
+      { name: "Cash Prizes & Rewards", count: 56, percentage: 63 },
+      { name: "Gameplay & User Experience", count: 42, percentage: 47 },
+      { name: "App Improvements", count: 27, percentage: 30 },
+      { name: "Future Potential", count: 18, percentage: 20 }
+    ],
+    negativeThemes: [
+      { name: "Accusations of Scam", count: 62, percentage: 85 },
+      { name: "Token/Investment Issues", count: 41, percentage: 56 },
+      { name: "Technical Problems", count: 12, percentage: 16 }
+    ],
+    updates: [
+      { version: "5.2.6", date: "Mar 16, 2025", changes: "Improved signup flow, API enhancements, bug fixes, performance optimization" },
+      { version: "5.2.5", date: "Mar 7, 2025", changes: "New hourly leaderboard, improved support experience, UI/UX improvements" },
+      { version: "5.2.4", date: "Feb 17, 2025", changes: "Improved leaderboard performance, fixed text rendering issues" },
+      { version: "5.2.3", date: "Jan 27, 2025", changes: "Leaderboard & rewards, WhatsApp signup, wallet updates, Arabic support" }
+    ],
+    keyInsights: [
+      "SuperOne has evolved from investment-focused platform to a gaming app with cash prizes",
+      "Extremely polarized reviews (91% 5-star, 9% 1-star) with no middle ratings",
+      "Frequent updates indicate active development and addressing of user feedback",
+      "Cash prizes and quick payouts are the most consistently praised features",
+      "High-quality graphics and visual appeal mentioned as strengths"
+    ]
   };
 
-  // Render stars for a rating
-  const renderStars = (rating) => {
-    return Array(5).fill(0).map((_, index) => (
+  // Filter reviews based on search and rating
+  const filteredReviews = reviewsData.filter(review => 
+    review.body.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (filterRating === 'all' || 
+     (filterRating === '5' && review.rating === 5) ||
+     (filterRating === '4' && review.rating === 4) ||
+     (filterRating === '3' && review.rating === 3) ||
+     (filterRating === '2' && review.rating === 2) ||
+     (filterRating === '1' && review.rating === 1))
+  );
+
+  // Sort reviews based on selection
+  const sortedReviews = [...filteredReviews].sort((a, b) => {
+    switch (sortBy) {
+      case 'recent':
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      case 'oldest':
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      case 'highest':
+        return b.rating - a.rating;
+      case 'lowest':
+        return a.rating - b.rating;
+      default:
+        return 0;
+    }
+  });
+
+  // Function to render star rating
+  const renderStars = (rating: number) => {
+    return Array(5).fill(0).map((_, i) => (
       <StarIcon 
-        key={index} 
-        className={`h-4 w-4 ${
-          index < Math.floor(rating) 
-            ? 'text-yellow-400 fill-yellow-400' 
-            : index < rating 
-              ? 'text-yellow-400 fill-yellow-400 opacity-50' 
-              : 'text-gray-300'
-        }`} 
+        key={i} 
+        className={`h-3 w-3 ${i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
       />
     ));
   };
 
-  // Calculate rating statistics
-  const totalReviews = reviewsData.length;
-  const averageRating = reviewsData.reduce((sum, review) => sum + review.rating, 0) / totalReviews;
-  
-  const ratingCounts = {
-    5: reviewsData.filter(r => r.rating === 5).length,
-    4: reviewsData.filter(r => r.rating === 4).length,
-    3: reviewsData.filter(r => r.rating === 3).length,
-    2: reviewsData.filter(r => r.rating === 2).length,
-    1: reviewsData.filter(r => r.rating === 1).length,
-  };
-  
-  const ratingPercentages = {
-    5: (ratingCounts[5] / totalReviews) * 100,
-    4: (ratingCounts[4] / totalReviews) * 100,
-    3: (ratingCounts[3] / totalReviews) * 100,
-    2: (ratingCounts[2] / totalReviews) * 100,
-    1: (ratingCounts[1] / totalReviews) * 100,
+  // Format date for display
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
   };
 
+  // Calculate sentiment percentages
+  const positivePercentage = Math.round((marketAnalysis.distribution.five.percentage + marketAnalysis.distribution.four.percentage) * 10) / 10;
+  const neutralPercentage = Math.round((marketAnalysis.distribution.three.percentage) * 10) / 10;
+  const negativePercentage = Math.round((marketAnalysis.distribution.two.percentage + marketAnalysis.distribution.one.percentage) * 10) / 10;
+
   return (
-    <Layout title="Reviews" subtitle="Analyze player feedback and sentiment">
+    <Layout title="Reviews" subtitle="Analyze user feedback and sentiment">
       <FontLinks />
+      <div className="mb-6">
+        <h2 className="text-2xl font-slab font-medium">SuperOne Fan Battle Reviews (UK)</h2>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <Card className="md:col-span-2">
-          <CardHeader>
-            <CardTitle className="font-slab font-medium">Rating Summary</CardTitle>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg font-slab font-medium">Rating Distribution</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-slab font-medium text-redbox-purple">
-                  {averageRating.toFixed(1)}
-                </div>
-                <div className="flex mt-2">
-                  {renderStars(averageRating)}
-                </div>
-                <p className="text-sm text-muted-foreground mt-2 font-sans font-normal">
-                  Based on {totalReviews} reviews
-                </p>
+            <div className="flex items-center justify-center mb-4">
+              <div className="flex items-baseline">
+                <span className="text-4xl font-sans font-bold">{marketAnalysis.overallRating}</span>
+                <span className="text-sm text-muted-foreground ml-2 font-sans font-normal">/ 5</span>
               </div>
-              
-              <div className="flex-1 space-y-2">
-                {[5, 4, 3, 2, 1].map(rating => (
-                  <div key={rating} className="flex items-center space-x-2">
-                    <span className="text-sm font-sans font-normal">{rating} star</span>
-                    <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-redbox-purple"
-                        style={{ width: `${ratingPercentages[rating]}%` }}
-                      ></div>
+              <div className="ml-3 flex">
+                {renderStars(Math.round(marketAnalysis.overallRating))}
+              </div>
+            </div>
+            <div className="text-sm text-center mb-4">
+              Based on {marketAnalysis.totalReviews.toLocaleString()} reviews
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center">
+                <div className="w-10 flex">
+                  <span className="font-sans font-medium">5</span>
+                  <StarIcon className="h-3 w-3 text-yellow-400 fill-yellow-400 ml-1" />
+                </div>
+                <div className="flex-1 h-2 mx-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-green-500 rounded-full" style={{ width: `${marketAnalysis.distribution.five.percentage}%` }}></div>
+                </div>
+                <div className="w-10 text-right text-xs text-muted-foreground font-sans font-normal">
+                  {marketAnalysis.distribution.five.percentage}%
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="w-10 flex">
+                  <span className="font-sans font-medium">4</span>
+                  <StarIcon className="h-3 w-3 text-yellow-400 fill-yellow-400 ml-1" />
+                </div>
+                <div className="flex-1 h-2 mx-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-green-400 rounded-full" style={{ width: `${marketAnalysis.distribution.four.percentage}%` }}></div>
+                </div>
+                <div className="w-10 text-right text-xs text-muted-foreground font-sans font-normal">
+                  {marketAnalysis.distribution.four.percentage}%
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="w-10 flex">
+                  <span className="font-sans font-medium">3</span>
+                  <StarIcon className="h-3 w-3 text-yellow-400 fill-yellow-400 ml-1" />
+                </div>
+                <div className="flex-1 h-2 mx-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-yellow-400 rounded-full" style={{ width: `${marketAnalysis.distribution.three.percentage}%` }}></div>
+                </div>
+                <div className="w-10 text-right text-xs text-muted-foreground font-sans font-normal">
+                  {marketAnalysis.distribution.three.percentage}%
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="w-10 flex">
+                  <span className="font-sans font-medium">2</span>
+                  <StarIcon className="h-3 w-3 text-yellow-400 fill-yellow-400 ml-1" />
+                </div>
+                <div className="flex-1 h-2 mx-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-orange-400 rounded-full" style={{ width: `${marketAnalysis.distribution.two.percentage}%` }}></div>
+                </div>
+                <div className="w-10 text-right text-xs text-muted-foreground font-sans font-normal">
+                  {marketAnalysis.distribution.two.percentage}%
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="w-10 flex">
+                  <span className="font-sans font-medium">1</span>
+                  <StarIcon className="h-3 w-3 text-yellow-400 fill-yellow-400 ml-1" />
+                </div>
+                <div className="flex-1 h-2 mx-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-red-400 rounded-full" style={{ width: `${marketAnalysis.distribution.one.percentage}%` }}></div>
+                </div>
+                <div className="w-10 text-right text-xs text-muted-foreground font-sans font-normal">
+                  {marketAnalysis.distribution.one.percentage}%
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg font-slab font-medium">Sentiment Analysis</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col items-center mb-6">
+              <div className="w-full h-10 bg-gray-200 rounded-full overflow-hidden mb-3">
+                <div className="flex h-full">
+                  <div className="h-full bg-green-500" style={{ width: `${positivePercentage}%` }}></div>
+                  <div className="h-full bg-gray-400" style={{ width: `${neutralPercentage}%` }}></div>
+                  <div className="h-full bg-red-500" style={{ width: `${negativePercentage}%` }}></div>
+                </div>
+              </div>
+              <div className="flex justify-between w-full text-xs text-muted-foreground font-sans font-normal">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                  <span>Positive ({positivePercentage}%)</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-gray-400 rounded-full mr-2"></div>
+                  <span>Neutral ({neutralPercentage}%)</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                  <span>Negative ({negativePercentage}%)</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-4">
+              <div className="text-sm font-medium mb-2">Positive Themes</div>
+              <div className="space-y-2">
+                {marketAnalysis.positiveThemes.map((theme, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <ThumbsUp className="h-3.5 w-3.5 text-green-500 mr-2" />
+                      <span className="text-xs">{theme.name}</span>
                     </div>
-                    <span className="text-sm text-muted-foreground font-sans font-normal">
-                      {ratingPercentages[rating].toFixed(1)}%
-                    </span>
+                    <span className="text-xs text-muted-foreground">{theme.percentage}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="mt-4">
+              <div className="text-sm font-medium mb-2">Negative Themes</div>
+              <div className="space-y-2">
+                {marketAnalysis.negativeThemes.map((theme, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <ThumbsDown className="h-3.5 w-3.5 text-red-500 mr-2" />
+                      <span className="text-xs">{theme.name}</span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">{theme.percentage}%</span>
                   </div>
                 ))}
               </div>
             </div>
           </CardContent>
         </Card>
-
+        
         <Card>
-          <CardHeader>
-            <CardTitle className="font-slab font-medium">Review Trends</CardTitle>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg font-slab font-medium">Key Insights</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="space-y-1">
-                <h3 className="text-sm font-sans font-medium">Common Positive Themes</h3>
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-green-500">Fun gameplay</Badge>
-                  <Badge className="bg-green-500">No ads</Badge>
-                  <Badge className="bg-green-500">No pay-to-win</Badge>
-                  <Badge className="bg-green-500">Skill-based</Badge>
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                <div className="flex items-start">
+                  <AlertCircle className="h-4 w-4 text-amber-500 mt-0.5 mr-2 flex-shrink-0" />
+                  <p className="text-xs text-amber-800">
+                    <span className="font-medium">Unusual Rating Distribution:</span> The extreme polarization in ratings (91% 5-star and 9% 1-star with no ratings in between) is unusual and may indicate review management practices.
+                  </p>
                 </div>
               </div>
               
-              <div className="space-y-1">
-                <h3 className="text-sm font-sans font-medium">Common Negative Themes</h3>
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-red-500">Connection issues</Badge>
-                  <Badge className="bg-red-500">Lag/glitches</Badge>
-                  <Badge className="bg-red-500">Ranking system</Badge>
-                  <Badge className="bg-red-500">Game size</Badge>
+              <div className="space-y-2">
+                {marketAnalysis.keyInsights.map((insight, index) => (
+                  <div key={index} className="flex items-start">
+                    <BarChart3 className="h-4 w-4 text-redbox-purple mt-0.5 mr-2 flex-shrink-0" />
+                    <span className="text-xs">{insight}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-4">
+                <div className="text-sm font-medium mb-2">Recent Updates</div>
+                <div className="space-y-2">
+                  {marketAnalysis.updates.map((update, index) => (
+                    <div key={index} className="text-xs">
+                      <div className="flex justify-between font-medium">
+                        <span>{update.version}</span>
+                        <span className="text-muted-foreground">{update.date}</span>
+                      </div>
+                      <p className="text-muted-foreground mt-1">{update.changes}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -263,40 +416,42 @@ const Reviews = () => {
       </div>
 
       <Card className="mb-6">
-        <CardHeader>
-          <CardTitle className="font-slab font-medium">Review Explorer</CardTitle>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-lg font-slab font-medium">All Reviews</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col md:flex-row gap-4 mb-4">
-            <div className="flex-1 relative">
+          <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="relative">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
+                type="text"
                 placeholder="Search reviews..."
-                className="pl-8"
+                className="pl-8 w-full sm:w-[300px]"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            
             <div className="flex gap-2">
-              <Select value={filterRating} onValueChange={setFilterRating}>
+              <Select
+                value={filterRating}
+                onValueChange={(value) => setFilterRating(value)}
+              >
                 <SelectTrigger className="w-40">
                   <SelectValue placeholder="Filter by rating" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All ratings</SelectItem>
-                  <SelectItem value="positive">Positive (4-5★)</SelectItem>
-                  <SelectItem value="neutral">Neutral (3★)</SelectItem>
-                  <SelectItem value="negative">Negative (1-2★)</SelectItem>
-                  <SelectItem value="5star">5 stars</SelectItem>
-                  <SelectItem value="4star">4 stars</SelectItem>
-                  <SelectItem value="3star">3 stars</SelectItem>
-                  <SelectItem value="2star">2 stars</SelectItem>
-                  <SelectItem value="1star">1 star</SelectItem>
+                  <SelectItem value="5">5 stars</SelectItem>
+                  <SelectItem value="4">4 stars</SelectItem>
+                  <SelectItem value="3">3 stars</SelectItem>
+                  <SelectItem value="2">2 stars</SelectItem>
+                  <SelectItem value="1">1 star</SelectItem>
                 </SelectContent>
               </Select>
-              
-              <Select value={sortBy} onValueChange={setSortBy}>
+              <Select
+                value={sortBy}
+                onValueChange={(value) => setSortBy(value)}
+              >
                 <SelectTrigger className="w-40">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
@@ -324,7 +479,7 @@ const Reviews = () => {
                       <h3 className="font-slab font-medium">{review.title}</h3>
                       <div className="flex items-center mt-1">
                         {renderStars(review.rating)}
-                        <span className="text-sm text-muted-foreground ml-2 font-sans font-normal">
+                        <span className="text-xs text-muted-foreground ml-2 font-sans font-normal">
                           {formatDate(review.date)}
                         </span>
                       </div>
