@@ -69,11 +69,17 @@ const Sidebar = () => {
     <div className="flex h-screen w-64 flex-col border-r border-border bg-card">
       <div className="flex h-16 items-center px-6">
         <Link to="/" className="flex items-center gap-2">
-          <div className="flex items-center space-x-1">
-            <div className="h-8 w-8 bg-redbox-red rounded"></div>
-            <div className="h-8 w-8 bg-redbox-purple rounded"></div>
+          <div className="flex items-center">
+            {/* Squid Game Logo */}
+            <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="45" fill="#FF0F7B" />
+              <path d="M30 30H70V70H30V30Z" stroke="white" strokeWidth="6" />
+              <path d="M50 25V75" stroke="white" strokeWidth="6" />
+              <path d="M25 50H75" stroke="white" strokeWidth="6" />
+              <circle cx="50" cy="50" r="15" fill="#FF0F7B" stroke="white" strokeWidth="4" />
+            </svg>
           </div>
-          <span className="text-xl font-slab font-bold text-redbox-indigo">Redbox ASO</span>
+          <span className="text-xl font-slab font-bold text-redbox-indigo">ASO Dashboard</span>
         </Link>
       </div>
       <nav className="flex-1 overflow-auto py-6 px-4">
