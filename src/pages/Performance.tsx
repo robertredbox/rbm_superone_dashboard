@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout';
 import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import TimeSelector from '@/components/dashboard/TimeSelector';
 import MetricCard from '@/components/dashboard/MetricCard';
-import { BarChart3, ArrowUpRight, Download, Eye } from 'lucide-react';
+import { Globe, ArrowUpRight, Download, TrendingUp } from 'lucide-react';
 
 // Font links component to ensure proper font loading
 const FontLinks = () => (
@@ -162,16 +162,9 @@ const processAppTweakData = (timeRange: string) => {
     // Calculate downloads for this interval (daily, every 3 days, or weekly)
     const intervalDownloads = dailyDownloads.slice(i, Math.min(i + interval, dailyDownloads.length)).reduce((sum, val) => sum + val, 0);
     
-    // Simulated ranking - calculate based on progress through the selected period
-    const baseRanking = timeRange === '7d' ? 70 : timeRange === '30d' ? 80 : 120;
-    const rankingImprovement = timeRange === '7d' ? 10 : timeRange === '30d' ? 25 : 55;
-    const progress = i / dailyDownloads.length;
-    const ranking = Math.round(baseRanking - (rankingImprovement * progress));
-    
     chartData.push({
       date: formattedDate,
-      downloads: intervalDownloads,
-      ranking
+      downloads: intervalDownloads
     });
   }
   
@@ -203,13 +196,33 @@ const processAppTweakData = (timeRange: string) => {
     ? ((secondHalfDownloads - firstHalfDownloads) / firstHalfDownloads) * 100 
     : 0;
   
+  // Weekly average trend calculation
+  const getWeeklyAverage = (data) => {
+    const weeks = [];
+    for (let i = 0; i < data.length; i += 7) {
+      const weekData = data.slice(i, i + 7);
+      const weekAvg = weekData.reduce((sum, val) => sum + val, 0) / weekData.length;
+      weeks.push(Math.round(weekAvg));
+    }
+    return weeks;
+  };
+  
+  const weeklyAverages = getWeeklyAverage(dailyDownloads);
+  const recentWeek = weeklyAverages[weeklyAverages.length - 1];
+  const previousWeek = weeklyAverages[weeklyAverages.length - 2] || 0;
+  const weeklyTrend = previousWeek > 0 
+    ? ((recentWeek - previousWeek) / previousWeek) * 100 
+    : 0;
+  
   return {
     chartData,
     totalDownloads: formattedTotalDownloads,
     avgDailyDownloads,
     peakDownloads: maxDownloads,
     peakDownloadsDate: peakDateFormatted,
-    growthRate: growthRate.toFixed(1)
+    growthRate: growthRate.toFixed(1),
+    weeklyTrend: weeklyTrend.toFixed(1),
+    activeMarkets: 67
   };
 };
 
@@ -221,7 +234,9 @@ const Performance = () => {
     avgDailyDownloads: 0,
     peakDownloads: 0,
     peakDownloadsDate: '',
-    growthRate: '0'
+    growthRate: '0',
+    weeklyTrend: '0',
+    activeMarkets: 0
   });
 
   useEffect(() => {
@@ -269,20 +284,20 @@ const Performance = () => {
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
-          title="App Ranking"
-          value="#65"
-          change={55}
-          trend="up"
-          description="Current Games category ranking"
-          icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
+          title="Weekly Trend"
+          value={`${parseFloat(performanceData.weeklyTrend) > 0 ? '+' : ''}${performanceData.weeklyTrend}%`}
+          change={parseFloat(performanceData.weeklyTrend)}
+          trend={parseFloat(performanceData.weeklyTrend) >= 0 ? "up" : "down"}
+          description="Change in weekly averages"
+          icon={<TrendingUp className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Active Markets"
-          value="67"
+          value={performanceData.activeMarkets.toString()}
           change={8}
           trend="up"
           description="Countries with active users"
-          icon={<ArrowUpRight className="h-5 w-5 text-redbox-orange" />}
+          icon={<Globe className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
           title="Growth Rate"
@@ -290,7 +305,7 @@ const Performance = () => {
           change={12.5}
           trend="up"
           description="Second half vs first half"
-          icon={<Eye className="h-5 w-5 text-redbox-indigo" />}
+          icon={<ArrowUpRight className="h-5 w-5 text-redbox-indigo" />}
         />
       </div>
 
