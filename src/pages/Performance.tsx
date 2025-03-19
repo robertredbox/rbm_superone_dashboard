@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout';
 import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import TimeSelector from '@/components/dashboard/TimeSelector';
 import MetricCard from '@/components/dashboard/MetricCard';
-import { Globe, ArrowUpRight, Download, TrendingUp, Users, Calendar, Activity } from 'lucide-react';
+import { Globe, ArrowUpRight, Download, TrendingUp, Users, Calendar, Activity, Clock } from 'lucide-react';
 
 // Font links component to ensure proper font loading
 const FontLinks = () => (
@@ -452,6 +452,98 @@ const Performance = () => {
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Top 3 Countries</span>
               <span className="font-sans font-medium">Germany, Côte d'Ivoire, Japan</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-8 mb-6">
+        <h2 className="text-2xl font-slab font-medium">Sessions Analysis</h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <MetricCard
+          title="Daily Sessions"
+          value="14,545"
+          change={6.3}
+          trend="up"
+          description="Average across platforms"
+          icon={<Clock className="h-5 w-5 text-redbox-purple" />}
+        />
+        <MetricCard
+          title="Android Sessions"
+          value="7,271"
+          change={6.6}
+          trend="up"
+          description="Daily average"
+          icon={<Activity className="h-5 w-5 text-redbox-green" />}
+        />
+        <MetricCard
+          title="iOS Sessions"
+          value="7,274"
+          change={-2.8}
+          trend="down"
+          description="Daily average"
+          icon={<Activity className="h-5 w-5 text-redbox-blue" />}
+        />
+        <MetricCard
+          title="Sessions per DAU"
+          value="2.5"
+          change={0}
+          trend="neutral"
+          description="Consistent across platforms"
+          icon={<Calendar className="h-5 w-5 text-redbox-orange" />}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-lg font-slab font-medium mb-4">Android Sessions Insights</h3>
+          <ul className="space-y-3">
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Average Daily Sessions</span>
+              <span className="font-sans font-medium">7,271 sessions/day</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Min/Max Sessions</span>
+              <span className="font-sans font-medium">5,007 to 9,953 sessions</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Peak Days</span>
+              <span className="font-sans font-medium text-green-500">Fri, Sat (avg: 8,204)</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Lowest Days</span>
+              <span className="font-sans font-medium text-amber-500">Tue (avg: 6,435)</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Feb vs Mar</span>
+              <span className="font-sans font-medium text-red-500">-11.5% in March</span>
+            </li>
+          </ul>
+        </div>
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-lg font-slab font-medium mb-4">iOS Sessions Insights</h3>
+          <ul className="space-y-3">
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Average Daily Sessions</span>
+              <span className="font-sans font-medium">7,274 sessions/day</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Min/Max Sessions</span>
+              <span className="font-sans font-medium">5,001 to 9,981 sessions</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Peak Sessions</span>
+              <span className="font-sans font-medium text-green-500">Weekend (+18.4% vs weekday)</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Peak Session Spikes</span>
+              <span className="font-sans font-medium">Feb 8, 13, 19</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Sessions Pattern</span>
+              <span className="font-sans font-medium">Short, frequent (mobile-friendly)</span>
             </li>
           </ul>
         </div>
