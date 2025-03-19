@@ -77,7 +77,7 @@ const Reviews = () => {
       author: "Mateos playground",
       date: "2025-01-11T01:16:18Z",
       rating: 3,
-      body: "Its a fun interaction game but for some reason it glitches out too much. Sometimes it leaves other playing characters floating on my lobby screen. When playing with another person on the party mode either one of the screens wont load as fast or kicks you out or the game will start for one and continue loading for the other. In one occasion my playmate was kicked out to to "photo image error" but when the other game started on the same match his character kept playing as if he was the one playing still."
+      body: "Its a fun interaction game but for some reason it glitches out too much. Sometimes it leaves other playing characters floating on my lobby screen. When playing with another person on the party mode either one of the screens wont load as fast or kicks you out or the game will start for one and continue loading for the other. In one occasion my playmate was kicked out to to 'photo image error' but when the other game started on the same match his character kept playing as if he was the one playing still."
     },
     {
       id: "12276540333",
