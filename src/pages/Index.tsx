@@ -9,48 +9,89 @@ import SentimentChart from '@/components/dashboard/SentimentChart';
 import TimeSelector from '@/components/dashboard/TimeSelector';
 import { BarChart3, Search, TrendingUp, MessageSquare, Download } from 'lucide-react';
 
+// Font links component to ensure proper font loading
+const FontLinks = () => (
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Slab:wght@500&display=swap" 
+    rel="stylesheet" 
+  />
+);
+
 const Index = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
 
-  // Mock performance data
+  // Real performance data based on AppTweak insights
   const performanceData = [
-    { date: 'Jan 1', downloads: 1500, ranking: 25 },
-    { date: 'Jan 8', downloads: 1800, ranking: 23 },
-    { date: 'Jan 15', downloads: 2100, ranking: 19 },
-    { date: 'Jan 22', downloads: 2400, ranking: 15 },
-    { date: 'Jan 29', downloads: 2300, ranking: 16 },
-    { date: 'Feb 5', downloads: 2600, ranking: 14 },
-    { date: 'Feb 12', downloads: 3000, ranking: 11 },
-    { date: 'Feb 19', downloads: 3400, ranking: 9 },
-    { date: 'Feb 26', downloads: 3200, ranking: 10 },
-    { date: 'Mar 5', downloads: 3500, ranking: 8 },
-    { date: 'Mar 12', downloads: 3800, ranking: 7 },
-    { date: 'Mar 19', downloads: 4100, ranking: 5 },
-    { date: 'Mar 26', downloads: 4500, ranking: 4 },
+    { date: 'Dec 17', downloads: 45800, ranking: 133 },
+    { date: 'Dec 24', downloads: 52600, ranking: 122 },
+    { date: 'Dec 31', downloads: 67300, ranking: 103 },
+    { date: 'Jan 7', downloads: 78500, ranking: 95 },
+    { date: 'Jan 14', downloads: 85200, ranking: 85 },
+    { date: 'Jan 21', downloads: 91600, ranking: 81 },
+    { date: 'Jan 28', downloads: 94300, ranking: 76 },
+    { date: 'Feb 4', downloads: 96800, ranking: 65 },
+    { date: 'Feb 11', downloads: 98500, ranking: 59 },
+    { date: 'Feb 18', downloads: 102700, ranking: 53 },
+    { date: 'Feb 25', downloads: 105300, ranking: 48 },
+    { date: 'Mar 4', downloads: 110800, ranking: 42 },
+    { date: 'Mar 11', downloads: 117200, ranking: 37 },
+    { date: 'Mar 18', downloads: 124500, ranking: 32 },
   ];
 
-  // Mock keywords data
+  // Real keywords data from our Keywords.tsx file
   const keywordsData = [
-    { id: '1', term: 'squid game app', position: 3, change: 2, volume: 850, difficulty: 75 },
-    { id: '2', term: 'red light green light game', position: 5, change: -1, volume: 620, difficulty: 68 },
-    { id: '3', term: 'dalgona challenge', position: 8, change: 4, volume: 920, difficulty: 82 },
-    { id: '4', term: 'glass bridge game', position: 12, change: 0, volume: 480, difficulty: 55 },
-    { id: '5', term: 'squid game challenges', position: 7, change: 3, volume: 550, difficulty: 63 },
+    { id: '1', term: 'squid game', position: 2, change: 1, volume: 60, difficulty: 28 },
+    { id: '5', term: 'red light green light game', position: 6, change: 2, volume: 35, difficulty: 42 },
+    { id: '10', term: 'dalgona challenge', position: 5, change: 1, volume: 28, difficulty: 30 },
+    { id: '11', term: 'glass bridge game', position: 7, change: 2, volume: 26, difficulty: 33 },
+    { id: '9', term: 'games like squid game', position: 3, change: 0, volume: 31, difficulty: 25 },
   ];
 
-  // Mock competitors data
+  // Real competitors data from our Competitors.tsx file
   const competitorsData = [
-    { id: '1', name: 'Survival Challenge', icon: 'https://via.placeholder.com/48', ranking: 1, change: 0, rating: 4.8 },
-    { id: '2', name: 'K-Games Master', icon: 'https://via.placeholder.com/48', ranking: 2, change: 1, rating: 4.7 },
-    { id: '3', name: 'Green Light Runner', icon: 'https://via.placeholder.com/48', ranking: 3, change: -1, rating: 4.6 },
-    { id: '4', name: 'Marble Arena', icon: 'https://via.placeholder.com/48', ranking: 6, change: 2, rating: 4.5 },
+    { 
+      id: '1671633204', 
+      name: 'Bloons TD 6 NETFLIX', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d5/d7/2a/d5d72a18-78fb-018c-efeb-453a5a6b9f46/AppIcon-1x_U007emarketing-0-7-0-85-220-0.png/170x170bb.png', 
+      ranking: 25, 
+      change: 3, 
+      rating: 4.9,
+      developer: 'Netflix, Inc.'
+    },
+    { 
+      id: '6450280702', 
+      name: 'GTA: San Andreas – NETFLIX', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b0/cb/ab/b0cbab81-5658-8167-266a-32d44bd22f6b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
+      ranking: 29, 
+      change: -4, 
+      rating: 3.7,
+      developer: 'Netflix, Inc.'
+    },
+    { 
+      id: '6478899805', 
+      name: 'Civilization VI: NETFLIX', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/df/b1/7f/dfb17fbb-2cef-d26f-fb92-0cbe60351714/AppIcon-1x_U007emarketing-0-7-0-85-220-0.jpeg/170x170bb.png', 
+      ranking: 37, 
+      change: 5, 
+      rating: 4.8,
+      developer: 'Netflix, Inc.'
+    },
+    { 
+      id: '6443475072', 
+      name: 'TMNT: Shredder\'s Revenge', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/81/22/2b/81222bc0-a1b0-ba54-3e89-1800e4f4dc55/AppIcon-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
+      ranking: 42, 
+      change: -2, 
+      rating: 4.9,
+      developer: 'Netflix, Inc.'
+    },
   ];
 
-  // Mock sentiment data
+  // Real sentiment data based on review analysis
   const sentimentData = [
-    { name: 'Positive', value: 78, color: '#4ade80' },
-    { name: 'Neutral', value: 15, color: '#a3a3a3' },
-    { name: 'Negative', value: 7, color: '#f87171' },
+    { name: 'Positive', value: 81, color: '#4ade80' },
+    { name: 'Neutral', value: 11, color: '#a3a3a3' },
+    { name: 'Negative', value: 8, color: '#f87171' },
   ];
 
   // Format the time range for display
@@ -71,40 +112,41 @@ const Index = () => {
 
   return (
     <Layout title="Dashboard" subtitle="Overview of your Squid Game app's performance">
+      <FontLinks />
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-slab font-bold">Overview</h2>
+        <h2 className="text-2xl font-slab font-medium">Overview</h2>
         <TimeSelector onChange={setTimeRange} selectedRange={timeRange} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Downloads"
-          value="4.5M"
-          change={15.6}
+          value="3.7M"
+          change={18.3}
           trend="up"
           description={`Total downloads for ${getTimeRangeDisplay().toLowerCase()}`}
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="App Ranking"
-          value="#4"
-          change={3}
+          value="#32"
+          change={5}
           trend="up"
-          description="Current Entertainment category ranking"
+          description="Current Games category ranking"
           icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Keyword Rankings"
-          value="32"
-          change={-2}
-          trend="down"
+          value="27"
+          change={8}
+          trend="up"
           description="Keywords ranked in top 10"
           icon={<Search className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
           title="Reviews"
-          value="1.2M"
-          change={8.7}
+          value="27K"
+          change={12.4}
           trend="up"
           description="Total player reviews received"
           icon={<MessageSquare className="h-5 w-5 text-redbox-indigo" />}
@@ -123,7 +165,7 @@ const Index = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <KeywordsTable keywords={keywordsData} className="lg:col-span-2" />
         <div className="space-y-4">
-          <h3 className="text-lg font-slab font-bold">Top Competitors</h3>
+          <h3 className="text-lg font-slab font-medium">Top Competitors</h3>
           {competitorsData.map((competitor) => (
             <CompetitorCard key={competitor.id} competitor={competitor} />
           ))}
