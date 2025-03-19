@@ -9,38 +9,38 @@ import { MessageSquare, ThumbsUp, ThumbsDown, TrendingUp, Star } from 'lucide-re
 const Reviews = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
 
-  // Mock sentiment data for Squid Game-like app
+  // Mock sentiment data for Squid Game app
   const sentimentData = [
     { name: 'Positive', value: 78, color: '#4ade80' },
     { name: 'Neutral', value: 15, color: '#a3a3a3' },
     { name: 'Negative', value: 7, color: '#f87171' },
   ];
 
-  // Mock reviews for a Squid Game-like app
+  // Mock reviews for Squid Game app
   const reviews = [
     {
       id: '1',
-      user: 'GameFan456',
+      user: 'Player456Fan',
       rating: 5,
       date: '2023-03-25',
-      title: 'Best show companion app ever!',
+      title: 'Best Squid Game companion app!',
       content: "This app enhances my Squid Game viewing experience so much! The games and challenges make me feel like I'm part of the show. Amazing graphics and smooth performance.",
       helpful: 156,
       sentiment: 'positive'
     },
     {
       id: '2',
-      user: 'TrendyViewer22',
+      user: 'GreenLight001',
       rating: 5,
       date: '2023-03-22',
-      title: 'Addictive challenges!',
-      content: "I can't stop playing the mini-games. The honeycomb challenge is as nerve-wracking as in the show! Would love to see more games added in future updates.",
+      title: 'Dalgona challenge is addictive!',
+      content: "I can't stop playing the mini-games. The honeycomb/dalgona challenge is as nerve-wracking as in the show! Would love to see more games like the glass bridge added in future updates.",
       helpful: 98,
       sentiment: 'positive'
     },
     {
       id: '3',
-      user: 'K-DramaLover',
+      user: 'FrontMan2023',
       rating: 4,
       date: '2023-03-20',
       title: 'Great companion to the show',
@@ -50,21 +50,21 @@ const Reviews = () => {
     },
     {
       id: '4',
-      user: 'CasualGamer',
+      user: 'EliminatedPlayer',
       rating: 2,
       date: '2023-03-18',
-      title: 'Too many ads',
-      content: "The games are fun but there are way too many ads between challenges. It ruins the immersion of the experience. Please consider a premium ad-free option.",
+      title: 'Too many VIP interruptions',
+      content: "The games are fun but there are way too many ads between challenges. It ruins the immersion of the experience. Please consider a premium VIP-free option.",
       helpful: 42,
       sentiment: 'negative'
     },
     {
       id: '5',
-      user: 'BingeWatcher',
+      user: 'MarbleGameMaster',
       rating: 4,
       date: '2023-03-15',
       title: 'Authentic to the show',
-      content: "The app really captures the tension and aesthetic of the show perfectly. The sound effects especially are spot on. Occasionally crashes during the marble game challenge though.",
+      content: "The app really captures the tension and aesthetic of the show perfectly. The sound effects especially are spot on. The Red Light, Green Light game is incredibly tense! Occasionally crashes during the marble game challenge though.",
       helpful: 65,
       sentiment: 'neutral'
     }
@@ -118,9 +118,9 @@ const Reviews = () => {
   };
 
   return (
-    <Layout title="Reviews" subtitle="Analyze user sentiment and feedback">
+    <Layout title="Reviews" subtitle="Analyze player sentiment and feedback">
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-slab font-bold">User Reviews</h2>
+        <h2 className="text-2xl font-slab font-bold">Player Reviews</h2>
         <TimeSelector onChange={setTimeRange} selectedRange={timeRange} />
       </div>
 
@@ -167,7 +167,7 @@ const Reviews = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-green-50 rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-green-600 mb-1">96%</div>
-              <div className="text-sm text-green-800">Game Design</div>
+              <div className="text-sm text-green-800">Game Challenges</div>
             </div>
             <div className="bg-green-50 rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-green-600 mb-1">91%</div>
@@ -179,20 +179,21 @@ const Reviews = () => {
             </div>
             <div className="bg-red-50 rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-red-600 mb-1">32%</div>
-              <div className="text-sm text-red-800">Ad Frequency</div>
+              <div className="text-sm text-red-800">VIP Interruptions</div>
             </div>
           </div>
           
           <div className="mt-4">
             <h4 className="text-md font-medium mb-2">Keywords in Reviews</h4>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">addictive</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">just like the show</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">challenging mini-games</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">player 456</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">honeycomb challenge</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">red light green light</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">dalgona challenge</span>
               <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">tug of war</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">too many ads</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">marble game</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">glass bridge</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">player 456</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">front man</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">too many interruptions</span>
               <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">crashes sometimes</span>
             </div>
           </div>
