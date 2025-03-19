@@ -321,17 +321,47 @@ const processAppTweakData = (timeRange: string) => {
     });
   }
   
-  // Combined chart data (uses same date format as iOS for simplicity)
-  const combinedChartData = iosChartData.map((iosPoint, index) => {
-    // Find matching Android data point by date if possible
-    const androidPoint = androidChartData.find(a => a.date === iosPoint.date);
+  // Create combined chart data based on time range
+  let combinedChartData = [];
+  
+  if (timeRange === '7d' || timeRange === '30d') {
+    // For 7d and 30d, we can do date-based matching as dates might align better
+    combinedChartData = iosChartData.map((iosPoint) => {
+      // Find matching Android data point by date if possible
+      const androidPoint = androidChartData.find(a => a.date === iosPoint.date);
+      
+      return {
+        date: iosPoint.date,
+        iosDownloads: iosPoint.iosDownloads,
+        androidDownloads: androidPoint ? androidPoint.androidDownloads : 0
+      };
+    });
+  } else {
+    // For 90d view, we need a different approach as date ranges are different
+    // Create a combined timeline that spans both datasets with proper proportions
     
-    return {
-      date: iosPoint.date,
-      iosDownloads: iosPoint.iosDownloads,
-      androidDownloads: androidPoint ? androidPoint.androidDownloads : 0
-    };
-  });
+    // Use index-based point matching for 90d view
+    // This ensures Android data shows proper trend over the full range
+    const totalPoints = Math.max(iosChartData.length, androidChartData.length);
+    
+    // Generate points with relative positions in the timeline
+    for (let i = 0; i < totalPoints; i++) {
+      // Calculate relative positions in each dataset
+      const iosIndex = Math.min(Math.floor(i * iosChartData.length / totalPoints), iosChartData.length - 1);
+      const androidIndex = Math.min(Math.floor(i * androidChartData.length / totalPoints), androidChartData.length - 1);
+      
+      // Get data from each dataset at calculated positions
+      const iosPoint = iosChartData[iosIndex];
+      const androidPoint = androidChartData[androidIndex];
+      
+      // Use iOS dates for consistency in the chart
+      combinedChartData.push({
+        date: iosPoint.date,
+        iosDownloads: iosPoint.iosDownloads,
+        androidDownloads: androidPoint.androidDownloads
+      });
+    }
+  }
   
   // Legacy chart data format for backward compatibility
   const chartData = iosChartData.map(point => ({
