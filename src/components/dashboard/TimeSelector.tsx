@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,15 +13,22 @@ interface TimeSelectorProps {
   onChange: (range: string) => void;
   selectedRange: string;
   className?: string;
+  customRanges?: { value: string; label: string }[];
 }
 
-const TimeSelector: React.FC<TimeSelectorProps> = ({ onChange, selectedRange, className }) => {
-  const timeRanges = [
+const TimeSelector: React.FC<TimeSelectorProps> = ({ 
+  onChange, 
+  selectedRange, 
+  className,
+  customRanges 
+}) => {
+  const defaultTimeRanges = [
     { value: '7d', label: 'Last 7 days' },
     { value: '30d', label: 'Last 30 days' },
     { value: '90d', label: 'Last 90 days' },
-    { value: '1y', label: 'Last year' },
   ];
+
+  const timeRanges = customRanges || defaultTimeRanges;
 
   return (
     <div className={cn('flex items-center space-x-2', className)}>

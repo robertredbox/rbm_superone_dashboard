@@ -5,7 +5,6 @@ import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import KeywordsTable from '@/components/dashboard/KeywordsTable';
 import CompetitorCard from '@/components/dashboard/CompetitorCard';
 import SentimentChart from '@/components/dashboard/SentimentChart';
-import TimeSelector from '@/components/dashboard/TimeSelector';
 import { BarChart3, Search, TrendingUp, MessageSquare, Download } from 'lucide-react';
 
 // Font links component to ensure proper font loading
@@ -17,8 +16,6 @@ const FontLinks = () => (
 );
 
 const Index = () => {
-  const [timeRange, setTimeRange] = useState<string>('30d');
-
   // SuperOne performance data
   const performanceData = [
     { date: 'Dec 17', downloads: 3800, ranking: 215 },
@@ -93,28 +90,11 @@ const Index = () => {
     { name: 'Negative', value: 13, color: '#f87171' },
   ];
 
-  // Format the time range for display
-  const getTimeRangeDisplay = () => {
-    switch (timeRange) {
-      case '7d':
-        return 'Last 7 days';
-      case '30d':
-        return 'Last 30 days';
-      case '90d':
-        return 'Last 90 days';
-      case '1y':
-        return 'Last year';
-      default:
-        return 'Last 30 days';
-    }
-  };
-
   return (
     <Layout title="Dashboard" subtitle="Overview of your Squid Game app's performance">
       <FontLinks />
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6">
         <h2 className="text-2xl font-slab font-medium">Overview</h2>
-        <TimeSelector onChange={setTimeRange} selectedRange={timeRange} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -123,7 +103,7 @@ const Index = () => {
           value="3.7M"
           change={18.3}
           trend="up"
-          description={`Total downloads for ${getTimeRangeDisplay().toLowerCase()}`}
+          description="Total downloads"
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
@@ -155,7 +135,7 @@ const Index = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <PerformanceChart 
           data={performanceData} 
-          timeRange={getTimeRangeDisplay()}
+          timeRange="Last 30 days"
           className="lg:col-span-2"
         />
         <SentimentChart data={sentimentData} />

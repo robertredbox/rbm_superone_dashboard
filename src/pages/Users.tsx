@@ -1,7 +1,5 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '@/components/layout/Layout';
-import TimeSelector from '@/components/dashboard/TimeSelector';
 import MetricCard from '@/components/dashboard/MetricCard';
 import { Users as UsersIcon, UserPlus, Activity, MapPin } from 'lucide-react';
 
@@ -14,8 +12,6 @@ const FontLinks = () => (
 );
 
 const Users = () => {
-  const [timeRange, setTimeRange] = useState<string>('30d');
-
   // Real user data based on Squid Game: Unleashed demographics
   const userData = [
     { id: '1', name: 'Kim Jin-woo', email: 'jinwoo.kim@example.com', country: 'South Korea', device: 'iPhone 15 Pro', lastActive: '2025-03-18', status: 'active' },
@@ -46,28 +42,11 @@ const Users = () => {
     { type: 'Android Tablet', users: 0.5, percentage: 0.5 },
   ];
 
-  // Format the time range for display
-  const getTimeRangeDisplay = () => {
-    switch (timeRange) {
-      case '7d':
-        return 'Last 7 days';
-      case '30d':
-        return 'Last 30 days';
-      case '90d':
-        return 'Last 90 days';
-      case '1y':
-        return 'Last year';
-      default:
-        return 'Last 30 days';
-    }
-  };
-
   return (
     <Layout title="Users" subtitle="Analyze your user demographics and behavior">
       <FontLinks />
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6">
         <h2 className="text-2xl font-slab font-medium">User Analytics</h2>
-        <TimeSelector onChange={setTimeRange} selectedRange={timeRange} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -84,7 +63,7 @@ const Users = () => {
           value="124.5K"
           change={5.9}
           trend="up"
-          description={`New users in ${getTimeRangeDisplay().toLowerCase()}`}
+          description="New users in last 30 days"
           icon={<UserPlus className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard

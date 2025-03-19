@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
-import TimeSelector from '@/components/dashboard/TimeSelector';
 import CompetitorCard from '@/components/dashboard/CompetitorCard';
 import MetricCard from '@/components/dashboard/MetricCard';
 import { TrendingUp, Users, Star, Award, Trophy, Zap, Target, BarChart2 } from 'lucide-react';
@@ -14,7 +13,6 @@ const FontLinks = () => (
 );
 
 const Competitors = () => {
-  const [timeRange, setTimeRange] = useState<string>('30d');
   const [platform, setPlatform] = useState<string>('ios');
 
   // SuperOne Fan Battle competitors data - iOS
@@ -94,21 +92,6 @@ const Competitors = () => {
       featuredInfo: '1M+ downloads, player identification focus'
     }
   ];
-
-  const getTimeRangeDisplay = () => {
-    switch (timeRange) {
-      case '7d':
-        return 'Last 7 days';
-      case '30d':
-        return 'Last 30 days';
-      case '90d':
-        return 'Last 90 days';
-      case '1y':
-        return 'Last year';
-      default:
-        return 'Last 30 days';
-    }
-  };
 
   // SuperOne market analysis data - Updated
   const iosMarketPosition = 218; // Current rank in Trivia Games category (iOS)
@@ -197,7 +180,6 @@ const Competitors = () => {
               Android
             </button>
           </div>
-          <TimeSelector onChange={setTimeRange} selectedRange={timeRange} />
         </div>
       </div>
 

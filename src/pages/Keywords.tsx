@@ -1,7 +1,6 @@
 // src/pages/Keywords.tsx
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
-import TimeSelector from '@/components/dashboard/TimeSelector';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,7 +17,6 @@ const FontLinks = () => (
 );
 
 const Keywords = () => {
-  const [timeRange, setTimeRange] = useState<string>('30d');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [platform, setPlatform] = useState<string>('all');
   
@@ -266,22 +264,10 @@ const Keywords = () => {
     },
   ];
 
-  // Filter keywords based on search term and platform
   const filteredKeywords = trackedKeywords.filter(keyword => 
     keyword.term.toLowerCase().includes(searchTerm.toLowerCase()) &&
     (platform === 'all' || keyword.platform === platform || keyword.platform === 'both')
   );
-
-  // Format the time range for display
-  const getTimeRangeDisplay = () => {
-    switch (timeRange) {
-      case '7d': return 'Last 7 days';
-      case '30d': return 'Last 30 days';
-      case '90d': return 'Last 90 days';
-      case '1y': return 'Last year';
-      default: return 'Last 30 days';
-    }
-  };
 
   // Get trend icon based on change value
   const getTrendIcon = (change: number) => {
@@ -324,7 +310,6 @@ const Keywords = () => {
             <option value="android">Android</option>
             <option value="both">Cross-Platform</option>
           </select>
-          <TimeSelector onChange={setTimeRange} selectedRange={timeRange} />
         </div>
       </div>
 

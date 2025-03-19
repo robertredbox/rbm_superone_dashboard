@@ -286,6 +286,13 @@ const Performance = () => {
     iosDAUTrend: 0
   });
 
+  // Custom time ranges for the performance page
+  const customTimeRanges = [
+    { value: '7d', label: 'Last 7 days' },
+    { value: '30d', label: 'Last 30 days' },
+    { value: '90d', label: 'Last 90 days' },
+  ];
+
   useEffect(() => {
     // Process data when component mounts or time range changes
     const data = processAppTweakData(timeRange);
@@ -306,8 +313,6 @@ const Performance = () => {
         return 'Last 30 days';
       case '90d':
         return 'Last 90 days';
-      case '1y':
-        return 'Last year';
       default:
         return 'Last 90 days';
     }
@@ -318,7 +323,11 @@ const Performance = () => {
       <FontLinks />
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-2xl font-slab font-medium">Performance Metrics</h2>
-        <TimeSelector onChange={handleTimeRangeChange} selectedRange={timeRange} />
+        <TimeSelector 
+          onChange={handleTimeRangeChange} 
+          selectedRange={timeRange} 
+          customRanges={customTimeRanges}
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
