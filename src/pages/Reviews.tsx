@@ -188,13 +188,13 @@ const Reviews = () => {
   const sortedReviews = [...filteredReviews].sort((a, b) => {
     switch (sortBy) {
       case 'recent':
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
       case 'oldest':
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
       case 'highest':
-        return b.rating - a.rating;
+      return b.rating - a.rating;
       case 'lowest':
-        return a.rating - b.rating;
+      return a.rating - b.rating;
       default:
         return 0;
     }
@@ -353,8 +353,8 @@ const Reviews = () => {
                   </div>
                 ))}
               </div>
-            </div>
-            
+              </div>
+              
             <div className="mt-4">
               <div className="text-sm font-medium mb-2">Negative Themes</div>
               <div className="space-y-2">
@@ -371,7 +371,7 @@ const Reviews = () => {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-lg font-slab font-medium">Key Insights</CardTitle>

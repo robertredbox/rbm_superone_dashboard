@@ -5,7 +5,13 @@ import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import KeywordsTable from '@/components/dashboard/KeywordsTable';
 import CompetitorCard from '@/components/dashboard/CompetitorCard';
 import SentimentChart from '@/components/dashboard/SentimentChart';
-import { BarChart3, Search, TrendingUp, MessageSquare, Download } from 'lucide-react';
+import { BarChart3, Search, TrendingUp, MessageSquare, Download, ArrowUp, ArrowUpRight, Globe } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import RecentReviews from '@/components/dashboard/RecentReviews';
+import TopKeywords from '@/components/dashboard/TopKeywords';
+import TopCompetitors from '@/components/dashboard/TopCompetitors';
+import KeyMetrics from '@/components/dashboard/KeyMetrics';
 
 // Font links component to ensure proper font loading
 const FontLinks = () => (
@@ -16,22 +22,96 @@ const FontLinks = () => (
 );
 
 const Index = () => {
-  // SuperOne performance data
-  const performanceData = [
-    { date: 'Dec 17', downloads: 3800, ranking: 215 },
-    { date: 'Dec 24', downloads: 4200, ranking: 203 },
-    { date: 'Dec 31', downloads: 5100, ranking: 189 },
-    { date: 'Jan 7', downloads: 5600, ranking: 175 },
-    { date: 'Jan 14', downloads: 6300, ranking: 162 },
-    { date: 'Jan 21', downloads: 7200, ranking: 145 },
-    { date: 'Jan 28', downloads: 7900, ranking: 130 },
-    { date: 'Feb 4', downloads: 8300, ranking: 120 },
-    { date: 'Feb 11', downloads: 8900, ranking: 110 },
-    { date: 'Feb 18', downloads: 9500, ranking: 95 },
-    { date: 'Feb 25', downloads: 10300, ranking: 88 },
-    { date: 'Mar 4', downloads: 11200, ranking: 78 },
-    { date: 'Mar 11', downloads: 12100, ranking: 65 },
-    { date: 'Mar 18', downloads: 13000, ranking: 55 },
+  const [selectedPlatform, setSelectedPlatform] = useState('combined');
+  
+  // Platform-specific performance data
+  const performanceData = {
+    ios: {
+      downloads: {
+        value: '1.8K',
+        change: '+28.4%',
+        period: 'last 90 days'
+      },
+      weeklyTrend: {
+        value: '+45.2%',
+        change: '+45.2%',
+        period: 'Change in weekly averages'
+      },
+      activeMarkets: {
+        value: '42',
+        change: '+12%',
+        period: 'Countries with active users'
+      },
+      growthRate: {
+        value: '27.5%',
+        change: '+8.3%',
+        period: 'Second half vs first half'
+      }
+    },
+    android: {
+      downloads: {
+        value: '1.3K',
+        change: '+38.7%',
+        period: 'last 90 days'
+      },
+      weeklyTrend: {
+        value: '+47.3%',
+        change: '+47.3%',
+        period: 'Change in weekly averages'
+      },
+      activeMarkets: {
+        value: '25',
+        change: '+6%',
+        period: 'Countries with active users'
+      },
+      growthRate: {
+        value: '38.6%',
+        change: '+16.2%',
+        period: 'Second half vs first half'
+      }
+    },
+    combined: {
+      downloads: {
+        value: '3.1K',
+        change: '+33.1%',
+        period: 'last 90 days'
+      },
+      weeklyTrend: {
+        value: '+92.1%',
+        change: '+92.1%',
+        period: 'Change in weekly averages'
+      },
+      activeMarkets: {
+        value: '67',
+        change: '+8%',
+        period: 'Countries with active users'
+      },
+      growthRate: {
+        value: '33.1%',
+        change: '+12.5%',
+        period: 'Second half vs first half'
+      }
+    }
+  };
+
+  // Get current metrics based on selected platform
+  const currentMetrics = performanceData[selectedPlatform as keyof typeof performanceData];
+
+  // Use existing download data
+  const downloadsData = [
+    { date: 'Dec 19', ios: 123, android: 150 },
+    { date: 'Dec 26', ios: 145, android: 132 },
+    { date: 'Jan 2', ios: 139, android: 145 },
+    { date: 'Jan 9', ios: 162, android: 140 },
+    { date: 'Jan 16', ios: 187, android: 152 },
+    { date: 'Jan 23', ios: 196, android: 165 },
+    { date: 'Jan 30', ios: 327, android: 215 },
+    { date: 'Feb 6', ios: 246, android: 267 },
+    { date: 'Feb 13', ios: 167, android: 198 },
+    { date: 'Feb 20', ios: 171, android: 187 },
+    { date: 'Feb 27', ios: 189, android: 242 },
+    { date: 'Mar 6', ios: 256, android: 210 },
+    { date: 'Mar 13', ios: 312, android: 198 },
   ];
 
   // SuperOne keywords data
@@ -85,69 +165,173 @@ const Index = () => {
 
   // SuperOne sentiment data based on review analysis
   const sentimentData = [
-    { name: 'Positive', value: 79, color: '#4ade80' },
-    { name: 'Neutral', value: 8, color: '#a3a3a3' },
-    { name: 'Negative', value: 13, color: '#f87171' },
+    { name: 'Positive', value: 772, color: '#4ade80' },
+    { name: 'Neutral', value: 0, color: '#60a5fa' },
+    { name: 'Negative', value: 73, color: '#f87171' },
   ];
+
+  // Handler for platform selection in the chart
+  const handlePlatformChange = (platform: string) => {
+    setSelectedPlatform(platform.toLowerCase());
+  };
 
   return (
     <Layout title="Dashboard" subtitle="Overview of your SuperOne app's performance">
       <FontLinks />
-      <div className="mb-6">
-        <h2 className="text-2xl font-slab font-medium">Overview</h2>
-      </div>
+      <div className="flex flex-col gap-8">
+        <div>
+          <h2 className="text-3xl font-slab font-medium">Dashboard</h2>
+          <p className="text-muted-foreground text-sm mt-1">SuperOne Fan Battle performance overview.</p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        <MetricCard
-          title="Downloads"
-          value="3.7M"
-          change={18.3}
-          trend="up"
-          description="Total downloads"
-          icon={<Download className="h-5 w-5 text-redbox-purple" />}
-        />
-        <MetricCard
-          title="App Ranking"
-          value="#32"
-          change={5}
-          trend="up"
-          description="Current Games category ranking"
-          icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
-        />
-        <MetricCard
-          title="Keyword Rankings"
-          value="27"
-          change={8}
-          trend="up"
-          description="Keywords ranked in top 10"
-          icon={<Search className="h-5 w-5 text-redbox-orange" />}
-        />
-        <MetricCard
-          title="Reviews"
-          value="27K"
-          change={12.4}
-          trend="up"
-          description="Total player reviews received"
-          icon={<MessageSquare className="h-5 w-5 text-redbox-indigo" />}
-        />
-      </div>
+        <div>
+          <h3 className="text-xl font-slab font-medium mb-4">Performance Metrics</h3>
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base font-sans font-medium text-muted-foreground">Downloads</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <div className="text-3xl font-sans font-bold">{currentMetrics.downloads.value}</div>
+                    <div className="flex items-center mt-1 text-emerald-600 text-xs font-sans">
+                      <ArrowUp className="h-3 w-3 mr-1" />
+                      {currentMetrics.downloads.change}
+                    </div>
+                  </div>
+                  <Download className="h-8 w-8 text-slate-300" />
+                </div>
+                <div className="text-xs text-muted-foreground mt-2 font-sans">
+                  Total downloads for {currentMetrics.downloads.period}
+                </div>
+              </CardContent>
+            </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <PerformanceChart 
-          data={performanceData} 
-          timeRange="Last 30 days"
-          className="lg:col-span-2"
-        />
-        <SentimentChart data={sentimentData} />
-      </div>
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base font-sans font-medium text-muted-foreground">Weekly Trend</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <div className="text-3xl font-sans font-bold">{currentMetrics.weeklyTrend.value}</div>
+                    <div className="flex items-center mt-1 text-emerald-600 text-xs font-sans">
+                      <ArrowUp className="h-3 w-3 mr-1" />
+                      {currentMetrics.weeklyTrend.change}
+                    </div>
+                  </div>
+                  <TrendingUp className="h-8 w-8 text-slate-300" />
+                </div>
+                <div className="text-xs text-muted-foreground mt-2 font-sans">
+                  {currentMetrics.weeklyTrend.period}
+                </div>
+              </CardContent>
+            </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <KeywordsTable keywords={keywordsData} className="lg:col-span-2" />
-        <div className="space-y-4">
-          <h3 className="text-lg font-slab font-medium">Top Competitors</h3>
-          {competitorsData.map((competitor) => (
-            <CompetitorCard key={competitor.id} competitor={competitor} />
-          ))}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base font-sans font-medium text-muted-foreground">Active Markets</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <div className="text-3xl font-sans font-bold">{currentMetrics.activeMarkets.value}</div>
+                    <div className="flex items-center mt-1 text-emerald-600 text-xs font-sans">
+                      <ArrowUp className="h-3 w-3 mr-1" />
+                      {currentMetrics.activeMarkets.change}
+                    </div>
+                  </div>
+                  <Globe className="h-8 w-8 text-slate-300" />
+                </div>
+                <div className="text-xs text-muted-foreground mt-2 font-sans">
+                  {currentMetrics.activeMarkets.period}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base font-sans font-medium text-muted-foreground">Growth Rate</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <div className="text-3xl font-sans font-bold">{currentMetrics.growthRate.value}</div>
+                    <div className="flex items-center mt-1 text-emerald-600 text-xs font-sans">
+                      <ArrowUp className="h-3 w-3 mr-1" />
+                      {currentMetrics.growthRate.change}
+                    </div>
+                  </div>
+                  <ArrowUpRight className="h-8 w-8 text-slate-300" />
+                </div>
+                <div className="text-xs text-muted-foreground mt-2 font-sans">
+                  {currentMetrics.growthRate.period}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+        
+        <div>
+          <h3 className="text-xl font-slab font-medium mb-4">Download Trends</h3>
+          <Card>
+            <CardContent className="pt-6">
+              <PerformanceChart data={downloadsData} onPlatformChange={handlePlatformChange} />
+            </CardContent>
+          </Card>
+          <div className="text-xs text-muted-foreground mt-2 text-center">
+            <span className="text-amber-500">Note:</span> Android data (store listing acquisitions) covers Dec 13, 2024 to Mar 12, 2025, while iOS data spans Dec 19, 2024 to Mar 18, 2025. The different date ranges may affect direct comparisons.
+          </div>
+        </div>
+        
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+          <div>
+            <h3 className="text-xl font-slab font-medium mb-4">Sentiment Analysis</h3>
+            <Card className="h-[350px]">
+              <CardContent className="pt-6">
+                <SentimentChart data={sentimentData} />
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-slab font-medium mb-4">Recent Reviews</h3>
+            <Card className="h-[350px]">
+              <CardContent className="p-0">
+                <RecentReviews />
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+        
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
+          <div className="lg:col-span-1">
+            <h3 className="text-xl font-slab font-medium mb-4">Top Keywords</h3>
+            <Card className="h-[400px]">
+              <CardContent className="p-0">
+                <TopKeywords />
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="lg:col-span-1">
+            <h3 className="text-xl font-slab font-medium mb-4">Top Competitors</h3>
+            <Card className="h-[400px]">
+              <CardContent className="p-0">
+                <TopCompetitors />
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="lg:col-span-1">
+            <h3 className="text-xl font-slab font-medium mb-4">Key Metrics</h3>
+            <Card className="h-[400px]">
+              <CardContent className="p-0">
+                <KeyMetrics />
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </Layout>
