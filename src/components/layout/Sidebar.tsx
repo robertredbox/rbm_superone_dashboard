@@ -71,13 +71,11 @@ const Sidebar = () => {
         <Link to="/" className="flex items-center gap-2">
           <div className="flex items-center">
             {/* Squid Game Logo */}
-            <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" fill="#FF0F7B" />
-              <path d="M30 30H70V70H30V30Z" stroke="white" strokeWidth="6" />
-              <path d="M50 25V75" stroke="white" strokeWidth="6" />
-              <path d="M25 50H75" stroke="white" strokeWidth="6" />
-              <circle cx="50" cy="50" r="15" fill="#FF0F7B" stroke="white" strokeWidth="4" />
-            </svg>
+            <img 
+              src="/squid-game-logo.svg" 
+              alt="Squid Game Logo" 
+              className="h-8 w-8" 
+            />
           </div>
           <span className="text-xl font-slab font-bold text-redbox-indigo">ASO Dashboard</span>
         </Link>
