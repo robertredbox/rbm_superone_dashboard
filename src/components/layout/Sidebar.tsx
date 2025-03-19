@@ -22,6 +22,9 @@ type NavItem = {
 const Sidebar = () => {
   const location = useLocation();
   
+  // Squid Game app icon URL from App Profile
+  const squidGameIconUrl = "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ae/0b/33/ae0b3341-fee7-b756-59e6-0ed43c2c3914/GiHunGrid1-0-0-1x_U007emarketing-0-7-0-85-220.png/1024x1024bb.jpg";
+  
   const navItems: NavItem[] = [
     {
       label: 'Dashboard',
@@ -70,11 +73,11 @@ const Sidebar = () => {
       <div className="flex h-16 items-center px-6">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex items-center">
-            {/* Squid Game Logo */}
+            {/* Squid Game App Icon */}
             <img 
-              src="/squid-game-logo.svg" 
-              alt="Squid Game Logo" 
-              className="h-8 w-8" 
+              src={squidGameIconUrl} 
+              alt="Squid Game: Unleashed" 
+              className="h-10 w-10 rounded-lg" 
             />
           </div>
           <span className="text-xl font-slab font-bold text-redbox-indigo">ASO Dashboard</span>
