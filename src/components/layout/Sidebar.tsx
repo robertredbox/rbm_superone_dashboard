@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -22,8 +21,8 @@ type NavItem = {
 const Sidebar = () => {
   const location = useLocation();
   
-  // Squid Game app icon URL from App Profile
-  const squidGameIconUrl = "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ae/0b/33/ae0b3341-fee7-b756-59e6-0ed43c2c3914/GiHunGrid1-0-0-1x_U007emarketing-0-7-0-85-220.png/1024x1024bb.jpg";
+  // SuperOne app icon URL from App Profile
+  const appIconUrl = "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/7c/6a/f4/7c6af427-7e3a-623b-0d07-94149ea183da/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/1024x1024bb.jpg";
   
   const navItems: NavItem[] = [
     {
@@ -73,10 +72,10 @@ const Sidebar = () => {
       <div className="flex h-16 items-center px-6">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex items-center">
-            {/* Squid Game App Icon */}
+            {/* SuperOne App Icon */}
             <img 
-              src={squidGameIconUrl} 
-              alt="Squid Game: Unleashed" 
+              src={appIconUrl} 
+              alt="SuperOne Fan Battle" 
               className="h-10 w-10 rounded-lg" 
             />
           </div>

@@ -91,7 +91,7 @@ const Index = () => {
   ];
 
   return (
-    <Layout title="Dashboard" subtitle="Overview of your Squid Game app's performance">
+    <Layout title="Dashboard" subtitle="Overview of your SuperOne app's performance">
       <FontLinks />
       <div className="mb-6">
         <h2 className="text-2xl font-slab font-medium">Overview</h2>

@@ -12,7 +12,7 @@ const FontLinks = () => (
 );
 
 const Users = () => {
-  // Real user data based on Squid Game: Unleashed demographics
+  // Real user data based on SuperOne Fan Battle demographics
   const userData = [
     { id: '1', name: 'Kim Jin-woo', email: 'jinwoo.kim@example.com', country: 'South Korea', device: 'iPhone 15 Pro', lastActive: '2025-03-18', status: 'active' },
     { id: '2', name: 'Emily Chen', email: 'emily.chen@example.com', country: 'United States', device: 'Samsung Galaxy S23', lastActive: '2025-03-18', status: 'active' },
