@@ -21,12 +21,12 @@ const Keywords = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
   const [searchTerm, setSearchTerm] = useState<string>('');
   
-  // Real keywords data from AppTweak
+  // Updated real keywords data from AppTweak analysis
   const trackedKeywords = [
     { 
       id: '1', 
       term: 'squid game', 
-      position: 2, 
+      position: 1, 
       change: 1, 
       volume: 60, 
       difficulty: 28,
@@ -34,102 +34,174 @@ const Keywords = () => {
     },
     { 
       id: '2', 
-      term: 'battle royale', 
-      position: 8, 
+      term: 'netflix', 
+      position: 57, 
       change: -2, 
-      volume: 48, 
-      difficulty: 63,
-      chance: 37
+      volume: 84, 
+      difficulty: 65,
+      chance: 35
     },
     { 
       id: '3', 
-      term: 'multiplayer games', 
-      position: 11, 
-      change: 3, 
-      volume: 60, 
-      difficulty: 64,
-      chance: 36
+      term: 'among us', 
+      position: 38, 
+      change: 2, 
+      volume: 75, 
+      difficulty: 60,
+      chance: 40
     },
     { 
       id: '4', 
-      term: 'netflix games', 
-      position: 4, 
-      change: 0, 
-      volume: 53, 
-      difficulty: 53,
-      chance: 47
+      term: 'fortnite', 
+      position: 93, 
+      change: -5, 
+      volume: 73, 
+      difficulty: 78,
+      chance: 22
     },
     { 
       id: '5', 
-      term: 'red light green light game', 
-      position: 6, 
-      change: 2, 
-      volume: 35, 
-      difficulty: 42,
-      chance: 58
+      term: 'gta', 
+      position: 67, 
+      change: 3, 
+      volume: 66, 
+      difficulty: 70,
+      chance: 30
     },
     { 
       id: '6', 
-      term: 'mobile games', 
-      position: 17, 
-      change: -1, 
-      volume: 70, 
+      term: 'stumble guys', 
+      position: 20, 
+      change: 4, 
+      volume: 65, 
+      difficulty: 50,
+      chance: 50
+    },
+    { 
+      id: '7', 
+      term: 'sprunki', 
+      position: 93, 
+      change: -3, 
+      volume: 65, 
+      difficulty: 75,
+      chance: 25
+    },
+    { 
+      id: '8', 
+      term: 'schoolboy runaway', 
+      position: 27, 
+      change: 5, 
+      volume: 62, 
+      difficulty: 45,
+      chance: 55
+    },
+    { 
+      id: '9', 
+      term: 'rec room', 
+      position: 98, 
+      change: -7, 
+      volume: 62, 
+      difficulty: 80,
+      chance: 20
+    },
+    { 
+      id: '10', 
+      term: 'juegos', 
+      position: 38, 
+      change: 0, 
+      volume: 58, 
+      difficulty: 65,
+      chance: 35
+    },
+    { 
+      id: '11', 
+      term: 'greenlight', 
+      position: 95, 
+      change: -2, 
+      volume: 57, 
+      difficulty: 75,
+      chance: 25
+    },
+    { 
+      id: '12', 
+      term: 'netflix games', 
+      position: 4, 
+      change: 2, 
+      volume: 53, 
+      difficulty: 35,
+      chance: 65
+    },
+    { 
+      id: '13', 
+      term: 'fall guys', 
+      position: 7, 
+      change: 3, 
+      volume: 53, 
+      difficulty: 40,
+      chance: 60
+    },
+    { 
+      id: '14', 
+      term: 'among us 2', 
+      position: 96, 
+      change: -4, 
+      volume: 50, 
       difficulty: 82,
       chance: 18
     },
     { 
-      id: '7', 
-      term: 'survival games', 
-      position: 9, 
-      change: 4, 
-      volume: 43, 
-      difficulty: 61,
-      chance: 39
+      id: '15', 
+      term: 'sprunki game', 
+      position: 35, 
+      change: 6, 
+      volume: 48, 
+      difficulty: 55,
+      chance: 45
     },
     { 
-      id: '8', 
-      term: 'free games', 
-      position: 26, 
-      change: -3, 
-      volume: 75, 
-      difficulty: 85,
-      chance: 15
+      id: '16', 
+      term: 'battle net', 
+      position: 80, 
+      change: -1, 
+      volume: 48, 
+      difficulty: 72,
+      chance: 28
     },
     { 
-      id: '9', 
-      term: 'games like squid game', 
-      position: 3, 
+      id: '17', 
+      term: 'eggy party', 
+      position: 60, 
+      change: 3, 
+      volume: 47, 
+      difficulty: 62,
+      chance: 38
+    },
+    { 
+      id: '18', 
+      term: 'squid game 2', 
+      position: 1, 
       change: 0, 
-      volume: 31, 
+      volume: 46, 
       difficulty: 25,
       chance: 75
     },
     { 
-      id: '10', 
-      term: 'dalgona challenge', 
-      position: 5, 
-      change: 1, 
-      volume: 28, 
-      difficulty: 30,
-      chance: 70
+      id: '19', 
+      term: 'gta san andreas netflix', 
+      position: 20, 
+      change: 4, 
+      volume: 45, 
+      difficulty: 48,
+      chance: 52
     },
     { 
-      id: '11', 
-      term: 'glass bridge game', 
-      position: 7, 
+      id: '20', 
+      term: 'stumble guys 2', 
+      position: 37, 
       change: 2, 
-      volume: 26, 
-      difficulty: 33,
-      chance: 67
-    },
-    { 
-      id: '12', 
-      term: 'casual games', 
-      position: 31, 
-      change: -5, 
-      volume: 55, 
-      difficulty: 75,
-      chance: 25
+      volume: 45, 
+      difficulty: 58,
+      chance: 42
     },
   ];
 
