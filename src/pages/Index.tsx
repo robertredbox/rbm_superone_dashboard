@@ -31,26 +31,26 @@ const Index = () => {
 
   // Mock keywords data
   const keywordsData = [
-    { id: '1', term: 'fitness app', position: 3, change: 2, volume: 850, difficulty: 75 },
-    { id: '2', term: 'workout tracker', position: 5, change: -1, volume: 620, difficulty: 68 },
-    { id: '3', term: 'weight loss app', position: 8, change: 4, volume: 920, difficulty: 82 },
-    { id: '4', term: 'gym workout planner', position: 12, change: 0, volume: 480, difficulty: 55 },
-    { id: '5', term: 'exercise tracker', position: 7, change: 3, volume: 550, difficulty: 63 },
+    { id: '1', term: 'squid game app', position: 3, change: 2, volume: 850, difficulty: 75 },
+    { id: '2', term: 'red light green light game', position: 5, change: -1, volume: 620, difficulty: 68 },
+    { id: '3', term: 'dalgona challenge', position: 8, change: 4, volume: 920, difficulty: 82 },
+    { id: '4', term: 'glass bridge game', position: 12, change: 0, volume: 480, difficulty: 55 },
+    { id: '5', term: 'squid game challenges', position: 7, change: 3, volume: 550, difficulty: 63 },
   ];
 
   // Mock competitors data
   const competitorsData = [
-    { id: '1', name: 'FitTrack Pro', icon: 'https://via.placeholder.com/48', ranking: 1, change: 0, rating: 4.8 },
-    { id: '2', name: 'GymBuddy', icon: 'https://via.placeholder.com/48', ranking: 2, change: 1, rating: 4.7 },
-    { id: '3', name: 'WorkoutPal', icon: 'https://via.placeholder.com/48', ranking: 3, change: -1, rating: 4.6 },
-    { id: '4', name: 'FitJourney', icon: 'https://via.placeholder.com/48', ranking: 6, change: 2, rating: 4.5 },
+    { id: '1', name: 'Survival Challenge', icon: 'https://via.placeholder.com/48', ranking: 1, change: 0, rating: 4.8 },
+    { id: '2', name: 'K-Games Master', icon: 'https://via.placeholder.com/48', ranking: 2, change: 1, rating: 4.7 },
+    { id: '3', name: 'Green Light Runner', icon: 'https://via.placeholder.com/48', ranking: 3, change: -1, rating: 4.6 },
+    { id: '4', name: 'Marble Arena', icon: 'https://via.placeholder.com/48', ranking: 6, change: 2, rating: 4.5 },
   ];
 
   // Mock sentiment data
   const sentimentData = [
-    { name: 'Positive', value: 68, color: '#4ade80' },
-    { name: 'Neutral', value: 24, color: '#a3a3a3' },
-    { name: 'Negative', value: 8, color: '#f87171' },
+    { name: 'Positive', value: 78, color: '#4ade80' },
+    { name: 'Neutral', value: 15, color: '#a3a3a3' },
+    { name: 'Negative', value: 7, color: '#f87171' },
   ];
 
   // Format the time range for display
@@ -70,7 +70,7 @@ const Index = () => {
   };
 
   return (
-    <Layout title="Dashboard" subtitle="Overview of your app's performance">
+    <Layout title="Dashboard" subtitle="Overview of your Squid Game app's performance">
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-2xl font-slab font-bold">Overview</h2>
         <TimeSelector onChange={setTimeRange} selectedRange={timeRange} />
@@ -79,8 +79,8 @@ const Index = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Downloads"
-          value="4,521"
-          change={12.3}
+          value="4.5M"
+          change={15.6}
           trend="up"
           description={`Total downloads for ${getTimeRangeDisplay().toLowerCase()}`}
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
@@ -90,7 +90,7 @@ const Index = () => {
           value="#4"
           change={3}
           trend="up"
-          description="Current category ranking position"
+          description="Current Entertainment category ranking"
           icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
@@ -103,10 +103,10 @@ const Index = () => {
         />
         <MetricCard
           title="Reviews"
-          value="856"
+          value="1.2M"
           change={8.7}
           trend="up"
-          description="Total user reviews received"
+          description="Total player reviews received"
           icon={<MessageSquare className="h-5 w-5 text-redbox-indigo" />}
         />
       </div>

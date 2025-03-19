@@ -19,29 +19,31 @@ const AppProfile = () => {
             
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-shrink-0">
-                <div className="h-24 w-24 rounded-xl bg-redbox-light-grey flex items-center justify-center">
-                  <Smartphone className="h-12 w-12 text-redbox-indigo" />
+                <div className="h-24 w-24 rounded-xl bg-redbox-light-grey flex items-center justify-center relative overflow-hidden" style={{backgroundColor: '#FF0050'}}>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-white text-3xl font-bold">SG</div>
+                  </div>
                 </div>
               </div>
               <div className="flex-1 space-y-3">
                 <div className="flex justify-between">
                   <div>
-                    <h2 className="text-xl font-bold">FitTracker Pro</h2>
-                    <p className="text-muted-foreground">Redbox Mobile Apps, Inc.</p>
+                    <h2 className="text-xl font-bold">Squid Game Challenge</h2>
+                    <p className="text-muted-foreground">Redbox Mobile Entertainment</p>
                   </div>
                   <div className="flex items-center">
                     <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                    <span className="ml-1 font-medium">4.6</span>
+                    <span className="ml-1 font-medium">4.8</span>
                   </div>
                 </div>
                 
-                <p className="text-sm">Track your fitness journey, set goals, and achieve results with the #1 fitness tracking app. Customized workout plans, nutrition tracking, and progress analytics.</p>
+                <p className="text-sm">The official companion app to the hit Squid Game series. Play mini-games inspired by the show, compete with friends, and test your skills against other players worldwide.</p>
                 
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-2 py-1 text-xs rounded-full bg-redbox-light-grey text-redbox-indigo">Fitness</span>
-                  <span className="px-2 py-1 text-xs rounded-full bg-redbox-light-grey text-redbox-indigo">Health</span>
-                  <span className="px-2 py-1 text-xs rounded-full bg-redbox-light-grey text-redbox-indigo">Tracking</span>
-                  <span className="px-2 py-1 text-xs rounded-full bg-redbox-light-grey text-redbox-indigo">Workout</span>
+                  <span className="px-2 py-1 text-xs rounded-full bg-redbox-light-grey text-redbox-indigo">Entertainment</span>
+                  <span className="px-2 py-1 text-xs rounded-full bg-redbox-light-grey text-redbox-indigo">Games</span>
+                  <span className="px-2 py-1 text-xs rounded-full bg-redbox-light-grey text-redbox-indigo">Challenges</span>
+                  <span className="px-2 py-1 text-xs rounded-full bg-redbox-light-grey text-redbox-indigo">TV & Shows</span>
                 </div>
               </div>
             </div>
@@ -56,19 +58,20 @@ const AppProfile = () => {
             </div>
             
             <div className="text-sm space-y-3">
-              <p><strong>Transform Your Fitness Journey with FitTracker Pro</strong></p>
-              <p>FitTracker Pro is the ultimate fitness companion designed to help you achieve your health goals. Whether you're a beginner or a fitness enthusiast, our app provides personalized workout plans, detailed progress tracking, and nutrition guidance.</p>
+              <p><strong>Experience the Thrill of Squid Game on Your Device</strong></p>
+              <p>Squid Game Challenge brings the intense competition and excitement of the hit series to your fingertips. Test your skills, reflexes, and strategy in a series of games inspired by the show.</p>
               <p><strong>Key Features:</strong></p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Customized workout plans based on your goals and fitness level</li>
-                <li>Comprehensive exercise library with detailed instructions</li>
-                <li>Real-time workout tracking with performance metrics</li>
-                <li>Nutrition tracking and meal planning suggestions</li>
-                <li>Progress analytics with visual charts and insights</li>
-                <li>Community support and challenges to keep you motivated</li>
-                <li>Integration with wearable devices for accurate health data</li>
+                <li>Red Light, Green Light - Test your timing and concentration</li>
+                <li>Dalgona Challenge - Carefully trace shapes without breaking the honeycomb</li>
+                <li>Tug of War - Compete in team-based matches against other players</li>
+                <li>Marbles - Strategic mini-games of skill and chance</li>
+                <li>Glass Bridge - Test your luck and memory</li>
+                <li>Squid Game - The ultimate final challenge</li>
+                <li>Custom player cards with unlockable outfits and masks</li>
+                <li>Global leaderboards to compare your skills with players worldwide</li>
               </ul>
-              <p>Join millions of users who have transformed their lives with FitTracker Pro. Download now and start your fitness journey today!</p>
+              <p>Join millions of players already testing their skills in these thrilling challenges. Are you ready to play?</p>
             </div>
           </div>
           
@@ -108,21 +111,21 @@ const AppProfile = () => {
                   <Download className="h-5 w-5 text-redbox-purple mr-2" />
                   <span>Total Downloads</span>
                 </div>
-                <span className="font-medium">285,432</span>
+                <span className="font-medium">4,532,167</span>
               </li>
               <li className="flex justify-between items-center">
                 <div className="flex items-center">
                   <Star className="h-5 w-5 text-redbox-red mr-2" />
                   <span>Rating Count</span>
                 </div>
-                <span className="font-medium">12,769</span>
+                <span className="font-medium">1,247,890</span>
               </li>
               <li className="flex justify-between items-center">
                 <div className="flex items-center">
                   <Eye className="h-5 w-5 text-redbox-orange mr-2" />
                   <span>Impressions</span>
                 </div>
-                <span className="font-medium">985,210</span>
+                <span className="font-medium">9,871,342</span>
               </li>
               <li className="flex justify-between items-center">
                 <div className="flex items-center">
@@ -142,21 +145,21 @@ const AppProfile = () => {
                   <Flag className="h-5 w-5 text-redbox-purple mr-2" />
                   <span>Countries</span>
                 </div>
-                <span className="font-medium">154</span>
+                <span className="font-medium">195</span>
               </li>
               <li className="flex justify-between items-center">
                 <div className="flex items-center">
                   <Globe className="h-5 w-5 text-redbox-red mr-2" />
                   <span>Languages</span>
                 </div>
-                <span className="font-medium">14</span>
+                <span className="font-medium">28</span>
               </li>
               <li className="flex justify-between items-center">
                 <div className="flex items-center">
                   <MessageSquare className="h-5 w-5 text-redbox-orange mr-2" />
                   <span>Localized Descriptions</span>
                 </div>
-                <span className="font-medium">8</span>
+                <span className="font-medium">14</span>
               </li>
             </ul>
           </div>
@@ -166,27 +169,27 @@ const AppProfile = () => {
             <div className="space-y-3">
               <div>
                 <h4 className="text-sm font-medium">App Name</h4>
-                <p className="text-sm text-muted-foreground">FitTracker Pro: Workout & Diet</p>
+                <p className="text-sm text-muted-foreground">Squid Game Challenge: Official App</p>
               </div>
               <div>
                 <h4 className="text-sm font-medium">Subtitle</h4>
-                <p className="text-sm text-muted-foreground">Fitness Tracker & Workout Planner</p>
+                <p className="text-sm text-muted-foreground">Play Games From The Hit Show</p>
               </div>
               <div>
                 <h4 className="text-sm font-medium">Category</h4>
-                <p className="text-sm text-muted-foreground">Health & Fitness</p>
+                <p className="text-sm text-muted-foreground">Entertainment</p>
               </div>
               <div>
                 <h4 className="text-sm font-medium">Developer</h4>
-                <p className="text-sm text-muted-foreground">Redbox Mobile Apps, Inc.</p>
+                <p className="text-sm text-muted-foreground">Redbox Mobile Entertainment</p>
               </div>
               <div>
                 <h4 className="text-sm font-medium">App Size</h4>
-                <p className="text-sm text-muted-foreground">68 MB</p>
+                <p className="text-sm text-muted-foreground">128 MB</p>
               </div>
               <div>
                 <h4 className="text-sm font-medium">Age Rating</h4>
-                <p className="text-sm text-muted-foreground">4+</p>
+                <p className="text-sm text-muted-foreground">16+</p>
               </div>
             </div>
           </div>
