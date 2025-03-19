@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import TimeSelector from '@/components/dashboard/TimeSelector';
 import SentimentChart from '@/components/dashboard/SentimentChart';
 import MetricCard from '@/components/dashboard/MetricCard';
-import { MessageSquare, ThumbsUp, ThumbsDown, TrendingUp } from 'lucide-react';
+import { MessageSquare, ThumbsUp, ThumbsDown, TrendingUp, Star } from 'lucide-react';
 
 const Reviews = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
