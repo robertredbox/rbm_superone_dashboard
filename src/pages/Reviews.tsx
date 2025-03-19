@@ -1,232 +1,343 @@
-
+// src/pages/Reviews.tsx
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
-import TimeSelector from '@/components/dashboard/TimeSelector';
-import SentimentChart from '@/components/dashboard/SentimentChart';
-import MetricCard from '@/components/dashboard/MetricCard';
-import { MessageSquare, ThumbsUp, ThumbsDown, TrendingUp, Star } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { StarIcon, Search, TrendingUp, MessageSquare } from 'lucide-react';
+
+// Font links component
+const FontLinks = () => (
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Slab:wght@500&display=swap" 
+    rel="stylesheet" 
+  />
+);
 
 const Reviews = () => {
-  const [timeRange, setTimeRange] = useState<string>('30d');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterRating, setFilterRating] = useState('all');
+  const [sortBy, setSortBy] = useState('recent');
 
-  // Mock sentiment data for Squid Game app
-  const sentimentData = [
-    { name: 'Positive', value: 78, color: '#4ade80' },
-    { name: 'Neutral', value: 15, color: '#a3a3a3' },
-    { name: 'Negative', value: 7, color: '#f87171' },
-  ];
-
-  // Mock reviews for Squid Game app
-  const reviews = [
+  // Real reviews from AppTweak
+  const reviewsData = [
     {
-      id: '1',
-      user: 'Player456Fan',
+      id: "12134369583",
+      title: "A Few Bugs, But Great Release",
+      author: "Chasewintherace",
+      date: "2025-01-02T06:20:44Z",
       rating: 5,
-      date: '2023-03-25',
-      title: 'Best Squid Game companion app!',
-      content: "This app enhances my Squid Game viewing experience so much! The games and challenges make me feel like I'm part of the show. Amazing graphics and smooth performance.",
-      helpful: 156,
-      sentiment: 'positive'
+      body: "For a game that has just been released it's very fun. The abilities seem to be quite balanced. Of course, there is an aspect of RNG where you can't always win no matter how good you may be, but unlike most other games, it doesn't ruin the fun. There are of course a few bugs when it comes to the servers which is expected upon release. Sometimes the game may not register a jump which can cost you the contest unfortunately. You will visually see your character jump just to be teleported back to where you were and ultimately die. Other than that, I don't see anything wrong with the game! Keep the cosmetic items coming and everyone will be happy."
     },
     {
-      id: '2',
-      user: 'GreenLight001',
+      id: "12098557739",
+      title: "Fun",
+      author: "oMickiio",
+      date: "2024-12-24T01:52:51Z",
       rating: 5,
-      date: '2023-03-22',
-      title: 'Dalgona challenge is addictive!',
-      content: "I can't stop playing the mini-games. The honeycomb/dalgona challenge is as nerve-wracking as in the show! Would love to see more games like the glass bridge added in future updates.",
-      helpful: 98,
-      sentiment: 'positive'
+      body: "I been playing since the pre-order and the game is very fun but theres a few problems. The movement glitches out when jumping. The item targeting system wont allow you to target certain players at times. And the ranking system seems unfair. When you reach gold if you lose the first game you lose 8 trophies, lose the second game u lose 4 trophies, lose the third you gain 3, win you gain 8. The point system needs to change To -4 on the first round, +0 second round, +4 3rd round +8/+10 For the win. Because as of rn its hard to keep ranking up."
     },
     {
-      id: '3',
-      user: 'FrontMan2023',
-      rating: 4,
-      date: '2023-03-20',
-      title: 'Great companion to the show',
-      content: "The integration with the show episodes is brilliant. I love getting notifications with challenges that match what I'm watching. The player 456 outfit customization could use more options though.",
-      helpful: 87,
-      sentiment: 'positive'
-    },
-    {
-      id: '4',
-      user: 'EliminatedPlayer',
+      id: "12299848179",
+      title: "Fishing poles",
+      author: "Uhhhh......:-|",
+      date: "2025-02-11T22:46:40Z",
       rating: 2,
-      date: '2023-03-18',
-      title: 'Too many VIP interruptions',
-      content: "The games are fun but there are way too many ads between challenges. It ruins the immersion of the experience. Please consider a premium VIP-free option.",
-      helpful: 42,
-      sentiment: 'negative'
+      body: "I have already written 2 reviews and they keep getting taken down so here goes 3, the glitches are annoying and can be pretty game breaking, not a huge deal for me, it's new. The game is a lot of fun, probably one of the best mobile games to release in a long time, no ads, no pay2win, skill based, it's seriously a blast. However, the addition of the fishing pole has completely ruined the fun, people just pull everyone into the finish line almost immediately and it makes the final prize pot very poor at best and kills the suspense of everyone trying to bat people out."
     },
     {
-      id: '5',
-      user: 'MarbleGameMaster',
+      id: "12171798473",
+      title: "Started Great",
+      author: "Pretty awesome chicky",
+      date: "2025-01-11T16:08:03Z",
+      rating: 1,
+      body: "I really enjoyed this game to begin with, it's fun to play and I get engulfed by the game. But as I've played, I've had several glitches. My goal has been to get to the Front man rank (level 70), and by the time I joined, I had 7 days to do so. I played non stop the last several days to get to level 50 and now I'm stuck. The biggest issue is the amount of times I will be playing and suddenly it disconnects. Once disconnected, you lose your rank points regardless or what happened. I've even crossed the finish line and then it cuts out and I lose."
+    },
+    {
+      id: "12264470751",
+      title: "Fun game! But beware",
+      author: "WinImpala67",
+      date: "2025-02-03T05:51:34Z",
       rating: 4,
-      date: '2023-03-15',
-      title: 'Authentic to the show',
-      content: "The app really captures the tension and aesthetic of the show perfectly. The sound effects especially are spot on. The Red Light, Green Light game is incredibly tense! Occasionally crashes during the marble game challenge though.",
-      helpful: 65,
-      sentiment: 'neutral'
+      body: "I try to download it doesn'twork Because it takes too much space and I have these apps like barely anything because I just want to play the game but Ikt doesn't work and also My Friend said it doesn't work for her and I believe her because last time I played it just kept kicking me out of the game. It said I survive zero games and I want to play with my friend because I,I have fun with her but this. Game takes too much spaceAnd kicks me out of the game but I do love this game but please fix it. You're a good creator and I support you, but please fix this"
+    },
+    {
+      id: "12430566122",
+      title: "Its good",
+      author: "TheNoobSlayer101",
+      date: "2025-03-17T09:11:16Z",
+      rating: 5,
+      body: "This game is ok its better than fall games and stumble guys this is very good since it has no microtransactions which is mostly play to win i understand they have to add more updates to make the game survive but the only problem with the game is the delay/lag and the glitches it has but overall the game design is pretty good a very simple and fun game to get into. This is a good game for the beginners and gamers too who want to find a good decent game now overall pretty good game with no other problems but that."
+    },
+    {
+      id: "12169313113",
+      title: "Fun game too many glitches timeouts and disadvantages",
+      author: "Mateos playground",
+      date: "2025-01-11T01:16:18Z",
+      rating: 3,
+      body: "Its a fun interaction game but for some reason it glitches out too much. Sometimes it leaves other playing characters floating on my lobby screen. When playing with another person on the party mode either one of the screens wont load as fast or kicks you out or the game will start for one and continue loading for the other. In one occasion my playmate was kicked out to to "photo image error" but when the other game started on the same match his character kept playing as if he was the one playing still."
+    },
+    {
+      id: "12276540333",
+      title: "Squid game unleash",
+      author: "MFC101",
+      date: "2025-02-06T05:58:51Z",
+      rating: 1,
+      body: "I gave this game the low rating because on my mobile app I get disconnected every 2 to 3 rounds and if the lag gets so crazy you can't even play at all plus the ladder / tier system whatever you wanna call it is terrible. If you can't get to level 50 you're not gonna get to level 70 because the developers need to fix the tier system where if you get to a tier you can't go below it so even though the game is fun I think all these issues make it not fun to play if you're trying to get to the highest tier"
+    },
+    {
+      id: "12203509237",
+      title: "Fun but has issues",
+      author: "TheJekkle",
+      date: "2025-01-19T13:19:21Z",
+      rating: 4,
+      body: "I've been playing since the game was first released and I think it's very fun to play & I've enjoyed it but lately I haven't been able to advance past rank 25 no matter what. The game will eliminate me even when I have already passed the finish line & it's very frustrating and annoying. I continue to play but I'm hoping this will stop happening so I can finally advance. Other than that…the game is very fun to play."
+    },
+    {
+      id: "12119649151",
+      title: "Make game better",
+      author: "CEOofMovement",
+      date: "2024-12-29T13:34:16Z",
+      rating: 4,
+      body: "Great game but I have some suggestions: 1) do not make the ranking system easier, if anything, make it harder. We should not be gaining points for not winning. If you make it to last game, unless you place top 3, I believe there should be no gain if you lose. 2) add a leaderboard. Once reaching rank 70 we get surplus trophies, but these mean nothing without a leaderboard. 3) more difficulty. The games are Childs play. 4) fix lag. Idk how to do this one but it feels like half of the players in my games are bots because of how bad they are lagging."
     }
   ];
 
-  // Format the time range for display
-  const getTimeRangeDisplay = () => {
-    switch (timeRange) {
-      case '7d':
-        return 'Last 7 days';
-      case '30d':
-        return 'Last 30 days';
-      case '90d':
-        return 'Last 90 days';
-      case '1y':
-        return 'Last year';
-      default:
-        return 'Last 30 days';
+  // Filter reviews based on search term and rating filter
+  const filteredReviews = reviewsData.filter(review => {
+    const matchesSearch = 
+      review.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      review.body.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      review.author.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesRating = 
+      filterRating === 'all' || 
+      (filterRating === '5star' && review.rating === 5) ||
+      (filterRating === '4star' && review.rating === 4) ||
+      (filterRating === '3star' && review.rating === 3) ||
+      (filterRating === '2star' && review.rating === 2) ||
+      (filterRating === '1star' && review.rating === 1) ||
+      (filterRating === 'positive' && review.rating >= 4) ||
+      (filterRating === 'neutral' && review.rating === 3) ||
+      (filterRating === 'negative' && review.rating <= 2);
+    
+    return matchesSearch && matchesRating;
+  });
+
+  // Sort reviews
+  const sortedReviews = [...filteredReviews].sort((a, b) => {
+    if (sortBy === 'recent') {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
     }
+    if (sortBy === 'oldest') {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    }
+    if (sortBy === 'highest') {
+      return b.rating - a.rating;
+    }
+    if (sortBy === 'lowest') {
+      return a.rating - b.rating;
+    }
+    return 0;
+  });
+
+  // Format date for display
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    }).format(date);
   };
 
-  const renderStars = (rating: number) => {
-    return (
-      <div className="flex">
-        {[...Array(5)].map((_, i) => (
-          <svg 
-            key={i} 
-            className={`w-4 h-4 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`} 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 24 24" 
-            fill="currentColor"
-          >
-            <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-          </svg>
-        ))}
-      </div>
-    );
+  // Render stars for a rating
+  const renderStars = (rating) => {
+    return Array(5).fill(0).map((_, index) => (
+      <StarIcon 
+        key={index} 
+        className={`h-4 w-4 ${
+          index < Math.floor(rating) 
+            ? 'text-yellow-400 fill-yellow-400' 
+            : index < rating 
+              ? 'text-yellow-400 fill-yellow-400 opacity-50' 
+              : 'text-gray-300'
+        }`} 
+      />
+    ));
   };
 
-  const getSentimentBadge = (sentiment: string) => {
-    switch (sentiment) {
-      case 'positive':
-        return <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Positive</span>;
-      case 'neutral':
-        return <span className="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800">Neutral</span>;
-      case 'negative':
-        return <span className="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">Negative</span>;
-      default:
-        return null;
-    }
+  // Calculate rating statistics
+  const totalReviews = reviewsData.length;
+  const averageRating = reviewsData.reduce((sum, review) => sum + review.rating, 0) / totalReviews;
+  
+  const ratingCounts = {
+    5: reviewsData.filter(r => r.rating === 5).length,
+    4: reviewsData.filter(r => r.rating === 4).length,
+    3: reviewsData.filter(r => r.rating === 3).length,
+    2: reviewsData.filter(r => r.rating === 2).length,
+    1: reviewsData.filter(r => r.rating === 1).length,
+  };
+  
+  const ratingPercentages = {
+    5: (ratingCounts[5] / totalReviews) * 100,
+    4: (ratingCounts[4] / totalReviews) * 100,
+    3: (ratingCounts[3] / totalReviews) * 100,
+    2: (ratingCounts[2] / totalReviews) * 100,
+    1: (ratingCounts[1] / totalReviews) * 100,
   };
 
   return (
-    <Layout title="Reviews" subtitle="Analyze player sentiment and feedback">
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-slab font-bold">Player Reviews</h2>
-        <TimeSelector onChange={setTimeRange} selectedRange={timeRange} />
+    <Layout title="Reviews" subtitle="Analyze player feedback and sentiment">
+      <FontLinks />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <Card className="md:col-span-2">
+          <CardHeader>
+            <CardTitle className="font-slab font-medium">Rating Summary</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col md:flex-row gap-6 items-center">
+              <div className="flex flex-col items-center">
+                <div className="text-4xl font-slab font-medium text-redbox-purple">
+                  {averageRating.toFixed(1)}
+                </div>
+                <div className="flex mt-2">
+                  {renderStars(averageRating)}
+                </div>
+                <p className="text-sm text-muted-foreground mt-2 font-sans font-normal">
+                  Based on {totalReviews} reviews
+                </p>
+              </div>
+              
+              <div className="flex-1 space-y-2">
+                {[5, 4, 3, 2, 1].map(rating => (
+                  <div key={rating} className="flex items-center space-x-2">
+                    <span className="text-sm font-sans font-normal">{rating} star</span>
+                    <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-redbox-purple"
+                        style={{ width: `${ratingPercentages[rating]}%` }}
+                      ></div>
+                    </div>
+                    <span className="text-sm text-muted-foreground font-sans font-normal">
+                      {ratingPercentages[rating].toFixed(1)}%
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="font-slab font-medium">Review Trends</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <h3 className="text-sm font-sans font-medium">Common Positive Themes</h3>
+                <div className="flex flex-wrap gap-2">
+                  <Badge className="bg-green-500">Fun gameplay</Badge>
+                  <Badge className="bg-green-500">No ads</Badge>
+                  <Badge className="bg-green-500">No pay-to-win</Badge>
+                  <Badge className="bg-green-500">Skill-based</Badge>
+                </div>
+              </div>
+              
+              <div className="space-y-1">
+                <h3 className="text-sm font-sans font-medium">Common Negative Themes</h3>
+                <div className="flex flex-wrap gap-2">
+                  <Badge className="bg-red-500">Connection issues</Badge>
+                  <Badge className="bg-red-500">Lag/glitches</Badge>
+                  <Badge className="bg-red-500">Ranking system</Badge>
+                  <Badge className="bg-red-500">Game size</Badge>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        <MetricCard
-          title="Total Reviews"
-          value="1.2M"
-          change={320.5}
-          trend="up"
-          description={`Reviews received in ${getTimeRangeDisplay().toLowerCase()}`}
-          icon={<MessageSquare className="h-5 w-5 text-redbox-purple" />}
-        />
-        <MetricCard
-          title="Average Rating"
-          value="4.8"
-          change={0.6}
-          trend="up"
-          description="Star rating out of 5"
-          icon={<Star className="h-5 w-5 text-redbox-red" />}
-        />
-        <MetricCard
-          title="Positive Sentiment"
-          value="78%"
-          change={12.4}
-          trend="up"
-          description="Reviews with positive tone"
-          icon={<ThumbsUp className="h-5 w-5 text-redbox-orange" />}
-        />
-        <MetricCard
-          title="Response Rate"
-          value="68%"
-          change={-5.2}
-          trend="down"
-          description="Percentage of reviews you responded to"
-          icon={<TrendingUp className="h-5 w-5 text-redbox-indigo" />}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <SentimentChart data={sentimentData} />
-        
-        <div className="lg:col-span-2 bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-slab font-bold mb-4">Common Themes</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-green-50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold text-green-600 mb-1">96%</div>
-              <div className="text-sm text-green-800">Game Challenges</div>
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="font-slab font-medium">Review Explorer</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search reviews..."
+                className="pl-8"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-            <div className="bg-green-50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold text-green-600 mb-1">91%</div>
-              <div className="text-sm text-green-800">Show Authenticity</div>
-            </div>
-            <div className="bg-green-50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold text-green-600 mb-1">88%</div>
-              <div className="text-sm text-green-800">Visual Design</div>
-            </div>
-            <div className="bg-red-50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold text-red-600 mb-1">32%</div>
-              <div className="text-sm text-red-800">VIP Interruptions</div>
+            
+            <div className="flex gap-2">
+              <Select value={filterRating} onValueChange={setFilterRating}>
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Filter by rating" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All ratings</SelectItem>
+                  <SelectItem value="positive">Positive (4-5★)</SelectItem>
+                  <SelectItem value="neutral">Neutral (3★)</SelectItem>
+                  <SelectItem value="negative">Negative (1-2★)</SelectItem>
+                  <SelectItem value="5star">5 stars</SelectItem>
+                  <SelectItem value="4star">4 stars</SelectItem>
+                  <SelectItem value="3star">3 stars</SelectItem>
+                  <SelectItem value="2star">2 stars</SelectItem>
+                  <SelectItem value="1star">1 star</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="recent">Most recent</SelectItem>
+                  <SelectItem value="oldest">Oldest first</SelectItem>
+                  <SelectItem value="highest">Highest rated</SelectItem>
+                  <SelectItem value="lowest">Lowest rated</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
           
-          <div className="mt-4">
-            <h4 className="text-md font-medium mb-2">Keywords in Reviews</h4>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">red light green light</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">dalgona challenge</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">tug of war</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">marble game</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">glass bridge</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">player 456</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">front man</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">too many interruptions</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">crashes sometimes</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-card rounded-lg border border-border">
-        <div className="p-4 border-b border-border">
-          <h3 className="text-lg font-slab font-bold">Recent Reviews</h3>
-        </div>
-        <div className="divide-y divide-border">
-          {reviews.map((review) => (
-            <div key={review.id} className="p-4">
-              <div className="flex justify-between items-start mb-2">
-                <div>
-                  <span className="font-medium">{review.user}</span>
-                  <div className="flex items-center gap-2 mt-1">
-                    {renderStars(review.rating)}
-                    <span className="text-xs text-muted-foreground">{review.date}</span>
+          <div className="space-y-4">
+            {sortedReviews.length === 0 ? (
+              <div className="text-center py-10">
+                <MessageSquare className="h-12 w-12 mx-auto text-muted-foreground opacity-20" />
+                <p className="mt-2 text-muted-foreground font-sans font-normal">No reviews match your filters.</p>
+              </div>
+            ) : (
+              sortedReviews.map(review => (
+                <div key={review.id} className="p-4 border rounded-lg">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h3 className="font-slab font-medium">{review.title}</h3>
+                      <div className="flex items-center mt-1">
+                        {renderStars(review.rating)}
+                        <span className="text-sm text-muted-foreground ml-2 font-sans font-normal">
+                          {formatDate(review.date)}
+                        </span>
+                      </div>
+                    </div>
+                    <Badge>{review.author}</Badge>
                   </div>
+                  <p className="text-sm font-sans font-normal">{review.body}</p>
                 </div>
-                {getSentimentBadge(review.sentiment)}
-              </div>
-              <h4 className="font-medium mt-2">{review.title}</h4>
-              <p className="text-muted-foreground text-sm mt-1">{review.content}</p>
-              <div className="flex items-center mt-2 text-xs text-muted-foreground">
-                <ThumbsUp className="h-3.5 w-3.5 mr-1" /> 
-                <span>{review.helpful} found this helpful</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+              ))
+            )}
+          </div>
+        </CardContent>
+      </Card>
     </Layout>
   );
 };
