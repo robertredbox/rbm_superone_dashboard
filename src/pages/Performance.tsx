@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout';
 import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import TimeSelector from '@/components/dashboard/TimeSelector';
 import MetricCard from '@/components/dashboard/MetricCard';
-import { Globe, ArrowUpRight, Download, TrendingUp, Users, Calendar, Activity, Clock } from 'lucide-react';
+import { Globe, ArrowUpRight, Download, TrendingUp, Users, Calendar, Activity, Clock, AlertCircle } from 'lucide-react';
 
 // Font links component to ensure proper font loading
 const FontLinks = () => (
@@ -120,6 +120,106 @@ const processAppTweakData = (timeRange: string) => {
     74  // Mar 18, 2025
   ];
   
+  // Android listing acquisitions (store listing views) from Dec 13, 2024 to Mar 12, 2025
+  const androidListingAcquisitions = [
+    // December 2024
+    24, // Dec 13, 2024
+    24, // Dec 14, 2024
+    16, // Dec 15, 2024
+    19, // Dec 16, 2024
+    24, // Dec 17, 2024
+    13, // Dec 18, 2024
+    13, // Dec 19, 2024
+    7,  // Dec 20, 2024
+    15, // Dec 21, 2024
+    19, // Dec 22, 2024
+    13, // Dec 23, 2024
+    15, // Dec 24, 2024
+    11, // Dec 25, 2024
+    4,  // Dec 26, 2024
+    9,  // Dec 27, 2024
+    7,  // Dec 28, 2024
+    15, // Dec 29, 2024
+    6,  // Dec 30, 2024
+    5,  // Dec 31, 2024
+    
+    // January 2025
+    20, // Jan 1, 2025
+    17, // Jan 2, 2025
+    10, // Jan 3, 2025
+    11, // Jan 4, 2025
+    14, // Jan 5, 2025
+    11, // Jan 6, 2025
+    8,  // Jan 7, 2025
+    5,  // Jan 8, 2025
+    10, // Jan 9, 2025
+    10, // Jan 10, 2025
+    8,  // Jan 11, 2025
+    7,  // Jan 12, 2025
+    7,  // Jan 13, 2025
+    8,  // Jan 14, 2025
+    7,  // Jan 15, 2025
+    19, // Jan 16, 2025
+    10, // Jan 17, 2025
+    13, // Jan 18, 2025
+    11, // Jan 19, 2025
+    15, // Jan 20, 2025
+    10, // Jan 21, 2025
+    18, // Jan 22, 2025
+    4,  // Jan 23, 2025
+    14, // Jan 24, 2025
+    11, // Jan 25, 2025
+    9,  // Jan 26, 2025
+    9,  // Jan 27, 2025
+    18, // Jan 28, 2025
+    81, // Jan 29, 2025
+    66, // Jan 30, 2025
+    
+    // February 2025
+    105, // Feb 1, 2025
+    81, // Feb 2, 2025
+    73, // Feb 3, 2025
+    64, // Feb 4, 2025
+    54, // Feb 5, 2025
+    62, // Feb 6, 2025
+    46, // Feb 7, 2025
+    39, // Feb 8, 2025
+    38, // Feb 9, 2025
+    46, // Feb 10, 2025
+    37, // Feb 11, 2025
+    44, // Feb 12, 2025
+    46, // Feb 13, 2025
+    31, // Feb 14, 2025
+    36, // Feb 15, 2025
+    41, // Feb 16, 2025
+    30, // Feb 17, 2025
+    16, // Feb 18, 2025
+    24, // Feb 19, 2025
+    22, // Feb 20, 2025
+    23, // Feb 21, 2025
+    40, // Feb 22, 2025
+    35, // Feb 23, 2025
+    32, // Feb 24, 2025
+    43, // Feb 25, 2025
+    44, // Feb 26, 2025
+    21, // Feb 27, 2025
+    29, // Feb 28, 2025
+    
+    // March 2025
+    46, // Mar 1, 2025
+    58, // Mar 2, 2025
+    37, // Mar 3, 2025
+    45, // Mar 4, 2025
+    38, // Mar 5, 2025
+    41, // Mar 6, 2025
+    39, // Mar 7, 2025
+    43, // Mar 8, 2025
+    45, // Mar 9, 2025
+    61, // Mar 10, 2025
+    42, // Mar 11, 2025
+    54, // Mar 12, 2025
+  ];
+  
   // Daily Active Users data from Dec 19, 2024 to Mar 19, 2025
   const androidDAU = [
     2639, 2656, 2273, 2762, 2861, 2201, 3605, 3720, 2166, 3075, 3841, 3446, 3720, // Dec 19-31
@@ -141,11 +241,14 @@ const processAppTweakData = (timeRange: string) => {
   
   // Filter data based on selected time range
   let dailyDownloads = [...fullDailyDownloads];
+  let androidDownloads = [...androidListingAcquisitions];
   
   if (timeRange === '30d') {
     dailyDownloads = fullDailyDownloads.slice(-30);
+    androidDownloads = androidListingAcquisitions.slice(-30);
   } else if (timeRange === '7d') {
     dailyDownloads = fullDailyDownloads.slice(-7);
+    androidDownloads = androidListingAcquisitions.slice(-7);
   }
   
   // Calculate time-adjusted start date
@@ -207,6 +310,21 @@ const processAppTweakData = (timeRange: string) => {
   peakDate.setDate(timeAdjustedStartDate.getDate() + maxDownloadsIndex);
   const peakDateFormatted = `${peakDate.toLocaleString('en-US', { month: 'short' })} ${peakDate.getDate()}`;
   
+  // Android download analytics
+  const totalAndroidDownloads = androidDownloads.reduce((sum, val) => sum + val, 0);
+  const formattedAndroidDownloads = totalAndroidDownloads > 1000 
+    ? `${(totalAndroidDownloads / 1000).toFixed(1)}K` 
+    : totalAndroidDownloads.toString();
+  const avgAndroidDownloads = Math.round(totalAndroidDownloads / androidDownloads.length);
+  const maxAndroidDownloads = Math.max(...androidDownloads);
+  const maxAndroidDownloadsIndex = androidDownloads.indexOf(maxAndroidDownloads);
+  
+  // Android peak date calculation (different date range)
+  const androidStartDate = new Date('2024-12-13'); // Android data starts earlier
+  const androidPeakDate = new Date(androidStartDate);
+  androidPeakDate.setDate(androidStartDate.getDate() + maxAndroidDownloadsIndex);
+  const androidPeakDateFormatted = `${androidPeakDate.toLocaleString('en-US', { month: 'short' })} ${androidPeakDate.getDate()}`;
+  
   // Calculate growth rate based on first half vs second half of the period
   const halfwayPoint = Math.floor(dailyDownloads.length / 2);
   const firstHalfDownloads = dailyDownloads.slice(0, halfwayPoint).reduce((sum, val) => sum + val, 0);
@@ -252,6 +370,11 @@ const processAppTweakData = (timeRange: string) => {
     growthRate: growthRate.toFixed(1),
     weeklyTrend: weeklyTrend.toFixed(1),
     activeMarkets: 67,
+    // Android specific data
+    totalAndroidDownloads: formattedAndroidDownloads,
+    avgAndroidDownloads,
+    maxAndroidDownloads,
+    androidPeakDate: androidPeakDateFormatted,
     // DAU data
     avgAndroidDAU,
     avgIosDAU,
@@ -275,6 +398,11 @@ const Performance = () => {
     growthRate: '0',
     weeklyTrend: '0',
     activeMarkets: 0,
+    // Android specific data
+    totalAndroidDownloads: '0',
+    avgAndroidDownloads: 0,
+    maxAndroidDownloads: 0,
+    androidPeakDate: '',
     // DAU data
     avgAndroidDAU: 0,
     avgIosDAU: 0,
@@ -371,6 +499,59 @@ const Performance = () => {
           timeRange={getTimeRangeDisplay()}
           className="w-full"
         />
+      </div>
+
+      <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg mt-6 mb-3 flex items-start gap-3">
+        <AlertCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+        <p className="text-sm text-amber-800">
+          <strong>Note:</strong> Android data (store listing acquisitions) covers Dec 13, 2024 to Mar 12, 2025, 
+          while iOS data spans Dec 19, 2024 to Mar 18, 2025. The different date ranges may affect direct comparisons.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-lg font-slab font-medium mb-4">iOS Downloads Summary</h3>
+          <ul className="space-y-3">
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Avg. Daily Downloads</span>
+              <span className="font-sans font-medium">{performanceData.avgDailyDownloads.toLocaleString()}</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Peak Download Day</span>
+              <span className="font-sans font-medium">{performanceData.peakDownloadsDate} ({performanceData.peakDownloads.toLocaleString()})</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Top Market</span>
+              <span className="font-sans font-medium">Germany (21.0%)</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Peak Download Period</span>
+              <span className="font-sans font-medium text-green-500">Late Jan to Early Feb</span>
+            </li>
+          </ul>
+        </div>
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-lg font-slab font-medium mb-4">Android Downloads Summary</h3>
+          <ul className="space-y-3">
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Total Store Listings</span>
+              <span className="font-sans font-medium">{performanceData.totalAndroidDownloads}</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Avg. Daily Listings</span>
+              <span className="font-sans font-medium">{performanceData.avgAndroidDownloads.toLocaleString()}</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Peak Listing Day</span>
+              <span className="font-sans font-medium">{performanceData.androidPeakDate} ({performanceData.maxAndroidDownloads})</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Feb vs Dec</span>
+              <span className="font-sans font-medium text-green-500">+287% increased visibility</span>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div className="mt-8 mb-6">
