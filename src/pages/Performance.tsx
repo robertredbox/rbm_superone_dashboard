@@ -101,3 +101,53 @@ const Performance = () => {
           className="w-full"
         />
       </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-lg font-slab font-medium mb-4">Performance Summary</h3>
+          <ul className="space-y-3">
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Avg. Daily Downloads</span>
+              <span className="font-sans font-medium">87,371</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Peak Download Day</span>
+              <span className="font-sans font-medium">Mar 18 (124,500)</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Ranking Improvement</span>
+              <span className="font-sans font-medium text-green-500">+101 positions</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Conversion Rate Increase</span>
+              <span className="font-sans font-medium text-green-500">+4.7%</span>
+            </li>
+          </ul>
+        </div>
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-lg font-slab font-medium mb-4">Market Insights</h3>
+          <ul className="space-y-3">
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Growth Rate</span>
+              <span className="font-sans font-medium">18.3% monthly</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Market Share</span>
+              <span className="font-sans font-medium">9.2%</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Growth vs. Category</span>
+              <span className="font-sans font-medium text-green-500">+12.4%</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Retention Rate (30 days)</span>
+              <span className="font-sans font-medium">78%</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default Performance;
