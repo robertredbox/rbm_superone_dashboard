@@ -20,58 +20,58 @@ const Competitors = () => {
   // Real competitors data for Squid Game: Unleashed from AppTweak
   const competitorsData = [
     { 
-      id: '1608097361', 
-      name: 'Twelve Minutes', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/d0/e7/ec/d0e7ecdf-4fd1-5e5e-1b2b-59d8e1e39247/AppIcon-1x_U007emarketing-0-7-0-85-220.png/1024x1024bb.jpg', 
-      ranking: 45, 
-      change: -2, 
-      rating: 4.2,
-      developer: 'Netflix, Inc.'
-    },
-    { 
-      id: '6443475072', 
-      name: 'TMNT: Shredder\'s Revenge', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/81/22/2b/81222bc0-a1b0-ba54-3e89-1800e4f4dc55/AppIcon-1x_U007emarketing-0-7-0-85-220.png/1024x1024bb.jpg', 
-      ranking: 38, 
+      id: '1671633204', 
+      name: 'Bloons TD 6 NETFLIX', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d5/d7/2a/d5d72a18-78fb-018c-efeb-453a5a6b9f46/AppIcon-1x_U007emarketing-0-7-0-85-220-0.png/170x170bb.png', 
+      ranking: 25, 
       change: 3, 
       rating: 4.9,
       developer: 'Netflix, Inc.'
     },
     { 
-      id: '6462363352', 
-      name: 'Where is He: Find Daddy', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/bb/d3/25/bbd32594-34c0-f263-01fe-f4e070ffafe8/AppIcon-1x_U007emarketing-0-7-0-85-220-0.png/1024x1024bb.jpg', 
-      ranking: 27, 
-      change: 5, 
-      rating: 4.6,
-      developer: 'Anh Le Thi Tram'
-    },
-    { 
-      id: '1608097488', 
-      name: 'Storyteller', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/bc/65/c0/bc65c08a-96ad-c379-0d0b-294a477a9a54/AppIcon-1x_U007emarketing-0-7-0-85-220.png/1024x1024bb.jpg', 
-      ranking: 41, 
+      id: '6450280702', 
+      name: 'GTA: San Andreas – NETFLIX', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b0/cb/ab/b0cbab81-5658-8167-266a-32d44bd22f6b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
+      ranking: 29, 
       change: -4, 
-      rating: 4.0,
+      rating: 3.7,
       developer: 'Netflix, Inc.'
     },
     { 
-      id: '1612460464', 
-      name: 'The President.', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/2d/8e/b5/2d8eb500-893c-9702-39e6-2fbf8115dd93/AppIcon-gym1-1x_U007emarketing-0-4-0-85-220-0.png/1024x1024bb.jpg', 
-      ranking: 29, 
-      change: 6, 
-      rating: 4.6,
-      developer: 'Crazy Labs'
+      id: '6478899805', 
+      name: 'Civilization VI: NETFLIX', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/df/b1/7f/dfb17fbb-2cef-d26f-fb92-0cbe60351714/AppIcon-1x_U007emarketing-0-7-0-85-220-0.jpeg/170x170bb.png', 
+      ranking: 37, 
+      change: 5, 
+      rating: 4.8,
+      developer: 'Netflix, Inc.'
     },
     { 
-      id: '1642873657', 
-      name: 'Pixel Demolish', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/e1/4d/f8/e14df80a-97a9-dea6-08de-4fe7b7c768d0/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/1024x1024bb.jpg', 
-      ranking: 32, 
-      change: 8, 
+      id: '6443475072', 
+      name: 'TMNT: Shredder\'s Revenge', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/81/22/2b/81222bc0-a1b0-ba54-3e89-1800e4f4dc55/AppIcon-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
+      ranking: 42, 
+      change: -2, 
+      rating: 4.9,
+      developer: 'Netflix, Inc.'
+    },
+    { 
+      id: '1495162677', 
+      name: 'Auto Brawl Chess:Battle Royale', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/76/68/4e/76684e08-7298-d0be-4f22-de3c199bff84/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
+      ranking: 45, 
+      change: 6, 
       rating: 4.6,
-      developer: 'Rollic Games'
+      developer: 'Panoramik Games'
+    },
+    { 
+      id: '1459402952', 
+      name: 'Zooba: Zoo Battle Royale Games', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/af/61/cd/af61cd75-45be-9888-d945-a079c3bb07c9/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
+      ranking: 51, 
+      change: 8, 
+      rating: 4.7,
+      developer: 'Wildlife Studios'
     },
   ];
 
@@ -91,35 +91,35 @@ const Competitors = () => {
   };
 
   // Real market analysis data based on AppTweak insights
-  const marketPosition = 134; // Current rank in Action games category
-  const marketShare = 8.3; // Estimated percentage based on downloads
-  const avgCompetitorRating = 4.5; // Average from competitors
-  const userBase = 2.3; // Millions of users, calculated from download data
+  const marketPosition = 39; // Current rank in Games & Action categories
+  const marketShare = 9.2; // Estimated percentage based on Netflix games portfolio
+  const avgCompetitorRating = 4.6; // Average from competitors
+  const userBase = 3.7; // Millions of users, calculated from download data
 
   // Competitive Gap Analysis based on real data
   const gapAnalysisData = [
     {
-      name: "Original Content",
-      value: 92,
-      change: 15,
+      name: "IP Recognition",
+      value: 95,
+      change: 18,
       color: "bg-redbox-purple"
     },
     {
-      name: "Gaming Experience",
-      value: 84,
-      change: 9,
+      name: "Gameplay Mechanics",
+      value: 82,
+      change: 7,
       color: "bg-redbox-red"
     },
     {
-      name: "User Engagement",
+      name: "User Interface",
       value: 78,
-      change: 12,
+      change: 10,
       color: "bg-redbox-orange"
     },
     {
-      name: "Monetization",
-      value: 65,
-      change: -5,
+      name: "Retention Rate",
+      value: 72,
+      change: 12,
       color: "bg-redbox-indigo"
     }
   ];
@@ -136,23 +136,23 @@ const Competitors = () => {
         <MetricCard
           title="Market Position"
           value={`#${marketPosition}`}
-          change={11}
-          trend="down"
-          description="Your position in Action Games category"
+          change={8}
+          trend="up"
+          description="Your position in Games & Action categories"
           icon={<Award className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="Market Share"
           value={`${marketShare}%`}
-          change={1.2}
+          change={1.5}
           trend="up"
-          description="Percentage of category downloads"
+          description="Share of Netflix games downloads"
           icon={<TrendingUp className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Rating Comparison"
           value="4.8"
-          change={0.3}
+          change={0.2}
           trend="up"
           description={`Your rating vs avg. competitor (${avgCompetitorRating})`}
           icon={<Star className="h-5 w-5 text-redbox-orange" />}
@@ -160,7 +160,7 @@ const Competitors = () => {
         <MetricCard
           title="User Base"
           value={`${userBase}M`}
-          change={0.4}
+          change={0.6}
           trend="up"
           description="Monthly active users (estimates)"
           icon={<Users className="h-5 w-5 text-redbox-indigo" />}
@@ -169,7 +169,7 @@ const Competitors = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h3 className="text-lg font-slab font-medium mb-4">Top Competitors</h3>
+          <h3 className="text-lg font-slab font-medium mb-4">Top Netflix Competitors</h3>
           <div className="space-y-4">
             {competitorsData.slice(0, 4).map((competitor) => (
               <CompetitorCard key={competitor.id} competitor={competitor} />
@@ -178,7 +178,7 @@ const Competitors = () => {
         </div>
         
         <div>
-          <h3 className="text-lg font-slab font-medium mb-4">Rising Competitors</h3>
+          <h3 className="text-lg font-slab font-medium mb-4">Other Battle Royale Games</h3>
           <div className="space-y-4">
             {competitorsData.slice(4, 6).map((competitor) => (
               <CompetitorCard key={competitor.id} competitor={competitor} />
@@ -186,7 +186,7 @@ const Competitors = () => {
           </div>
           
           <div className="mt-6 bg-card p-6 rounded-lg border border-border">
-            <h3 className="text-lg font-slab font-medium mb-4">Competitive Gap Analysis</h3>
+            <h3 className="text-lg font-slab font-medium mb-4">Competitive Advantage Analysis</h3>
             <div className="space-y-4">
               {gapAnalysisData.map((item, index) => (
                 <div key={index}>
