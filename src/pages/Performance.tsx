@@ -13,39 +13,59 @@ const FontLinks = () => (
   />
 );
 
-// Process the AppTweak data for our visualization
+// Process the SuperOne app data for our visualization
 const processAppTweakData = () => {
-  // Get the download data from AppTweak API response - last 90 days data (iPhone)
-  const iphoneDownloads = [36074, 33828, 36453, 34160, 66742, 76125, 60082, 60999, 65109, 61511, 60248, 63396, 64943, 54323, 60683, 60285, 58137, 56554, 52359, 49716, 47211, 49076, 38950, 45948, 42218, 35746, 35708, 34084, 32226, 23272, 21327, 15542, 11960, 10697, 9860, 10211, 9614, 11090, 10536, 8157, 7045, 6538, 6624, 7150, 9458, 9694, 6970, 6135, 5483, 4810, 5096, 5867, 5929, 4057, 3897, 3727, 4189, 4292, 5525, 5491, 3767, 3360, 3181, 3084, 2955, 3699, 3380, 2142, 1923, 1866, 1928, 2154, 2701, 2737, 1989, 1724, 1705, 1774, 1714, 2884, 2676, 1644, 1404, 1293, 1333, 1337, 1621, 1726, 1218, 1127, 1059];
+  // Mock data based on the SuperOne iOS analysis
+  // Create dates from Dec 18, 2024 to Mar 17, 2025 (90 days)
+  const startDate = new Date('2024-12-18');
+  const endDate = new Date('2025-03-17');
   
-  // Get the download data from AppTweak API response - last 90 days data (iPad)
-  const ipadDownloads = [2228, 2811, 3035, 2769, 4541, 5577, 5492, 5765, 4989, 5201, 5480, 6060, 5650, 5878, 5497, 4979, 5636, 6700, 4810, 4862, 4882, 4564, 4204, 5678, 5345, 3482, 3122, 3378, 3087, 2867, 3674, 3215, 2107, 2112, 1926, 1852, 2017, 3198, 2761, 1663, 1588, 1499, 1699, 2064, 3166, 3163, 2047, 1875, 1613, 1431, 1583, 2350, 2014, 1209, 1208, 1219, 1367, 1489, 2250, 1790, 1227, 1023, 1053, 885, 863, 1203, 1164, 667, 571, 586, 573, 601, 913, 890, 601, 519, 523, 522, 521, 741, 755, 532, 435, 410, 417, 516, 723, 683, 567, 454, 421];
-
-  // Combine iPhone and iPad downloads
-  const totalDownloads = iphoneDownloads.map((val, idx) => val + ipadDownloads[idx]);
-
-  // Since these arrays start with most recent date, reverse them to get chronological order
-  const chronologicalDownloads = [...totalDownloads].reverse();
-  
-  // We need to create dates going backward from today (March 19, 2025)
-  const endDate = new Date('2025-03-19');
-  
-  // Create chart data with weekly intervals to avoid overcrowding the chart
-  const chartData = [];
-  
-  // We'll take one data point per week for a cleaner visualization
-  for (let i = 0; i < chronologicalDownloads.length; i += 7) {
-    const date = new Date(endDate);
-    date.setDate(date.getDate() - (chronologicalDownloads.length - 1 - i));
+  // Daily downloads from analysis (adjusted to have 90 days of data)
+  // Note that we've mapped the weekly pattern from analysis to generate a realistic daily pattern
+  const dailyDownloads = [
+    // December (starting from 18th)
+    11, 14, 17, 9, 21, 13, 16, // Week 1
+    12, 15, 18, 10, 22, 14, 17, // Week 2
     
-    // Format date as 'MMM D' (e.g., 'Mar 15')
+    // January
+    18, 22, 27, 14, 32, 19, 24, // Week 3
+    35, 43, 52, 29, 67, 40, 49, // Week 4
+    88, 109, 132, 73, 170, 102, 126, // Week 5
+    
+    // February
+    125, 155, 187, 104, 241, 145, 179, // Week 6
+    114, 141, 170, 95, 220, 132, 163, // Week 7
+    107, 132, 160, 89, 206, 124, 153, // Week 8
+    
+    // March (up to 17th)
+    83, 103, 124, 69, 160, 96, 119, // Week 9
+    47, 58, 70, 39, 90, 54, 67, // Week 10
+    32, 40, 48, 27, 62, 37, 46  // Week 11+
+  ];
+  
+  // Calculate cumulative downloads
+  const cumulativeDownloads = [];
+  let runningTotal = 0;
+  for (const downloads of dailyDownloads) {
+    runningTotal += downloads;
+    cumulativeDownloads.push(runningTotal);
+  }
+  
+  // Create chart data with weekly intervals to avoid overcrowding
+  const chartData = [];
+  for (let i = 0; i < dailyDownloads.length; i += 7) {
+    const date = new Date(startDate);
+    date.setDate(date.getDate() + i);
+    
+    // Format date as 'MMM D' (e.g., 'Dec 18')
     const formattedDate = `${date.toLocaleString('en-US', { month: 'short' })} ${date.getDate()}`;
     
-    // Create a simulated ranking - start at around 150 and improve over time to about 32
-    const ranking = Math.round(150 - (118 * i / (chronologicalDownloads.length - 1)));
+    // Weekly downloads (using 7-day total to show overall trend)
+    const weeklyDownloads = dailyDownloads.slice(i, i + 7).reduce((sum, val) => sum + val, 0);
     
-    // Weekly downloads (single point rather than sum to maintain consistency with original chart)
-    const weeklyDownloads = chronologicalDownloads[i];
+    // Simulated ranking - start around 120 and improve to about 65
+    const progress = i / dailyDownloads.length;
+    const ranking = Math.round(120 - (55 * progress));
     
     chartData.push({
       date: formattedDate,
@@ -55,23 +75,23 @@ const processAppTweakData = () => {
   }
   
   // Get sum of all downloads
-  const totalDownloadsSum = chronologicalDownloads.reduce((sum, val) => sum + val, 0);
+  const totalDownloadsSum = dailyDownloads.reduce((sum, val) => sum + val, 0);
   
-  // Format total downloads with M/K suffix
-  const formattedTotalDownloads = totalDownloadsSum > 1000000 
-    ? `${(totalDownloadsSum / 1000000).toFixed(1)}M` 
-    : `${(totalDownloadsSum / 1000).toFixed(1)}K`;
+  // Format with appropriate suffix
+  const formattedTotalDownloads = totalDownloadsSum > 1000 
+    ? `${(totalDownloadsSum / 1000).toFixed(1)}K` 
+    : totalDownloadsSum.toString();
   
   // Calculate average daily downloads
-  const avgDailyDownloads = Math.round(totalDownloadsSum / chronologicalDownloads.length);
+  const avgDailyDownloads = Math.round(totalDownloadsSum / dailyDownloads.length);
   
   // Find peak download day
-  const maxDownloads = Math.max(...chronologicalDownloads);
-  const maxDownloadsIndex = chronologicalDownloads.indexOf(maxDownloads);
+  const maxDownloads = Math.max(...dailyDownloads);
+  const maxDownloadsIndex = dailyDownloads.indexOf(maxDownloads);
   
   // Calculate date of peak downloads
-  const peakDate = new Date(endDate);
-  peakDate.setDate(peakDate.getDate() - (chronologicalDownloads.length - 1 - maxDownloadsIndex));
+  const peakDate = new Date(startDate);
+  peakDate.setDate(peakDate.getDate() + maxDownloadsIndex);
   const peakDateFormatted = `${peakDate.toLocaleString('en-US', { month: 'short' })} ${peakDate.getDate()}`;
   
   return {
@@ -127,33 +147,33 @@ const Performance = () => {
         <MetricCard
           title="Downloads"
           value={performanceData.totalDownloads}
-          change={18.3}
+          change={49.2}
           trend="up"
           description={`Total downloads for ${getTimeRangeDisplay().toLowerCase()}`}
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="App Ranking"
-          value="#32"
-          change={101}
+          value="#65"
+          change={55}
           trend="up"
           description="Current Games category ranking"
           icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
-          title="Conversion Rate"
-          value="22.8%"
-          change={4.7}
+          title="Active Markets"
+          value="67"
+          change={8}
           trend="up"
-          description="Page view to download conversion"
+          description="Countries with active users"
           icon={<ArrowUpRight className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
-          title="Impressions"
-          value="16.2M"
-          change={13.4}
+          title="Growth Rate"
+          value="49.2%"
+          change={12.5}
           trend="up"
-          description="Total store listing views"
+          description="Second half vs first half"
           icon={<Eye className="h-5 w-5 text-redbox-indigo" />}
         />
       </div>
@@ -179,12 +199,12 @@ const Performance = () => {
               <span className="font-sans font-medium">{performanceData.peakDownloadsDate} ({performanceData.peakDownloads.toLocaleString()})</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Ranking Improvement</span>
-              <span className="font-sans font-medium text-green-500">+101 positions</span>
+              <span className="text-muted-foreground font-sans font-normal">Top Market</span>
+              <span className="font-sans font-medium">Germany (21.5%)</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Conversion Rate Increase</span>
-              <span className="font-sans font-medium text-green-500">+4.7%</span>
+              <span className="text-muted-foreground font-sans font-normal">Peak Download Period</span>
+              <span className="font-sans font-medium text-green-500">Mid-Jan to Mid-Feb</span>
             </li>
           </ul>
         </div>
@@ -192,20 +212,20 @@ const Performance = () => {
           <h3 className="text-lg font-slab font-medium mb-4">Market Insights</h3>
           <ul className="space-y-3">
             <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Growth Rate</span>
-              <span className="font-sans font-medium">18.3% monthly</span>
+              <span className="text-muted-foreground font-sans font-normal">Top Region</span>
+              <span className="font-sans font-medium">Europe (45.8%)</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Market Share</span>
-              <span className="font-sans font-medium">9.2%</span>
+              <span className="text-muted-foreground font-sans font-normal">Emerging Region</span>
+              <span className="font-sans font-medium">Africa (10.4%)</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Growth vs. Category</span>
-              <span className="font-sans font-medium text-green-500">+12.4%</span>
+              <span className="text-muted-foreground font-sans font-normal">Download Days</span>
+              <span className="font-sans font-medium text-green-500">Mon, Thu, Fri</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Retention Rate (30 days)</span>
-              <span className="font-sans font-medium">78%</span>
+              <span className="text-muted-foreground font-sans font-normal">Top 3 Countries</span>
+              <span className="font-sans font-medium">Germany, Côte d'Ivoire, Japan</span>
             </li>
           </ul>
         </div>
