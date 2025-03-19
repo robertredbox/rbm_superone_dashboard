@@ -9,21 +9,21 @@ import { BarChart3, ArrowUpRight, Download, Eye } from 'lucide-react';
 const Performance = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
 
-  // Mock performance data
+  // Mock performance data showing viral growth pattern
   const performanceData = [
-    { date: 'Jan 1', downloads: 1500, ranking: 25 },
-    { date: 'Jan 8', downloads: 1800, ranking: 23 },
-    { date: 'Jan 15', downloads: 2100, ranking: 19 },
-    { date: 'Jan 22', downloads: 2400, ranking: 15 },
-    { date: 'Jan 29', downloads: 2300, ranking: 16 },
-    { date: 'Feb 5', downloads: 2600, ranking: 14 },
-    { date: 'Feb 12', downloads: 3000, ranking: 11 },
-    { date: 'Feb 19', downloads: 3400, ranking: 9 },
-    { date: 'Feb 26', downloads: 3200, ranking: 10 },
-    { date: 'Mar 5', downloads: 3500, ranking: 8 },
-    { date: 'Mar 12', downloads: 3800, ranking: 7 },
-    { date: 'Mar 19', downloads: 4100, ranking: 5 },
-    { date: 'Mar 26', downloads: 4500, ranking: 4 },
+    { date: 'Sep 17', downloads: 2500, ranking: 152 },
+    { date: 'Sep 19', downloads: 12800, ranking: 86 },
+    { date: 'Sep 21', downloads: 58400, ranking: 45 },
+    { date: 'Sep 23', downloads: 186000, ranking: 22 },
+    { date: 'Sep 25', downloads: 425000, ranking: 12 },
+    { date: 'Sep 27', downloads: 820000, ranking: 8 },
+    { date: 'Sep 29', downloads: 1240000, ranking: 6 },
+    { date: 'Oct 1', downloads: 1680000, ranking: 4 },
+    { date: 'Oct 3', downloads: 2150000, ranking: 3 },
+    { date: 'Oct 5', downloads: 2480000, ranking: 3 },
+    { date: 'Oct 7', downloads: 2640000, ranking: 3 },
+    { date: 'Oct 9', downloads: 2780000, ranking: 3 },
+    { date: 'Oct 11', downloads: 2950000, ranking: 3 },
   ];
 
   // Format the time range for display
@@ -52,32 +52,32 @@ const Performance = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Downloads"
-          value="4,521"
-          change={12.3}
+          value="22.5M"
+          change={1452.8}
           trend="up"
           description={`Total downloads for ${getTimeRangeDisplay().toLowerCase()}`}
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="App Ranking"
-          value="#4"
-          change={3}
+          value="#3"
+          change={149}
           trend="up"
-          description="Current category ranking position"
+          description="Current Entertainment category ranking"
           icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Conversion Rate"
-          value="3.2%"
-          change={0.4}
+          value="42.6%"
+          change={31.2}
           trend="up"
           description="Page view to download conversion"
           icon={<ArrowUpRight className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
           title="Impressions"
-          value="145,832"
-          change={5.7}
+          value="58.2M"
+          change={826.9}
           trend="up"
           description="Total store listing views"
           icon={<Eye className="h-5 w-5 text-redbox-indigo" />}
@@ -98,40 +98,40 @@ const Performance = () => {
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground">Avg. Daily Downloads</span>
-              <span className="font-medium">148</span>
+              <span className="font-medium">748,342</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground">Peak Download Day</span>
-              <span className="font-medium">Mar 26 (287)</span>
+              <span className="font-medium">Oct 3 (912,587)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground">Ranking Improvement</span>
-              <span className="font-medium text-green-500">+21 positions</span>
+              <span className="font-medium text-green-500">+149 positions</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-muted-foreground">Conversion Rate Change</span>
-              <span className="font-medium text-green-500">+0.4%</span>
+              <span className="text-muted-foreground">Conversion Rate Increase</span>
+              <span className="font-medium text-green-500">+31.2%</span>
             </li>
           </ul>
         </div>
         <div className="bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-slab font-bold mb-4">Market Insights</h3>
+          <h3 className="text-lg font-slab font-bold mb-4">Viral Insights</h3>
           <ul className="space-y-3">
             <li className="flex justify-between">
-              <span className="text-muted-foreground">Market Position</span>
-              <span className="font-medium">Top 5 in Category</span>
+              <span className="text-muted-foreground">Viral Coefficient</span>
+              <span className="font-medium">3.8 (Excellent)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground">Market Share</span>
-              <span className="font-medium">12%</span>
+              <span className="font-medium">15%</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-muted-foreground">Growth vs. Market</span>
-              <span className="font-medium text-green-500">+8%</span>
+              <span className="text-muted-foreground">Growth vs. Category</span>
+              <span className="font-medium text-green-500">+1240%</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-muted-foreground">Market Size</span>
-              <span className="font-medium">4.2M Users</span>
+              <span className="text-muted-foreground">Social Media Mentions</span>
+              <span className="font-medium">4.2M</span>
             </li>
           </ul>
         </div>

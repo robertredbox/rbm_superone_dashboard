@@ -9,14 +9,14 @@ import { TrendingUp, Users, Star, Award } from 'lucide-react';
 const Competitors = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
 
-  // Mock competitors data
+  // Mock competitors data for Squid Game app
   const competitorsData = [
-    { id: '1', name: 'FitTrack Pro', icon: 'https://via.placeholder.com/48', ranking: 1, change: 0, rating: 4.8 },
-    { id: '2', name: 'GymBuddy', icon: 'https://via.placeholder.com/48', ranking: 2, change: 1, rating: 4.7 },
-    { id: '3', name: 'WorkoutPal', icon: 'https://via.placeholder.com/48', ranking: 3, change: -1, rating: 4.6 },
-    { id: '4', name: 'FitJourney', icon: 'https://via.placeholder.com/48', ranking: 6, change: 2, rating: 4.5 },
-    { id: '5', name: 'HealthTracker', icon: 'https://via.placeholder.com/48', ranking: 8, change: 1, rating: 4.4 },
-    { id: '6', name: 'FitnessPro', icon: 'https://via.placeholder.com/48', ranking: 10, change: -2, rating: 4.3 },
+    { id: '1', name: 'Netflix', icon: 'https://via.placeholder.com/48', ranking: 1, change: 0, rating: 4.9 },
+    { id: '2', name: 'Roblox', icon: 'https://via.placeholder.com/48', ranking: 2, change: 0, rating: 4.5 },
+    { id: '3', name: 'K-Drama Fan Quiz', icon: 'https://via.placeholder.com/48', ranking: 5, change: 2, rating: 4.3 },
+    { id: '4', name: 'Battle Royale: TV Edition', icon: 'https://via.placeholder.com/48', ranking: 6, change: -1, rating: 4.1 },
+    { id: '5', name: 'Survival Challenge', icon: 'https://via.placeholder.com/48', ranking: 9, change: 3, rating: 4.0 },
+    { id: '6', name: 'Drama Trivia', icon: 'https://via.placeholder.com/48', ranking: 12, change: 5, rating: 3.8 },
   ];
 
   const getTimeRangeDisplay = () => {
@@ -44,34 +44,34 @@ const Competitors = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Market Position"
-          value="#4"
-          change={1}
+          value="#3"
+          change={5}
           trend="up"
-          description="Your position in category ranking"
+          description="Your position in Entertainment/Games category"
           icon={<Award className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="Market Share"
-          value="12%"
-          change={2.3}
+          value="15%"
+          change={8.5}
           trend="up"
           description="Percentage of category downloads"
           icon={<TrendingUp className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Rating Comparison"
-          value="4.6"
-          change={0.2}
+          value="4.8"
+          change={0.6}
           trend="up"
-          description="Your rating vs avg. competitor (4.4)"
+          description="Your rating vs avg. competitor (4.2)"
           icon={<Star className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
           title="User Base"
-          value="285K"
-          change={8.7}
+          value="22.5M"
+          change={652.3}
           trend="up"
-          description="Estimated monthly active users"
+          description="Monthly active users (viral growth)"
           icon={<Users className="h-5 w-5 text-redbox-indigo" />}
         />
       </div>
@@ -99,41 +99,41 @@ const Competitors = () => {
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">UI/UX Design</span>
-                  <span className="text-sm font-medium">+8%</span>
+                  <span className="text-sm font-medium">Show Integration</span>
+                  <span className="text-sm font-medium">+25%</span>
                 </div>
                 <div className="w-full bg-redbox-light-grey rounded-full h-2">
-                  <div className="bg-redbox-purple h-2 rounded-full" style={{ width: '78%' }}></div>
+                  <div className="bg-redbox-purple h-2 rounded-full" style={{ width: '95%' }}></div>
                 </div>
               </div>
               
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">Feature Set</span>
-                  <span className="text-sm font-medium">+5%</span>
-                </div>
-                <div className="w-full bg-redbox-light-grey rounded-full h-2">
-                  <div className="bg-redbox-red h-2 rounded-full" style={{ width: '65%' }}></div>
-                </div>
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">User Reviews</span>
+                  <span className="text-sm font-medium">Game Challenges</span>
                   <span className="text-sm font-medium">+12%</span>
                 </div>
                 <div className="w-full bg-redbox-light-grey rounded-full h-2">
-                  <div className="bg-redbox-orange h-2 rounded-full" style={{ width: '82%' }}></div>
+                  <div className="bg-redbox-red h-2 rounded-full" style={{ width: '88%' }}></div>
                 </div>
               </div>
               
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">App Performance</span>
-                  <span className="text-sm font-medium">-3%</span>
+                  <span className="text-sm font-medium">User Engagement</span>
+                  <span className="text-sm font-medium">+18%</span>
                 </div>
                 <div className="w-full bg-redbox-light-grey rounded-full h-2">
-                  <div className="bg-redbox-indigo h-2 rounded-full" style={{ width: '57%' }}></div>
+                  <div className="bg-redbox-orange h-2 rounded-full" style={{ width: '92%' }}></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm font-medium">Monetization</span>
+                  <span className="text-sm font-medium">-8%</span>
+                </div>
+                <div className="w-full bg-redbox-light-grey rounded-full h-2">
+                  <div className="bg-redbox-indigo h-2 rounded-full" style={{ width: '62%' }}></div>
                 </div>
               </div>
             </div>

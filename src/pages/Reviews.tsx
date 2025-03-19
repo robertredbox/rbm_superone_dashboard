@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import TimeSelector from '@/components/dashboard/TimeSelector';
@@ -8,63 +9,63 @@ import { MessageSquare, ThumbsUp, ThumbsDown, TrendingUp, Star } from 'lucide-re
 const Reviews = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
 
-  // Mock sentiment data
+  // Mock sentiment data for Squid Game-like app
   const sentimentData = [
-    { name: 'Positive', value: 68, color: '#4ade80' },
-    { name: 'Neutral', value: 24, color: '#a3a3a3' },
-    { name: 'Negative', value: 8, color: '#f87171' },
+    { name: 'Positive', value: 78, color: '#4ade80' },
+    { name: 'Neutral', value: 15, color: '#a3a3a3' },
+    { name: 'Negative', value: 7, color: '#f87171' },
   ];
 
-  // Mock reviews
+  // Mock reviews for a Squid Game-like app
   const reviews = [
     {
       id: '1',
-      user: 'JohnDoe123',
+      user: 'GameFan456',
       rating: 5,
       date: '2023-03-25',
-      title: 'Best fitness app ever!',
-      content: 'This app has completely transformed my workout routine. The interface is intuitive and the tracking features are excellent.',
-      helpful: 24,
+      title: 'Best show companion app ever!',
+      content: 'This app enhances my Squid Game viewing experience so much! The games and challenges make me feel like I'm part of the show. Amazing graphics and smooth performance.',
+      helpful: 156,
       sentiment: 'positive'
     },
     {
       id: '2',
-      user: 'FitnessFan22',
-      rating: 4,
+      user: 'TrendyViewer22',
+      rating: 5,
       date: '2023-03-22',
-      title: 'Great app, but could use more features',
-      content: 'I really enjoy using this app for tracking my workouts. It would be nice to have more detailed nutrition tracking options though.',
-      helpful: 18,
-      sentiment: 'neutral'
+      title: 'Addictive challenges!',
+      content: 'I can't stop playing the mini-games. The honeycomb challenge is as nerve-wracking as in the show! Would love to see more games added in future updates.',
+      helpful: 98,
+      sentiment: 'positive'
     },
     {
       id: '3',
-      user: 'WorkoutKing',
-      rating: 5,
+      user: 'K-DramaLover',
+      rating: 4,
       date: '2023-03-20',
-      title: 'Perfect for my needs',
-      content: 'Exactly what I was looking for in a fitness tracker. The progress charts are motivating and the workout suggestions are spot on.',
-      helpful: 32,
+      title: 'Great companion to the show',
+      content: 'The integration with the show episodes is brilliant. I love getting notifications with challenges that match what I'm watching. The player 456 outfit customization could use more options though.',
+      helpful: 87,
       sentiment: 'positive'
     },
     {
       id: '4',
-      user: 'GymNewbie',
+      user: 'CasualGamer',
       rating: 2,
       date: '2023-03-18',
-      title: 'Confusing interface',
-      content: 'I found the app difficult to navigate. Too many options and not clear where to find basic features. Needs a better tutorial.',
-      helpful: 7,
+      title: 'Too many ads',
+      content: 'The games are fun but there are way too many ads between challenges. It ruins the immersion of the experience. Please consider a premium ad-free option.',
+      helpful: 42,
       sentiment: 'negative'
     },
     {
       id: '5',
-      user: 'FitLifestyle',
+      user: 'BingeWatcher',
       rating: 4,
       date: '2023-03-15',
-      title: 'Good app with minor issues',
-      content: 'Overall a solid fitness app. Occasionally crashes when trying to sync with my smart watch, but the developers are responsive to feedback.',
-      helpful: 15,
+      title: 'Authentic to the show',
+      content: 'The app really captures the tension and aesthetic of the show perfectly. The sound effects especially are spot on. Occasionally crashes during the marble game challenge though.',
+      helpful: 65,
       sentiment: 'neutral'
     }
   ];
@@ -126,33 +127,33 @@ const Reviews = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Total Reviews"
-          value="856"
-          change={8.7}
+          value="1.2M"
+          change={320.5}
           trend="up"
           description={`Reviews received in ${getTimeRangeDisplay().toLowerCase()}`}
           icon={<MessageSquare className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="Average Rating"
-          value="4.6"
-          change={0.2}
+          value="4.8"
+          change={0.6}
           trend="up"
           description="Star rating out of 5"
           icon={<Star className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Positive Sentiment"
-          value="68%"
-          change={5.2}
+          value="78%"
+          change={12.4}
           trend="up"
           description="Reviews with positive tone"
           icon={<ThumbsUp className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
           title="Response Rate"
-          value="92%"
-          change={3.5}
-          trend="up"
+          value="68%"
+          change={-5.2}
+          trend="down"
           description="Percentage of reviews you responded to"
           icon={<TrendingUp className="h-5 w-5 text-redbox-indigo" />}
         />
@@ -165,34 +166,34 @@ const Reviews = () => {
           <h3 className="text-lg font-slab font-bold mb-4">Common Themes</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-green-50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold text-green-600 mb-1">92%</div>
-              <div className="text-sm text-green-800">User Interface</div>
+              <div className="text-2xl font-bold text-green-600 mb-1">96%</div>
+              <div className="text-sm text-green-800">Game Design</div>
             </div>
             <div className="bg-green-50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold text-green-600 mb-1">87%</div>
-              <div className="text-sm text-green-800">Tracking Features</div>
+              <div className="text-2xl font-bold text-green-600 mb-1">91%</div>
+              <div className="text-sm text-green-800">Show Authenticity</div>
             </div>
             <div className="bg-green-50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold text-green-600 mb-1">78%</div>
-              <div className="text-sm text-green-800">Workout Plans</div>
+              <div className="text-2xl font-bold text-green-600 mb-1">88%</div>
+              <div className="text-sm text-green-800">Visual Design</div>
             </div>
             <div className="bg-red-50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold text-red-600 mb-1">23%</div>
-              <div className="text-sm text-red-800">Loading Speed</div>
+              <div className="text-2xl font-bold text-red-600 mb-1">32%</div>
+              <div className="text-sm text-red-800">Ad Frequency</div>
             </div>
           </div>
           
           <div className="mt-4">
             <h4 className="text-md font-medium mb-2">Keywords in Reviews</h4>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">easy to use</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">great interface</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">workout tracking</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">progress charts</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">customizable</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">motivating</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">slow loading</span>
-              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">battery drain</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">addictive</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">just like the show</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">challenging mini-games</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">player 456</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">honeycomb challenge</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-indigo">tug of war</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">too many ads</span>
+              <span className="px-3 py-1.5 text-sm rounded-full bg-redbox-light-grey text-redbox-red">crashes sometimes</span>
             </div>
           </div>
         </div>
