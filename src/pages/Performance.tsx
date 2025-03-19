@@ -269,10 +269,22 @@ const processAppTweakData = (timeRange: string) => {
     cumulativeDownloads.push(runningTotal);
   }
   
+  // Calculate Android time-adjusted start date (different date range)
+  const androidStartDate = new Date('2024-12-13'); // Android data starts earlier
+  let androidTimeAdjustedStartDate = new Date(androidStartDate);
+  if (timeRange === '30d') {
+    // For 30 days, start 30 days before the end of android data
+    androidTimeAdjustedStartDate = new Date('2025-02-11');
+  } else if (timeRange === '7d') {
+    // For 7 days, start 7 days before the end of android data
+    androidTimeAdjustedStartDate = new Date('2025-03-06');
+  }
+  
   // Create chart data with appropriate intervals to avoid overcrowding
-  const chartData = [];
   const interval = timeRange === '7d' ? 1 : timeRange === '30d' ? 3 : 7;
   
+  // iOS chart data
+  const iosChartData = [];
   for (let i = 0; i < dailyDownloads.length; i += interval) {
     // Create date for this data point
     const date = new Date(timeAdjustedStartDate);
@@ -284,11 +296,48 @@ const processAppTweakData = (timeRange: string) => {
     // Calculate downloads for this interval (daily, every 3 days, or weekly)
     const intervalDownloads = dailyDownloads.slice(i, Math.min(i + interval, dailyDownloads.length)).reduce((sum, val) => sum + val, 0);
     
-    chartData.push({
+    iosChartData.push({
       date: formattedDate,
-      downloads: intervalDownloads
+      iosDownloads: intervalDownloads
     });
   }
+  
+  // Android chart data
+  const androidChartData = [];
+  for (let i = 0; i < androidDownloads.length; i += interval) {
+    // Create date for this data point
+    const date = new Date(androidTimeAdjustedStartDate);
+    date.setDate(androidTimeAdjustedStartDate.getDate() + i);
+    
+    // Format date as 'MMM D' (e.g., 'Dec 19')
+    const formattedDate = `${date.toLocaleString('en-US', { month: 'short' })} ${date.getDate()}`;
+    
+    // Calculate downloads for this interval
+    const intervalDownloads = androidDownloads.slice(i, Math.min(i + interval, androidDownloads.length)).reduce((sum, val) => sum + val, 0);
+    
+    androidChartData.push({
+      date: formattedDate,
+      androidDownloads: intervalDownloads
+    });
+  }
+  
+  // Combined chart data (uses same date format as iOS for simplicity)
+  const combinedChartData = iosChartData.map((iosPoint, index) => {
+    // Find matching Android data point by date if possible
+    const androidPoint = androidChartData.find(a => a.date === iosPoint.date);
+    
+    return {
+      date: iosPoint.date,
+      iosDownloads: iosPoint.iosDownloads,
+      androidDownloads: androidPoint ? androidPoint.androidDownloads : 0
+    };
+  });
+  
+  // Legacy chart data format for backward compatibility
+  const chartData = iosChartData.map(point => ({
+    date: point.date,
+    downloads: point.iosDownloads
+  }));
   
   // Get sum of all downloads for the period - from screenshot: 3,088 total
   const totalDownloadsSum = dailyDownloads.reduce((sum, val) => sum + val, 0);
@@ -320,7 +369,6 @@ const processAppTweakData = (timeRange: string) => {
   const maxAndroidDownloadsIndex = androidDownloads.indexOf(maxAndroidDownloads);
   
   // Android peak date calculation (different date range)
-  const androidStartDate = new Date('2024-12-13'); // Android data starts earlier
   const androidPeakDate = new Date(androidStartDate);
   androidPeakDate.setDate(androidStartDate.getDate() + maxAndroidDownloadsIndex);
   const androidPeakDateFormatted = `${androidPeakDate.toLocaleString('en-US', { month: 'short' })} ${androidPeakDate.getDate()}`;
@@ -363,6 +411,11 @@ const processAppTweakData = (timeRange: string) => {
   
   return {
     chartData,
+    platformChartData: {
+      ios: iosChartData,
+      android: androidChartData,
+      combined: combinedChartData
+    },
     totalDownloads: formattedTotalDownloads,
     avgDailyDownloads,
     peakDownloads: maxDownloads,
@@ -391,6 +444,11 @@ const Performance = () => {
   const [timeRange, setTimeRange] = useState<string>('90d');
   const [performanceData, setPerformanceData] = useState({
     chartData: [],
+    platformChartData: {
+      ios: [],
+      android: [],
+      combined: []
+    },
     totalDownloads: '0',
     avgDailyDownloads: 0,
     peakDownloads: 0,
@@ -497,6 +555,7 @@ const Performance = () => {
         <PerformanceChart 
           data={performanceData.chartData} 
           timeRange={getTimeRangeDisplay()}
+          platformData={performanceData.platformChartData}
           className="w-full"
         />
       </div>
