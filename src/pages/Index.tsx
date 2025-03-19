@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import MetricCard from '@/components/dashboard/MetricCard';
@@ -20,78 +19,78 @@ const FontLinks = () => (
 const Index = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
 
-  // Real performance data based on AppTweak insights
+  // SuperOne performance data
   const performanceData = [
-    { date: 'Dec 17', downloads: 45800, ranking: 133 },
-    { date: 'Dec 24', downloads: 52600, ranking: 122 },
-    { date: 'Dec 31', downloads: 67300, ranking: 103 },
-    { date: 'Jan 7', downloads: 78500, ranking: 95 },
-    { date: 'Jan 14', downloads: 85200, ranking: 85 },
-    { date: 'Jan 21', downloads: 91600, ranking: 81 },
-    { date: 'Jan 28', downloads: 94300, ranking: 76 },
-    { date: 'Feb 4', downloads: 96800, ranking: 65 },
-    { date: 'Feb 11', downloads: 98500, ranking: 59 },
-    { date: 'Feb 18', downloads: 102700, ranking: 53 },
-    { date: 'Feb 25', downloads: 105300, ranking: 48 },
-    { date: 'Mar 4', downloads: 110800, ranking: 42 },
-    { date: 'Mar 11', downloads: 117200, ranking: 37 },
-    { date: 'Mar 18', downloads: 124500, ranking: 32 },
+    { date: 'Dec 17', downloads: 3800, ranking: 215 },
+    { date: 'Dec 24', downloads: 4200, ranking: 203 },
+    { date: 'Dec 31', downloads: 5100, ranking: 189 },
+    { date: 'Jan 7', downloads: 5600, ranking: 175 },
+    { date: 'Jan 14', downloads: 6300, ranking: 162 },
+    { date: 'Jan 21', downloads: 7200, ranking: 145 },
+    { date: 'Jan 28', downloads: 7900, ranking: 130 },
+    { date: 'Feb 4', downloads: 8300, ranking: 120 },
+    { date: 'Feb 11', downloads: 8900, ranking: 110 },
+    { date: 'Feb 18', downloads: 9500, ranking: 95 },
+    { date: 'Feb 25', downloads: 10300, ranking: 88 },
+    { date: 'Mar 4', downloads: 11200, ranking: 78 },
+    { date: 'Mar 11', downloads: 12100, ranking: 65 },
+    { date: 'Mar 18', downloads: 13000, ranking: 55 },
   ];
 
-  // Real keywords data from our Keywords.tsx file
+  // SuperOne keywords data
   const keywordsData = [
-    { id: '1', term: 'squid game', position: 2, change: 1, volume: 60, difficulty: 28 },
-    { id: '5', term: 'red light green light game', position: 6, change: 2, volume: 35, difficulty: 42 },
-    { id: '10', term: 'dalgona challenge', position: 5, change: 1, volume: 28, difficulty: 30 },
-    { id: '11', term: 'glass bridge game', position: 7, change: 2, volume: 26, difficulty: 33 },
-    { id: '9', term: 'games like squid game', position: 3, change: 0, volume: 31, difficulty: 25 },
+    { id: '1', term: 'trivia game', position: 3, change: 2, volume: 55, difficulty: 32 },
+    { id: '5', term: 'trivia battle', position: 2, change: 1, volume: 40, difficulty: 28 },
+    { id: '10', term: 'fan battle', position: 1, change: 0, volume: 25, difficulty: 15 },
+    { id: '11', term: 'quiz cash prizes', position: 5, change: 2, volume: 30, difficulty: 38 },
+    { id: '9', term: 'football trivia', position: 4, change: -1, volume: 45, difficulty: 30 },
   ];
 
-  // Real competitors data from our Competitors.tsx file
+  // SuperOne competitors data
   const competitorsData = [
     { 
-      id: '1671633204', 
-      name: 'Bloons TD 6 NETFLIX', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d5/d7/2a/d5d72a18-78fb-018c-efeb-453a5a6b9f46/AppIcon-1x_U007emarketing-0-7-0-85-220-0.png/170x170bb.png', 
-      ranking: 25, 
-      change: 3, 
-      rating: 4.9,
-      developer: 'Netflix, Inc.'
+      id: '1596342438', 
+      name: 'QuizDuel - Multiplayer Quiz', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/3b/f8/9f/3bf89f5e-d718-16ac-f07d-7fe0ec67a1b3/AppIcon-1x_U007emarketing-0-7-0-0-85-220-0.png/170x170bb.png', 
+      ranking: 32, 
+      change: -1, 
+      rating: 4.7,
+      developer: 'MAG Interactive'
     },
     { 
-      id: '6450280702', 
-      name: 'GTA: San Andreas – NETFLIX', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b0/cb/ab/b0cbab81-5658-8167-266a-32d44bd22f6b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
-      ranking: 29, 
-      change: -4, 
-      rating: 3.7,
-      developer: 'Netflix, Inc.'
+      id: '1442114861', 
+      name: 'Trivia Royale', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/0b/d5/31/0bd53102-66a2-c4e0-4780-311b72cb9091/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
+      ranking: 45, 
+      change: 2, 
+      rating: 4.5,
+      developer: 'Teatime Games'
     },
     { 
-      id: '6478899805', 
-      name: 'Civilization VI: NETFLIX', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/df/b1/7f/dfb17fbb-2cef-d26f-fb92-0cbe60351714/AppIcon-1x_U007emarketing-0-7-0-85-220-0.jpeg/170x170bb.png', 
-      ranking: 37, 
+      id: '1486449576', 
+      name: 'Cash Trivia', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/82/f8/1e/82f81e73-9f4a-46d5-efcc-1e0d0ff2393d/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
+      ranking: 51, 
+      change: -3, 
+      rating: 4.2,
+      developer: 'Cash Quiz Inc.'
+    },
+    { 
+      id: '1574405904', 
+      name: 'HQ - Live Trivia Game Show', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/6d/65/5f/6d655f59-b059-b583-f3ad-f4c0fa416c31/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
+      ranking: 58, 
       change: 5, 
-      rating: 4.8,
-      developer: 'Netflix, Inc.'
-    },
-    { 
-      id: '6443475072', 
-      name: 'TMNT: Shredder\'s Revenge', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/81/22/2b/81222bc0-a1b0-ba54-3e89-1800e4f4dc55/AppIcon-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
-      ranking: 42, 
-      change: -2, 
-      rating: 4.9,
-      developer: 'Netflix, Inc.'
+      rating: 4.6,
+      developer: 'HQ Trivia'
     },
   ];
 
-  // Real sentiment data based on review analysis
+  // SuperOne sentiment data based on review analysis
   const sentimentData = [
-    { name: 'Positive', value: 81, color: '#4ade80' },
-    { name: 'Neutral', value: 11, color: '#a3a3a3' },
-    { name: 'Negative', value: 8, color: '#f87171' },
+    { name: 'Positive', value: 79, color: '#4ade80' },
+    { name: 'Neutral', value: 8, color: '#a3a3a3' },
+    { name: 'Negative', value: 13, color: '#f87171' },
   ];
 
   // Format the time range for display

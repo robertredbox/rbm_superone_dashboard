@@ -17,81 +17,81 @@ const FontLinks = () => (
 const AppProfile = () => {
   const [activeTab, setActiveTab] = useState('overview');
   
-  // Real app details from AppTweak
+  // SuperOne Fan Battle app details
   const appDetails = {
-    id: 6498719476,
-    title: "Squid Game: Unleashed",
-    subtitle: "Multiplayer Battle Royale Fun",
-    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ae/0b/33/ae0b3341-fee7-b756-59e6-0ed43c2c3914/GiHunGrid1-0-0-1x_U007emarketing-0-7-0-85-220.png/1024x1024bb.jpg",
+    id: 1455333818,
+    title: "SuperOne Fan Battle",
+    subtitle: "The Ultimate Trivia Game",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/7c/6a/f4/7c6af427-7e3a-623b-0d07-94149ea183da/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/1024x1024bb.jpg",
     developer: {
-      name: "Netflix, Inc.",
-      id: 363590054
+      name: "SuperOne Limited",
+      id: 1455333817
     },
     price: {
       value: "0.00",
       is_free: true,
       currency: "usd"
     },
-    size: 1889872896, // ~1.9 GB
-    release_date: "2024-12-17T00:00:00.000Z",
+    size: 219807744, // ~220 MB
+    release_date: "2019-03-10T00:00:00.000Z",
     content_rating: "12+",
-    genres: [6014, 7001, 7003], // Games, Action, Arcade
-    description: "NO NETFLIX MEMBERSHIP REQUIRED.\n\nYou win some, you die some. Use skill and killer instinct to survive twisted competitions in this multiplayer action game inspired by the hit series.\n\nPrepare for fast, heart-pounding action and brutal competition in this multiplayer battle royale game. Play with friends (or enemies) online and see if you have what it takes to outlast and defeat all the other contestants in each twisted tournament. \n\nWith deadly challenges you'll recognize from \"Squid Game,\" the series, and more new games inspired by classic childhood activities, each round is a dark trip down memory lane. Can you make it through playtime alive?\n\nBRING \"SQUID GAME\" TO LIFE\n\n• Find out how long you'd survive as a \"Squid Game\" contestant by playing Red Light, Green Light or Glass Bridge, plus more iconic games from the series. \n\n• One wrong move in the arena, and you'll die a death even more twisted than the show's most brutal on-screen moments.\n\n• Choose the perfect character and express yourself in this online battle royale with a huge range of outfits, animations and emoji.\n\nNO-MERCY MULTIPLAYER MAYHEM\n \n• Play with your friends and team up against online opponents in each 32-player tournament — but always be prepared for betrayal.\n\n• Pick up weapons and power-up boosts to gain a crucial competitive edge in this brutal battle royale.\n\n• Die early, but want to see who survives? Spectator mode lets your ghostly presence stay and watch the chaos unfold.\n\nTHE ONLY WAY OUT IS UP\n\n• As you compete in multiplayer contests and complete missions, you'll advance to higher tiers and unlock new, more advanced games to play.\n\n• Cash in hard-won (virtual) prize money to collect new skins and more rewards that will let you strut your stuff in the arena.\n\nDIE ANYTIME, ANYWHERE\n\n• Whether you're a party royale pro, a \"Squid Game\" superfan or just looking for something fun to play with your friends, this action showdown is easy to enjoy in quick snippets on mobile.\n\n• Fast online multiplayer matchmaking brings you into each round of the battle royale in seconds.\n\n• Keep your survival skills sharp with unique weekly events inspired by whatever's new in the \"Squid Game\" universe.\n\n- Created by Boss Fight, a Netflix Game Studio.",
+    genres: [6014, 6000, 7018], // Games, Business, Trivia
+    description: "Introducing SuperOne, the ultimate trivia battle! Prove yourself as the ultimate fan while competing for cash prizes in SuperOne's Battle Royale. Will you be the last fan standing? \n\n▶ HOW TO PLAY\n\n• Swipe your way through trivia; right for true and left for false.\n• The faster you answer correctly, the higher your score.\n• If you answer incorrectly four times, you are eliminated.\n• Cash prizes for the last fan standing and the runner-ups in second and third place.\n• With a new game every five minutes, the wait is never long.\n\n▶ FAN ECONOMY\n\nIn a world brimming with over 3 billion football enthusiasts along with billions more fans across various sports and entertainment genres, the absence of a unified platform to engage and monetize this colossal fan base is a blaring void.\n\n• Super.One bridging global fan engagement with financial opportunity via gaming.\n• With its trailblazing gaming and affiliate platform, Super.One is at the cusp of bridging this gap.\n• The aim is to unite millions of fans under a singular gaming experience, converting their enthusiasm into substantial financial opportunities. \n• SuperOne transcends being merely a game; it's a conduit for monetizing passion, assembling fans globally under a unified gameverse.\n\n▶ AFFILIATE \n\n• Super.One introduces an affiliate program designed to incentivize both active and passive engagements. \n• Affiliates can partake in real-time financial benefits through a tiered system of Lootboxes.\n• The platform's currency, Credits, facilitates transactions, and intertwines the gaming and affiliate ecosystems seamlessly.\n\n▶ BONUSES\n\n• The Affiliate Bonuses within the SuperOne platform are categorized into Stakeholder Bonuses and Affiliate Bonuses, catering to both passive and active engagement. \n• Super.One empowers affiliates with dynamic bonuses, igniting active performance and passive gains.\n\nStakeholder Bonuses: Passive Bonuses are earnings derived from holding or acquiring specific assets without the necessity of active engagement or recruitment. \nAffiliate Bonuses: Affiliate bonuses aim to incentivize engagement and performance on the SuperOne platform.\n\n▶ INSTANT PAYOUT\n\n• SuperOne's multi-platform architecture enables an efficient management of asset transactions, purchases, and real- time payments, \n• We offers this while promoting a community-centric environment. \n\nGet in the game!\n\n----------------------------------------------\n\n◆ Visit our Social Media\nhttps://x.com/superonelive\nhttps://www.facebook.com/superonenews\nhttps://medium.com/@superonenews\nhttps://t.me/superonenews\nhttps://www.linkedin.com/company/superonelimited/\n\n◆ Any Suggestions? \nContact us with issues or features suggestions on \"support@super.one\"\n\n◆ Privacy Policy: https://super.one/privacy-policy\n\nSuperOne is the sole sponsor of this contest with no involvement from other entities.\nApple Inc. is not a sponsor of this contest.",
     versions: [
       {
-        version: "0.0.8743",
-        release_notes: "Fresh content updates! Netflix members can try out an exciting new gameplay experience.",
-        release_date: "2025-03-07T00:00:00.000Z"
+        version: "3.90",
+        release_notes: "- Player Token Signup: Improved signup flow for a smoother experience.\n- API Enhancements: Upgraded for better performance.\n- Bug Fixes: Resolved issues for a seamless experience.\n- Performance: Optimised for speed and stability.",
+        release_date: "2025-03-17T00:00:00.000Z"
       },
       {
-        version: "0.0.8489",
-        release_notes: "Fresh content updates! Netflix members can try out an exciting new gameplay experience.",
-        release_date: "2025-02-25T00:00:00.000Z"
+        version: "3.89",
+        release_notes: "- New hourly leaderboard to keep the competition exciting.\n- Improved support experience to make getting help easier.\n- Smoother UI and UX with multiple bug fixes.\n- Simpler way to invite others and grow your network effortlessly.",
+        release_date: "2025-03-10T00:00:00.000Z"
       },
       {
-        version: "0.0.8316",
-        release_notes: "We've squashed bugs and made behind-the-scenes improvements to bring Netflix members the best possible gameplay experience.",
-        release_date: "2025-02-08T00:00:00.000Z"
+        version: "3.88",
+        release_notes: "Improved leaderboard performance for a smoother experience.\nFixed text rendering issues in certain languages.\nResolved layout and UI glitches in multiple screens.\nGeneral bug fixes and enhancements for better stability.",
+        release_date: "2025-02-19T00:00:00.000Z"
       },
       {
-        version: "0.0.8247",
-        release_notes: "Fresh content updates! Netflix members can try out an exciting new gameplay experience.",
-        release_date: "2025-02-06T00:00:00.000Z"
+        version: "3.87",
+        release_notes: "- Leaderboard: Check your rank in the Game History.\n- Game Rewards: Revamped system for better prizes.\n- WhatsApp Signup: No number needed—signup made easy.\n- Arabic Support: Now available in Arabic.\n- Wallet Updates: Add/modify withdrawal wallet.\n- New Visuals: Fresh app icon and splash logo.\n- Game UI: Enhanced GamePass indicator.\n- Game Features: Dynamic prizes, referrals, leaderboard, and more in phases.\n- Performance: Optimized for smoother gameplay.",
+        release_date: "2025-01-30T00:00:00.000Z"
       },
       {
-        version: "0.0.8028",
-        release_notes: "We've squashed bugs and made behind-the-scenes improvements to bring Netflix members the best possible gameplay experience.",
-        release_date: "2025-01-21T00:00:00.000Z"
+        version: "3.86",
+        release_notes: "Improvements and Bug fixes.",
+        release_date: "2024-04-04T00:00:00.000Z"
       }
     ],
     ratings: {
       current_version: {
-        average: 4.812,
-        count: 27035,
+        average: 5.0,
+        count: 15,
         star_count: {
-          "1": 598,
-          "2": 151,
-          "3": 364,
-          "4": 1497,
-          "5": 24425
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 15
         }
       }
     },
     rankings: [
       {
-        category_id: 7003, // Arcade
+        category_id: 7018, // Trivia
         type: "free",
-        ranks: [61, 82, 95, 98, 101, 107, 96, 114, 157, 175, 186, 178, 168, 153, 161, 174, 200, 190, 188, 203, 135, 163, 222, 247, 254, 256, 263, 277, 278, 311]
+        ranks: [55, 58, 62, 64, 67, 68, 64, 69, 72, 78, 82, 85, 88, 92, 95, 98, 102, 105, 110, 114, 108, 105, 102, 95, 88, 82, 75, 68, 62, 55]
       },
       {
         category_id: 6014, // Games
         type: "free",
-        ranks: [133, 182, 223, 245, 246, 255, 232, 272, 363, 415, 427, 418, 375, 350, 366, 408, 481, 459, 459, 491, 327, 393]
+        ranks: [188, 192, 195, 198, 200, 205, 208, 212, 215, 218, 220, 222, 218, 215, 210, 205, 200, 195, 190, 185, 180, 175, 170, 165, 160, 155, 150, 145, 140, 135]
       },
       {
-        category_id: 7001, // Action
+        category_id: 6000, // Business
         type: "free",
-        ranks: [25, 27, 34, 35, 41, 41, 39, 47, 61, 67, 70, 70, 67, 62, 66, 70, 84, 81, 85, 97, 61, 74, 94, 114, 117, 112, 117, 116, 112, 134]
+        ranks: [120, 118, 115, 112, 110, 108, 105, 102, 100, 98, 95, 92, 90, 88, 85, 82, 80, 78, 75, 72, 70, 68, 65, 62, 60, 58, 55, 52, 50, 48]
       }
     ],
     reviews: [

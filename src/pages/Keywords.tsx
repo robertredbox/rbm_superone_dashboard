@@ -21,187 +21,187 @@ const Keywords = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
   const [searchTerm, setSearchTerm] = useState<string>('');
   
-  // Updated real keywords data from AppTweak analysis
+  // SuperOne keywords data
   const trackedKeywords = [
     { 
       id: '1', 
-      term: 'squid game', 
-      position: 1, 
+      term: 'trivia game', 
+      position: 3, 
+      change: 2, 
+      volume: 55, 
+      difficulty: 32,
+      chance: 68
+    },
+    { 
+      id: '2', 
+      term: 'trivia battle', 
+      position: 2, 
       change: 1, 
-      volume: 60, 
+      volume: 40, 
       difficulty: 28,
       chance: 72
     },
     { 
-      id: '2', 
-      term: 'netflix', 
-      position: 57, 
-      change: -2, 
-      volume: 84, 
-      difficulty: 65,
-      chance: 35
-    },
-    { 
       id: '3', 
-      term: 'among us', 
-      position: 38, 
-      change: 2, 
-      volume: 75, 
-      difficulty: 60,
-      chance: 40
+      term: 'fan battle', 
+      position: 1, 
+      change: 0, 
+      volume: 25, 
+      difficulty: 15,
+      chance: 85
     },
     { 
       id: '4', 
-      term: 'fortnite', 
-      position: 93, 
-      change: -5, 
-      volume: 73, 
-      difficulty: 78,
-      chance: 22
+      term: 'quiz cash prizes', 
+      position: 5, 
+      change: 2, 
+      volume: 30, 
+      difficulty: 38,
+      chance: 62
     },
     { 
       id: '5', 
-      term: 'gta', 
-      position: 67, 
-      change: 3, 
-      volume: 66, 
-      difficulty: 70,
-      chance: 30
+      term: 'football trivia', 
+      position: 4, 
+      change: -1, 
+      volume: 45, 
+      difficulty: 30,
+      chance: 70
     },
     { 
       id: '6', 
-      term: 'stumble guys', 
-      position: 20, 
-      change: 4, 
-      volume: 65, 
-      difficulty: 50,
-      chance: 50
+      term: 'trivia app with cash prizes', 
+      position: 8, 
+      change: 3, 
+      volume: 38, 
+      difficulty: 42,
+      chance: 58
     },
     { 
       id: '7', 
-      term: 'sprunki', 
-      position: 93, 
-      change: -3, 
-      volume: 65, 
-      difficulty: 75,
-      chance: 25
-    },
-    { 
-      id: '8', 
-      term: 'schoolboy runaway', 
-      position: 27, 
-      change: 5, 
-      volume: 62, 
+      term: 'sports trivia', 
+      position: 12, 
+      change: 4, 
+      volume: 52, 
       difficulty: 45,
       chance: 55
     },
     { 
-      id: '9', 
-      term: 'rec room', 
-      position: 98, 
-      change: -7, 
-      volume: 62, 
-      difficulty: 80,
-      chance: 20
-    },
-    { 
-      id: '10', 
-      term: 'juegos', 
-      position: 38, 
-      change: 0, 
-      volume: 58, 
-      difficulty: 65,
-      chance: 35
-    },
-    { 
-      id: '11', 
-      term: 'greenlight', 
-      position: 95, 
-      change: -2, 
-      volume: 57, 
-      difficulty: 75,
-      chance: 25
-    },
-    { 
-      id: '12', 
-      term: 'netflix games', 
-      position: 4, 
-      change: 2, 
-      volume: 53, 
-      difficulty: 35,
-      chance: 65
-    },
-    { 
-      id: '13', 
-      term: 'fall guys', 
+      id: '8', 
+      term: 'multiplayer trivia', 
       position: 7, 
-      change: 3, 
-      volume: 53, 
+      change: 2, 
+      volume: 35, 
       difficulty: 40,
       chance: 60
     },
     { 
-      id: '14', 
-      term: 'among us 2', 
-      position: 96, 
-      change: -4, 
-      volume: 50, 
-      difficulty: 82,
-      chance: 18
+      id: '9', 
+      term: 'battle royale trivia', 
+      position: 3, 
+      change: 1, 
+      volume: 28, 
+      difficulty: 25,
+      chance: 75
     },
     { 
-      id: '15', 
-      term: 'sprunki game', 
-      position: 35, 
-      change: 6, 
+      id: '10', 
+      term: 'superone', 
+      position: 1, 
+      change: 0, 
+      volume: 20, 
+      difficulty: 10,
+      chance: 90
+    },
+    { 
+      id: '11', 
+      term: 'win money quiz', 
+      position: 15, 
+      change: -2, 
       volume: 48, 
       difficulty: 55,
       chance: 45
     },
     { 
-      id: '16', 
-      term: 'battle net', 
-      position: 80, 
-      change: -1, 
-      volume: 48, 
-      difficulty: 72,
-      chance: 28
-    },
-    { 
-      id: '17', 
-      term: 'eggy party', 
-      position: 60, 
+      id: '12', 
+      term: 'quiz competition app', 
+      position: 10, 
       change: 3, 
-      volume: 47, 
-      difficulty: 62,
-      chance: 38
-    },
-    { 
-      id: '18', 
-      term: 'squid game 2', 
-      position: 1, 
-      change: 0, 
-      volume: 46, 
-      difficulty: 25,
-      chance: 75
-    },
-    { 
-      id: '19', 
-      term: 'gta san andreas netflix', 
-      position: 20, 
-      change: 4, 
-      volume: 45, 
+      volume: 32, 
       difficulty: 48,
       chance: 52
     },
     { 
-      id: '20', 
-      term: 'stumble guys 2', 
-      position: 37, 
+      id: '13', 
+      term: 'live trivia game', 
+      position: 9, 
+      change: 5, 
+      volume: 42, 
+      difficulty: 38,
+      chance: 62
+    },
+    { 
+      id: '14', 
+      term: 'trivia royale', 
+      position: 6, 
+      change: -1, 
+      volume: 30, 
+      difficulty: 35,
+      chance: 65
+    },
+    { 
+      id: '15', 
+      term: 'fan quiz games', 
+      position: 8, 
+      change: 3, 
+      volume: 25, 
+      difficulty: 30,
+      chance: 70
+    },
+    { 
+      id: '16', 
+      term: 'quiz games 2025', 
+      position: 18, 
+      change: -2, 
+      volume: 40, 
+      difficulty: 52,
+      chance: 48
+    },
+    { 
+      id: '17', 
+      term: 'affiliate program games', 
+      position: 5, 
       change: 2, 
-      volume: 45, 
-      difficulty: 58,
-      chance: 42
+      volume: 22, 
+      difficulty: 28,
+      chance: 72
+    },
+    { 
+      id: '18', 
+      term: 'true false quiz game', 
+      position: 3, 
+      change: 1, 
+      volume: 35, 
+      difficulty: 32,
+      chance: 68
+    },
+    { 
+      id: '19', 
+      term: 'swipe trivia game', 
+      position: 2, 
+      change: 0, 
+      volume: 18, 
+      difficulty: 20,
+      chance: 80
+    },
+    { 
+      id: '20', 
+      term: 'cash rewards trivia', 
+      position: 11, 
+      change: 4, 
+      volume: 38, 
+      difficulty: 45,
+      chance: 55
     },
   ];
 

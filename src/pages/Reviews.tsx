@@ -21,87 +21,87 @@ const Reviews = () => {
   const [filterRating, setFilterRating] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
 
-  // Real reviews from AppTweak
+  // SuperOne trivia game reviews
   const reviewsData = [
     {
-      id: "12134369583",
-      title: "A Few Bugs, But Great Release",
-      author: "Chasewintherace",
-      date: "2025-01-02T06:20:44Z",
+      id: "52134369583",
+      title: "Addictive Trivia Game with Great Prizes",
+      author: "TriviaKing27",
+      date: "2025-03-10T14:20:44Z",
       rating: 5,
-      body: "For a game that has just been released it's very fun. The abilities seem to be quite balanced. Of course, there is an aspect of RNG where you can't always win no matter how good you may be, but unlike most other games, it doesn't ruin the fun. There are of course a few bugs when it comes to the servers which is expected upon release. Sometimes the game may not register a jump which can cost you the contest unfortunately. You will visually see your character jump just to be teleported back to where you were and ultimately die. Other than that, I don't see anything wrong with the game! Keep the cosmetic items coming and everyone will be happy."
+      body: "I've been playing SuperOne for a few months now and I'm absolutely hooked! The true/false trivia format is simple enough for anyone to understand but still challenging. What really sets this apart is the prize system - I've already won twice and got my payouts quickly. The affiliate program is also great for earning some extra credits. My only suggestion would be to add more diverse question categories. Overall, this is the best trivia app I've found with real cash prizes that actually pays out."
     },
     {
-      id: "12098557739",
-      title: "Fun",
-      author: "oMickiio",
-      date: "2024-12-24T01:52:51Z",
-      rating: 5,
-      body: "I been playing since the pre-order and the game is very fun but theres a few problems. The movement glitches out when jumping. The item targeting system wont allow you to target certain players at times. And the ranking system seems unfair. When you reach gold if you lose the first game you lose 8 trophies, lose the second game u lose 4 trophies, lose the third you gain 3, win you gain 8. The point system needs to change To -4 on the first round, +0 second round, +4 3rd round +8/+10 For the win. Because as of rn its hard to keep ranking up."
+      id: "52098557739",
+      title: "Great concept but needs more variety",
+      author: "QuizMaster2025",
+      date: "2025-02-18T11:52:51Z",
+      rating: 4,
+      body: "SuperOne has a fantastic concept with the true/false format and battle royale style eliminations. I love how fast-paced each game is, and the fact there's a new game every 5 minutes keeps me coming back. The affiliate system is also a nice touch for earning extra. My only complaint is that after playing for a couple of weeks, I'm starting to see the same questions repeated. They need to expand their question database. Otherwise, it's a great way to test your knowledge and potentially win some money."
     },
     {
-      id: "12299848179",
-      title: "Fishing poles",
-      author: "Uhhhh......:-|",
-      date: "2025-02-11T22:46:40Z",
+      id: "52299848179",
+      title: "Connection issues ruin the experience",
+      author: "DisconnectedFan",
+      date: "2025-03-05T08:46:40Z",
       rating: 2,
-      body: "I have already written 2 reviews and they keep getting taken down so here goes 3, the glitches are annoying and can be pretty game breaking, not a huge deal for me, it's new. The game is a lot of fun, probably one of the best mobile games to release in a long time, no ads, no pay2win, skill based, it's seriously a blast. However, the addition of the fishing pole has completely ruined the fun, people just pull everyone into the finish line almost immediately and it makes the final prize pot very poor at best and kills the suspense of everyone trying to bat people out."
+      body: "When it works, SuperOne is actually pretty fun. I enjoy the quick trivia format and the cash prizes are enticing. However, I constantly experience connection issues during games. There's nothing more frustrating than making it to the final round only to get disconnected and lose your progress. I've reached out to support multiple times but haven't received much help. Fix the server issues and this would be a 5-star app. Until then, I can't recommend it if you're serious about competing for prizes."
     },
     {
-      id: "12171798473",
-      title: "Started Great",
-      author: "Pretty awesome chicky",
-      date: "2025-01-11T16:08:03Z",
-      rating: 1,
-      body: "I really enjoyed this game to begin with, it's fun to play and I get engulfed by the game. But as I've played, I've had several glitches. My goal has been to get to the Front man rank (level 70), and by the time I joined, I had 7 days to do so. I played non stop the last several days to get to level 50 and now I'm stuck. The biggest issue is the amount of times I will be playing and suddenly it disconnects. Once disconnected, you lose your rank points regardless or what happened. I've even crossed the finish line and then it cuts out and I lose."
-    },
-    {
-      id: "12264470751",
-      title: "Fun game! But beware",
-      author: "WinImpala67",
-      date: "2025-02-03T05:51:34Z",
-      rating: 4,
-      body: "I try to download it doesn'twork Because it takes too much space and I have these apps like barely anything because I just want to play the game but Ikt doesn't work and also My Friend said it doesn't work for her and I believe her because last time I played it just kept kicking me out of the game. It said I survive zero games and I want to play with my friend because I,I have fun with her but this. Game takes too much spaceAnd kicks me out of the game but I do love this game but please fix it. You're a good creator and I support you, but please fix this"
-    },
-    {
-      id: "12430566122",
-      title: "Its good",
-      author: "TheNoobSlayer101",
-      date: "2025-03-17T09:11:16Z",
+      id: "52171798473",
+      title: "The best way to earn while having fun",
+      author: "CashQuizzer",
+      date: "2025-03-15T16:08:03Z",
       rating: 5,
-      body: "This game is ok its better than fall games and stumble guys this is very good since it has no microtransactions which is mostly play to win i understand they have to add more updates to make the game survive but the only problem with the game is the delay/lag and the glitches it has but overall the game design is pretty good a very simple and fun game to get into. This is a good game for the beginners and gamers too who want to find a good decent game now overall pretty good game with no other problems but that."
+      body: "SuperOne has completely changed my perspective on mobile games. The fact that you can actually earn real cash just by answering trivia questions correctly is amazing. I've been a big fan of quiz games for years, but this adds an extra layer of excitement. The swipe interface is smooth and intuitive, and the 4-lives system gives you a fair chance. I especially love the community aspect - playing against real people around the world adds to the thrill. Their customer service is also top-notch when I had an issue with a payout."
     },
     {
-      id: "12169313113",
-      title: "Fun game too many glitches timeouts and disadvantages",
-      author: "Mateos playground",
-      date: "2025-01-11T01:16:18Z",
+      id: "52264470751",
+      title: "Fun but needs more payment options",
+      author: "GlobalPlayer22",
+      date: "2025-02-25T05:51:34Z",
+      rating: 4,
+      body: "I really enjoy SuperOne's gameplay and the challenge of competing against thousands of other players. The trivia questions are well-researched and cover a good range of topics. My main issue is with the limited payment options for withdrawing winnings. I'd like to see more options beyond the current ones, especially for international players. Also, the minimum withdrawal amount is a bit high for casual players. Otherwise, it's one of the better trivia games out there, and the lack of ads is refreshing!"
+    },
+    {
+      id: "52430566122",
+      title: "Amazing affiliate program",
+      author: "ReferralKing",
+      date: "2025-03-12T09:11:16Z",
+      rating: 5,
+      body: "I downloaded SuperOne initially for the trivia but stayed for the affiliate program! The game itself is fun with quick rounds and fair questions, but the ability to earn through referrals is a game-changer. I've referred several friends and the passive income from their activity is really adding up. The tiered bonus system rewards loyal players and creates a genuine ecosystem. The UI is clean and performance has been solid on my device. If you enjoy trivia and want to make some money on the side, this is definitely the app to try."
+    },
+    {
+      id: "52169313113",
+      title: "Needs more question categories",
+      author: "SportsTriviaBuff",
+      date: "2025-01-21T01:16:18Z",
       rating: 3,
-      body: "Its a fun interaction game but for some reason it glitches out too much. Sometimes it leaves other playing characters floating on my lobby screen. When playing with another person on the party mode either one of the screens wont load as fast or kicks you out or the game will start for one and continue loading for the other. In one occasion my playmate was kicked out to to 'photo image error' but when the other game started on the same match his character kept playing as if he was the one playing still."
+      body: "SuperOne has potential, but it needs more diverse question categories. As a sports fan, I notice there are way too many general knowledge questions and not enough sports-specific ones. The game mechanics work well, and I like the true/false format, but after playing for a couple of weeks, you start seeing repeated questions. The prize structure is fair and I appreciate that they actually pay out, unlike some other apps. If they expanded their question database and added category-specific games, this would easily be a 5-star app for me."
     },
     {
-      id: "12276540333",
-      title: "Squid game unleash",
-      author: "MFC101",
-      date: "2025-02-06T05:58:51Z",
-      rating: 1,
-      body: "I gave this game the low rating because on my mobile app I get disconnected every 2 to 3 rounds and if the lag gets so crazy you can't even play at all plus the ladder / tier system whatever you wanna call it is terrible. If you can't get to level 50 you're not gonna get to level 70 because the developers need to fix the tier system where if you get to a tier you can't go below it so even though the game is fun I think all these issues make it not fun to play if you're trying to get to the highest tier"
+      id: "52276540333",
+      title: "Buggy on older devices",
+      author: "OldPhoneUser",
+      date: "2025-02-15T15:58:51Z",
+      rating: 2,
+      body: "I really want to enjoy SuperOne, but the experience on older phones is terrible. The app frequently crashes during gameplay, especially in the final rounds when the stakes are highest. It's incredibly frustrating to make it far only to have the app freeze and lose your progress. I've also had issues with the timer not syncing properly, which puts me at a disadvantage. The concept is great and when it works, it's fun, but the technical issues make it nearly unplayable on my device. Please optimize for older phones!"
     },
     {
-      id: "12203509237",
-      title: "Fun but has issues",
-      author: "TheJekkle",
-      date: "2025-01-19T13:19:21Z",
+      id: "52203509237",
+      title: "Great for football fans",
+      author: "FootballTrivia101",
+      date: "2025-03-02T13:19:21Z",
+      rating: 5,
+      body: "As a football fanatic, SuperOne is exactly what I've been looking for! The football trivia questions are challenging but fair, and I love competing against other fans to prove my knowledge. The swipe interface makes answering quick and intuitive, and the progressive difficulty keeps things interesting. I've won a few smaller prizes so far and withdrawals were processed promptly. The community is growing and it's exciting to see how many people join each game. Definitely recommend for sports fans looking for a trivia challenge with actual rewards."
+    },
+    {
+      id: "52119649151",
+      title: "Smooth payment system",
+      author: "PrizeCollector",
+      date: "2025-03-08T13:34:16Z",
       rating: 4,
-      body: "I've been playing since the game was first released and I think it's very fun to play & I've enjoyed it but lately I haven't been able to advance past rank 25 no matter what. The game will eliminate me even when I have already passed the finish line & it's very frustrating and annoying. I continue to play but I'm hoping this will stop happening so I can finally advance. Other than that…the game is very fun to play."
-    },
-    {
-      id: "12119649151",
-      title: "Make game better",
-      author: "CEOofMovement",
-      date: "2024-12-29T13:34:16Z",
-      rating: 4,
-      body: "Great game but I have some suggestions: 1) do not make the ranking system easier, if anything, make it harder. We should not be gaining points for not winning. If you make it to last game, unless you place top 3, I believe there should be no gain if you lose. 2) add a leaderboard. Once reaching rank 70 we get surplus trophies, but these mean nothing without a leaderboard. 3) more difficulty. The games are Childs play. 4) fix lag. Idk how to do this one but it feels like half of the players in my games are bots because of how bad they are lagging."
+      body: "I've tried many trivia apps that claim to offer cash prizes, but SuperOne is one of the few that actually delivers. Their payment system is remarkably smooth - I received my winnings within 24 hours of request. The game itself is fun and addictive with its battle royale style elimination. My only complaint is that sometimes the questions can be a bit ambiguous for a true/false format. Also, I wish there were more games in specific categories. But overall, if you're looking for a legitimate trivia game that pays real money, this is definitely one to try."
     }
   ];
 

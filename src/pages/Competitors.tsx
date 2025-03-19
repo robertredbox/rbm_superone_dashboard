@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import TimeSelector from '@/components/dashboard/TimeSelector';
@@ -17,61 +16,61 @@ const FontLinks = () => (
 const Competitors = () => {
   const [timeRange, setTimeRange] = useState<string>('30d');
 
-  // Real competitors data for Squid Game: Unleashed from AppTweak
+  // SuperOne trivia game competitors data
   const competitorsData = [
     { 
-      id: '1671633204', 
-      name: 'Bloons TD 6 NETFLIX', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d5/d7/2a/d5d72a18-78fb-018c-efeb-453a5a6b9f46/AppIcon-1x_U007emarketing-0-7-0-85-220-0.png/170x170bb.png', 
-      ranking: 25, 
-      change: 3, 
-      rating: 4.9,
-      developer: 'Netflix, Inc.'
-    },
-    { 
-      id: '6450280702', 
-      name: 'GTA: San Andreas – NETFLIX', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b0/cb/ab/b0cbab81-5658-8167-266a-32d44bd22f6b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
-      ranking: 29, 
-      change: -4, 
-      rating: 3.7,
-      developer: 'Netflix, Inc.'
-    },
-    { 
-      id: '6478899805', 
-      name: 'Civilization VI: NETFLIX', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/df/b1/7f/dfb17fbb-2cef-d26f-fb92-0cbe60351714/AppIcon-1x_U007emarketing-0-7-0-85-220-0.jpeg/170x170bb.png', 
-      ranking: 37, 
-      change: 5, 
-      rating: 4.8,
-      developer: 'Netflix, Inc.'
-    },
-    { 
-      id: '6443475072', 
-      name: 'TMNT: Shredder\'s Revenge', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/81/22/2b/81222bc0-a1b0-ba54-3e89-1800e4f4dc55/AppIcon-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
-      ranking: 42, 
-      change: -2, 
-      rating: 4.9,
-      developer: 'Netflix, Inc.'
-    },
-    { 
-      id: '1495162677', 
-      name: 'Auto Brawl Chess:Battle Royale', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/76/68/4e/76684e08-7298-d0be-4f22-de3c199bff84/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
-      ranking: 45, 
-      change: 6, 
-      rating: 4.6,
-      developer: 'Panoramik Games'
-    },
-    { 
-      id: '1459402952', 
-      name: 'Zooba: Zoo Battle Royale Games', 
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/af/61/cd/af61cd75-45be-9888-d945-a079c3bb07c9/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
-      ranking: 51, 
-      change: 8, 
+      id: '1596342438', 
+      name: 'QuizDuel - Multiplayer Quiz', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/3b/f8/9f/3bf89f5e-d718-16ac-f07d-7fe0ec67a1b3/AppIcon-1x_U007emarketing-0-7-0-0-85-220-0.png/170x170bb.png', 
+      ranking: 32, 
+      change: -1, 
       rating: 4.7,
-      developer: 'Wildlife Studios'
+      developer: 'MAG Interactive'
+    },
+    { 
+      id: '1442114861', 
+      name: 'Trivia Royale', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/0b/d5/31/0bd53102-66a2-c4e0-4780-311b72cb9091/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
+      ranking: 45, 
+      change: 2, 
+      rating: 4.5,
+      developer: 'Teatime Games'
+    },
+    { 
+      id: '1486449576', 
+      name: 'Cash Trivia', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/82/f8/1e/82f81e73-9f4a-46d5-efcc-1e0d0ff2393d/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
+      ranking: 51, 
+      change: -3, 
+      rating: 4.2,
+      developer: 'Cash Quiz Inc.'
+    },
+    { 
+      id: '1574405904', 
+      name: 'HQ - Live Trivia Game Show', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/6d/65/5f/6d655f59-b059-b583-f3ad-f4c0fa416c31/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/170x170bb.png', 
+      ranking: 58, 
+      change: 5, 
+      rating: 4.6,
+      developer: 'HQ Trivia'
+    },
+    { 
+      id: '1461460292', 
+      name: 'Trivia Star: Trivia Games Quiz', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/c5/35/19/c535199a-b9fb-f3cd-5367-091818beefea/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
+      ranking: 65, 
+      change: 8, 
+      rating: 4.5,
+      developer: 'Random Logic Games'
+    },
+    { 
+      id: '1453950347', 
+      name: 'Trivial Pursuit: Quizzes', 
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/45/7b/1c/457b1c41-c678-af0d-ef3b-2c5eb9fb5a7c/AppIcon-1x_U007emarketing-0-7-0-85-220.png/170x170bb.png', 
+      ranking: 73, 
+      change: -5, 
+      rating: 4.8,
+      developer: 'Ubisoft'
     },
   ];
 
@@ -90,36 +89,36 @@ const Competitors = () => {
     }
   };
 
-  // Real market analysis data based on AppTweak insights
-  const marketPosition = 39; // Current rank in Games & Action categories
-  const marketShare = 9.2; // Estimated percentage based on Netflix games portfolio
-  const avgCompetitorRating = 4.6; // Average from competitors
-  const userBase = 3.7; // Millions of users, calculated from download data
+  // SuperOne market analysis data
+  const marketPosition = 55; // Current rank in Trivia Games category
+  const marketShare = 5.8; // Estimated percentage in trivia game market
+  const avgCompetitorRating = 4.5; // Average from competitors
+  const userBase = 0.8; // Millions of users, calculated from download data
 
-  // Competitive Gap Analysis based on real data
+  // SuperOne competitive gap analysis
   const gapAnalysisData = [
     {
-      name: "IP Recognition",
-      value: 95,
-      change: 18,
+      name: "Prize Amount",
+      value: 92,
+      change: 15,
       color: "bg-redbox-purple"
     },
     {
-      name: "Gameplay Mechanics",
-      value: 82,
-      change: 7,
+      name: "Affiliate Program",
+      value: 98,
+      change: 20,
       color: "bg-redbox-red"
     },
     {
-      name: "User Interface",
-      value: 78,
-      change: 10,
+      name: "User Experience",
+      value: 85,
+      change: 8,
       color: "bg-redbox-orange"
     },
     {
       name: "Retention Rate",
-      value: 72,
-      change: 12,
+      value: 78,
+      change: 10,
       color: "bg-redbox-indigo"
     }
   ];
@@ -136,23 +135,23 @@ const Competitors = () => {
         <MetricCard
           title="Market Position"
           value={`#${marketPosition}`}
-          change={8}
+          change={7}
           trend="up"
-          description="Your position in Games & Action categories"
+          description="Your position in Trivia Games category"
           icon={<Award className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="Market Share"
           value={`${marketShare}%`}
-          change={1.5}
+          change={1.2}
           trend="up"
-          description="Share of Netflix games downloads"
+          description="Share of trivia game downloads"
           icon={<TrendingUp className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Rating Comparison"
-          value="4.8"
-          change={0.2}
+          value="5.0"
+          change={0.5}
           trend="up"
           description={`Your rating vs avg. competitor (${avgCompetitorRating})`}
           icon={<Star className="h-5 w-5 text-redbox-orange" />}
@@ -160,7 +159,7 @@ const Competitors = () => {
         <MetricCard
           title="User Base"
           value={`${userBase}M`}
-          change={0.6}
+          change={0.3}
           trend="up"
           description="Monthly active users (estimates)"
           icon={<Users className="h-5 w-5 text-redbox-indigo" />}
@@ -169,7 +168,7 @@ const Competitors = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h3 className="text-lg font-slab font-medium mb-4">Top Netflix Competitors</h3>
+          <h3 className="text-lg font-slab font-medium mb-4">Top Trivia Competitors</h3>
           <div className="space-y-4">
             {competitorsData.slice(0, 4).map((competitor) => (
               <CompetitorCard key={competitor.id} competitor={competitor} />
@@ -178,7 +177,7 @@ const Competitors = () => {
         </div>
         
         <div>
-          <h3 className="text-lg font-slab font-medium mb-4">Other Battle Royale Games</h3>
+          <h3 className="text-lg font-slab font-medium mb-4">Other Quiz Games</h3>
           <div className="space-y-4">
             {competitorsData.slice(4, 6).map((competitor) => (
               <CompetitorCard key={competitor.id} competitor={competitor} />
