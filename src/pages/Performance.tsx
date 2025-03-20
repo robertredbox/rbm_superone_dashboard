@@ -698,6 +698,14 @@ const Performance = () => {
                 <span className="text-muted-foreground font-sans font-normal">Feb vs Dec</span>
                 <span className="font-sans font-medium text-green-500">+287% increased visibility</span>
               </li>
+              <li className="flex justify-between">
+                <span className="text-muted-foreground font-sans font-normal">Top Acquisition Period</span>
+                <span className="font-sans font-medium text-green-500">Jan 29 - Feb 6</span>
+              </li>
+              <li className="flex justify-between">
+                <span className="text-muted-foreground font-sans font-normal">Lowest Activity Period</span>
+                <span className="font-sans font-medium">Dec 24 - Jan 15</span>
+              </li>
             </ul>
           </div>
         )}
@@ -882,7 +890,7 @@ const Performance = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
         <div className="bg-card p-6 rounded-lg border border-border">
           <h3 className="text-lg font-slab font-medium mb-4">Android Sessions Insights</h3>
           <ul className="space-y-3">
@@ -935,7 +943,7 @@ const Performance = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
         <div className="bg-card p-6 rounded-lg border border-border">
           <h3 className="text-lg font-slab font-medium mb-4">Android DAU Insights</h3>
           <ul className="space-y-3">
@@ -979,6 +987,119 @@ const Performance = () => {
           </ul>
         </div>
       </div>
+      
+      {platform === 'android' || platform === 'combined' ? (
+        <>
+          <div className="mt-8 mb-6">
+            <h2 className="text-2xl font-slab font-medium">Android Acquisition Trends</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="bg-card p-6 rounded-lg border border-border">
+              <h3 className="text-lg font-slab font-medium mb-4">Android Growth Pattern</h3>
+              <ul className="space-y-3">
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Phase 1: Baseline</span>
+                  <span className="font-sans font-medium">Dec 13-28 (Avg: 15.5/day)</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Phase 2: Low Period</span>
+                  <span className="font-sans font-medium">Dec 29-Jan 15 (Avg: 9.1/day)</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Phase 3: Initial Growth</span>
+                  <span className="font-sans font-medium">Jan 16-28 (Avg: 12.5/day)</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Phase 4: Spike Period</span>
+                  <span className="font-sans font-medium text-green-500">Jan 29-Feb 6 (Avg: 72.2/day)</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Phase 5: Stabilization</span>
+                  <span className="font-sans font-medium">Feb 7-Mar 12 (Avg: 36.4/day)</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-card p-6 rounded-lg border border-border">
+              <h3 className="text-lg font-slab font-medium mb-4">Android Performance Metrics</h3>
+              <ul className="space-y-3">
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Peak Day Value</span>
+                  <span className="font-sans font-medium">105 (Feb 1, 2025)</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Significant Spike Dates</span>
+                  <span className="font-sans font-medium">Jan 29 (81), Jan 30 (66), Feb 1 (105)</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Lowest Day Value</span>
+                  <span className="font-sans font-medium">4 (Dec 26, Jan 23)</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Feb Average</span>
+                  <span className="font-sans font-medium">41.3 listings/day</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Mar Average</span>
+                  <span className="font-sans font-medium">45.7 listings/day</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-card p-6 rounded-lg border border-border">
+              <h3 className="text-lg font-slab font-medium mb-4">Weekly Android Performance</h3>
+              <ul className="space-y-3">
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Week 1 (Dec 13-19)</span>
+                  <span className="font-sans font-medium">19.0/day</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Week 5 (Jan 10-16)</span>
+                  <span className="font-sans font-medium">10.1/day</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Week 8 (Jan 31-Feb 6)</span>
+                  <span className="font-sans font-medium text-green-500">72.8/day</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Week 11 (Feb 21-27)</span>
+                  <span className="font-sans font-medium">33.3/day</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Week 13 (Mar 7-12)</span>
+                  <span className="font-sans font-medium">47.3/day</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-card p-6 rounded-lg border border-border">
+              <h3 className="text-lg font-slab font-medium mb-4">Android Growth Analysis</h3>
+              <ul className="space-y-3">
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Pre-Spike vs Post-Spike</span>
+                  <span className="font-sans font-medium text-green-500">+206% increase</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Month-over-Month Growth</span>
+                  <span className="font-sans font-medium">Dec: 13.3, Jan: 18.5, Feb: 41.3</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Jan to Feb Growth</span>
+                  <span className="font-sans font-medium text-green-500">+123.2%</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Feb to Mar Growth</span>
+                  <span className="font-sans font-medium">+10.7%</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground font-sans font-normal">Overall Trend</span>
+                  <span className="font-sans font-medium">Strong positive, stabilizing at higher level</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </>
+      ) : null}
     </Layout>
   );
 };
