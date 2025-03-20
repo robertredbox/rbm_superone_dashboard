@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -11,6 +10,7 @@ interface MetricCardProps {
   description?: string;
   icon?: React.ReactNode;
   className?: string;
+  showChange?: boolean;
 }
 
 const MetricCard: React.FC<MetricCardProps> = ({
@@ -21,6 +21,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
   description,
   icon,
   className,
+  showChange = false,
 }) => {
   return (
     <div className={cn('aso-card p-6 animate-fade-in-up', className)}>
@@ -29,7 +30,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
           <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
           <div className="mt-1 flex items-baseline space-x-2">
             <p className="aso-stats-value">{value}</p>
-            {change !== undefined && (
+            {showChange && change !== undefined && (
               <span
                 className={cn(
                   'inline-flex items-center space-x-1',

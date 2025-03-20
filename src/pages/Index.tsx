@@ -276,32 +276,24 @@ const Index = () => {
         <MetricCard
           title="Downloads"
           value="2.2k"
-          change={47.6}
-          trend="up"
           description="Total iOS & Android downloads"
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="App Ranking"
           value="Unranked"
-          change={0}
-          trend="neutral"
           description="Games category ranking (Global)"
           icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Keyword Rankings"
           value={topKeywords.toString()}
-          change={2}
-          trend="up"
           description="Keywords in top 100 (App Store)"
           icon={<Search className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
           title="Reviews"
           value={totalReviews.toString()}
-          change={12.4}
-          trend="up"
           description="Combined iOS & Android reviews"
           icon={<MessageSquare className="h-5 w-5 text-redbox-indigo" />}
         />
