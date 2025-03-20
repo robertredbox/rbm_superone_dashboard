@@ -18,7 +18,7 @@ const FontLinks = () => (
 
 const Keywords = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [platform, setPlatform] = useState<string>('all');
+  const [platform, setPlatform] = useState<string>('ios');
   
   // SuperOne keywords data based on analysis
   const trackedKeywords = [
@@ -160,7 +160,7 @@ const Keywords = () => {
       volume: 8, 
       difficulty: 5,
       chance: 95,
-      platform: 'both'
+      platform: 'ios'
     },
     { 
       id: '15', 
@@ -210,7 +210,7 @@ const Keywords = () => {
       volume: 24, 
       difficulty: 28,
       chance: 72,
-      platform: 'both'
+      platform: 'ios'
     },
     { 
       id: '20', 
@@ -220,7 +220,7 @@ const Keywords = () => {
       volume: 33, 
       difficulty: 32,
       chance: 68,
-      platform: 'both'
+      platform: 'ios'
     },
     { 
       id: '21', 
@@ -230,7 +230,7 @@ const Keywords = () => {
       volume: 17, 
       difficulty: 22,
       chance: 78,
-      platform: 'both'
+      platform: 'android'
     },
     { 
       id: '22', 
@@ -240,7 +240,7 @@ const Keywords = () => {
       volume: 28, 
       difficulty: 30,
       chance: 70,
-      platform: 'both'
+      platform: 'android'
     },
     { 
       id: '23', 
@@ -250,7 +250,7 @@ const Keywords = () => {
       volume: 15, 
       difficulty: 8,
       chance: 92,
-      platform: 'both'
+      platform: 'ios'
     },
     { 
       id: '24', 
@@ -260,13 +260,13 @@ const Keywords = () => {
       volume: 22, 
       difficulty: 26,
       chance: 74,
-      platform: 'both'
+      platform: 'android'
     },
   ];
 
   const filteredKeywords = trackedKeywords.filter(keyword => 
     keyword.term.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (platform === 'all' || keyword.platform === platform || keyword.platform === 'both')
+    (keyword.platform === platform)
   );
 
   // Get trend icon based on change value
@@ -289,7 +289,6 @@ const Keywords = () => {
     switch (platform) {
       case 'ios': return 'iOS';
       case 'android': return 'Android';
-      case 'both': return 'iOS & Android';
       default: return '';
     }
   };
@@ -308,10 +307,8 @@ const Keywords = () => {
             value={platform} 
             onChange={(e) => setPlatform(e.target.value)}
           >
-            <option value="all">All Platforms</option>
             <option value="ios">iOS</option>
             <option value="android">Android</option>
-            <option value="both">Cross-Platform</option>
           </select>
         </div>
       </div>

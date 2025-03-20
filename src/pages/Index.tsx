@@ -327,41 +327,6 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Revenue Forecast */}
-      <div className="mt-6 bg-white p-6 rounded-lg border border-gray-200">
-        <h2 className="text-xl font-semibold mb-4">Revenue Forecast Highlights</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-          <div className="bg-blue-50 p-6 rounded-lg">
-            <h3 className="uppercase text-lg text-blue-800 font-medium mb-4">PROJECTED INSTALLS</h3>
-            <div className="text-5xl font-semibold text-blue-900 mb-2">
-              22,935
-            </div>
-            <div className="text-blue-600">
-              Based on Avg CPI: $1.09
-            </div>
-          </div>
-          
-          <div className="bg-green-50 p-6 rounded-lg">
-            <h3 className="uppercase text-lg text-green-800 font-medium mb-4">PROJECTED REVENUE</h3>
-            <div className="text-5xl font-semibold text-green-900 mb-2">
-              $57,338
-            </div>
-            <div className="text-green-600">
-              ROI: 229.4%
-            </div>
-          </div>
-        </div>
-        
-        <div className="mt-4 text-sm text-center text-gray-600">
-          <p>Forecast based on current Media Spend ($25,000) and User Lifetime Value ($2.50)</p>
-          <p className="mt-1">Visit the <a href="/revenue" className="text-blue-600 hover:underline">Revenue page</a> for detailed analysis and interactive forecasting</p>
-        </div>
-        <div className="text-xs text-muted-foreground mt-3 text-center">
-          Projections based on combined iOS and Android data, global markets
-        </div>
-      </div>
-
       <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg mt-6 mb-3 flex items-start gap-3">
         <InfoIcon className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
         <p className="text-xs text-amber-800">
