@@ -183,41 +183,6 @@ const Competitors = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        <MetricCard
-          title="Market Position"
-          value={`#${marketPosition}`}
-          change={platform === 'ios' ? 12 : 30}
-          trend="up"
-          description={`${platform === 'ios' ? 'iOS' : 'Android'} Trivia Games rank`}
-          icon={<Trophy className="h-5 w-5 text-redbox-purple" />}
-        />
-        <MetricCard
-          title="Market Share"
-          value={`${marketShare}%`}
-          change={0.8}
-          trend="up"
-          description="Football quiz category share"
-          icon={<TrendingUp className="h-5 w-5 text-redbox-red" />}
-        />
-        <MetricCard
-          title="Rating"
-          value={platform === 'ios' ? "5.0" : "4.7"}
-          change={platform === 'ios' ? 0.5 : 0.2}
-          trend="up"
-          description={`vs. avg competitor (${avgCompetitorRating})`}
-          icon={<Star className="h-5 w-5 text-redbox-orange" />}
-        />
-        <MetricCard
-          title="Users"
-          value={`${userBase}K+`}
-          change={15}
-          trend="up"
-          description="Est. monthly active users"
-          icon={<Users className="h-5 w-5 text-redbox-indigo" />}
-        />
-      </div>
-      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <div className="md:col-span-2 bg-card p-6 rounded-lg border border-border">
           <h3 className="text-lg font-slab font-medium mb-4">Key Competitive Insights</h3>
