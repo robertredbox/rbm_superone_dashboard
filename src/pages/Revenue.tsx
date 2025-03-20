@@ -14,10 +14,6 @@ const Revenue = () => {
   return (
     <Layout title="Revenue" subtitle="Track your app's revenue and financial metrics">
       <FontLinks />
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-slab font-medium">Revenue Analysis</h2>
-      </div>
-
       <RevenueChart />
     </Layout>
   );

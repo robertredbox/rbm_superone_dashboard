@@ -245,19 +245,19 @@ const RevenueChart = () => {
       
       {/* Revenue Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-accent/20 p-4 rounded-lg">
+        <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
           <h3 className="text-lg mb-2 font-slab font-medium">Total Revenue (iOS)</h3>
           <p className="text-3xl font-medium font-sans">${revenueStats.ios.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
         </div>
         
-        <div className="bg-accent/20 p-4 rounded-lg">
+        <div className="bg-green-50 p-4 rounded-lg border border-green-100">
           <h3 className="text-lg mb-2 font-slab font-medium">Daily Average</h3>
           <p className="text-3xl font-medium font-sans text-green-500">
             ${(revenueStats.ios / salesData.filter(d => d.ios > 0).length).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
           </p>
         </div>
         
-        <div className="bg-accent/20 p-4 rounded-lg">
+        <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
           <h3 className="text-lg mb-2 font-slab font-medium">Peak Day</h3>
           <p className="text-3xl font-medium font-sans text-blue-500">
             ${Math.max(...salesData.map(d => d.ios)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
@@ -294,7 +294,7 @@ const RevenueChart = () => {
       </div>
       
       {/* Charts */}
-      <div className="bg-accent/20 p-4 rounded-lg">
+      <div className="bg-white p-4 rounded-lg border border-gray-200">
         {activeView === 'weekly' && (
           <div>
             <h3 className="text-lg mb-4 font-slab font-medium">Weekly Revenue</h3>
