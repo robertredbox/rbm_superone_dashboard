@@ -114,35 +114,52 @@ const RevenueChart = () => {
     { date: "Dec 19, 2024", ios: 0 }
   ];
   
+  // Helper function to format date ranges
+  const formatDateRange = (startDate: string, endDate: string) => {
+    const formatDate = (dateStr: string) => {
+      const parts = dateStr.split(" ");
+      return `${parts[0]} ${parts[1]}`;
+    };
+    return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+  };
+
   useEffect(() => {
     // Process the real sales data from App Store
     const enrichedDaily = salesData.map((day) => {
-      // For now, we're only calculating iOS data and not estimating Android
+      // Parse the date to create a more readable format
+      const dateParts = day.date.split(" ");
+      const month = dateParts[0];
+      const dayOfMonth = dateParts[1].replace(",", "");
+      
       return {
         ...day,
         android: 0, // We'll add these values later when Android data is provided
         total: day.ios, // Total is just iOS for now
-        shortDate: day.date.split(" ")[0]
+        shortDate: `${month} ${dayOfMonth}`,
+        displayDate: day.date
       };
     });
     
-    // Create daily data for chart display (most recent 30 days)
-    const last30DaysData = enrichedDaily.slice(0, 30).reverse();
-    setDailyData(last30DaysData);
+    // Create daily data for chart display (90 days of data)
+    // Make sure the data is in chronological order for display (oldest to newest)
+    const last90DaysData = enrichedDaily.slice(0, 90).reverse();
+    setDailyData(last90DaysData);
     
-    // Create weekly data
+    // Create weekly data with actual date ranges instead of W1, W2, etc.
     const weeks = [];
     for (let i = 0; i < enrichedDaily.length; i += 7) {
       const weekSlice = enrichedDaily.slice(i, Math.min(i + 7, enrichedDaily.length));
       if (weekSlice.length > 0) {
         const weekStart = weekSlice[weekSlice.length - 1].date;
         const weekEnd = weekSlice[0].date;
-        const weekLabel = `W${Math.floor(i/7) + 1}: ${weekStart.split(" ")[0]} - ${weekEnd.split(" ")[0]}`;
+        
+        // Format the date range for display
+        const dateRange = formatDateRange(weekStart, weekEnd);
         
         const weekData = {
-          week: weekLabel,
-          shortWeek: `W${Math.floor(i/7) + 1}`,
-          displayWeek: `Week ${Math.floor(i/7) + 1}`,
+          week: dateRange,
+          shortWeek: dateRange,
+          displayWeek: dateRange,
           ios: weekSlice.reduce((sum, day) => sum + day.ios, 0),
           android: 0, // Placeholder for Android data
           total: weekSlice.reduce((sum, day) => sum + day.ios, 0) // Currently just iOS total
@@ -150,7 +167,9 @@ const RevenueChart = () => {
         weeks.push(weekData);
       }
     }
-    setWeeklyData(weeks);
+    
+    // Reverse the weeks array to show in chronological order
+    setWeeklyData(weeks.reverse());
     
     // Calculate total revenue (iOS only for now)
     const totalIOS = enrichedDaily.reduce((sum, day) => sum + day.ios, 0);
@@ -170,17 +189,27 @@ const RevenueChart = () => {
     ]);
     
     // Create monthly data
+    const monthsOrder = ['Dec', 'Jan', 'Feb', 'Mar'];
     const monthlyMap = new Map();
+    
+    // Initialize map with all months to ensure correct order
+    monthsOrder.forEach(month => {
+      monthlyMap.set(month, { month, ios: 0, android: 0, total: 0 });
+    });
+    
+    // Populate with actual data
     enrichedDaily.forEach(day => {
       const month = day.date.split(" ")[0];
-      if (!monthlyMap.has(month)) {
-        monthlyMap.set(month, { month, ios: 0, android: 0, total: 0 });
-      }
       const monthData = monthlyMap.get(month);
-      monthData.ios += day.ios;
-      monthData.total += day.ios; // Total is just iOS for now
+      if (monthData) {
+        monthData.ios += day.ios;
+        monthData.total += day.ios; // Total is just iOS for now
+      }
     });
-    setMonthlyData(Array.from(monthlyMap.values()));
+    
+    // Convert to array in specified order
+    const monthlyDataArray = monthsOrder.map(month => monthlyMap.get(month));
+    setMonthlyData(monthlyDataArray);
     
     setIsDataLoaded(true);
   }, []);
@@ -188,18 +217,9 @@ const RevenueChart = () => {
   // Custom tooltip
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
-      // Find full week label for tooltip if available
-      let displayLabel = label;
-      if (activeView === 'weekly') {
-        const weekItem = weeklyData.find(item => item.shortWeek === label || item.week === label);
-        if (weekItem) {
-          displayLabel = weekItem.week;
-        }
-      }
-      
       return (
         <div className="bg-white p-3 rounded shadow border border-gray-200">
-          <p className="font-semibold">{displayLabel}</p>
+          <p className="font-semibold">{label}</p>
           {payload.map((entry: any, index: number) => (
             <p key={index} style={{ color: entry.stroke || entry.fill }}>
               {`${entry.name}: $${entry.value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`}
@@ -304,8 +324,11 @@ const RevenueChart = () => {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis 
                     dataKey="shortWeek" 
-                    tick={{ fontSize: 12 }} 
-                    height={50}
+                    tick={{ fontSize: 10 }} 
+                    height={70}
+                    interval={0}
+                    angle={-45}
+                    textAnchor="end"
                   />
                   <YAxis />
                   <Tooltip content={<CustomTooltip />} />
@@ -314,9 +337,6 @@ const RevenueChart = () => {
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-sm text-muted-foreground mt-2 text-center">
-              {weeklyData.map(week => `${week.shortWeek}: ${week.week.split(": ")[1]}`).join(" • ")}
-            </p>
           </div>
         )}
         
@@ -327,16 +347,20 @@ const RevenueChart = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={dailyData} margin={{ top: 5, right: 30, left: 20, bottom: 25 }}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="shortDate" tick={{ fontSize: 11 }} />
+                  <XAxis 
+                    dataKey="shortDate" 
+                    tick={{ fontSize: 10 }}
+                    interval={3}
+                  />
                   <YAxis />
                   <Tooltip content={<CustomTooltip />} />
                   <Legend />
-                  <Line type="monotone" dataKey="ios" name="iOS" stroke="#60A5FA" strokeWidth={2} />
+                  <Line type="monotone" dataKey="ios" name="iOS" stroke="#60A5FA" strokeWidth={2} dot={{ r: 1 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
             <p className="text-sm text-muted-foreground mt-2">
-              Note: Chart shows most recent 30 days of daily revenue data.
+              Note: Chart shows 90 days of daily revenue data.
             </p>
           </div>
         )}
