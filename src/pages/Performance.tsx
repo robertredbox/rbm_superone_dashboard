@@ -636,14 +636,16 @@ const Performance = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-6">
-        <PerformanceChart 
-          data={performanceData.chartData} 
-          timeRange={getTimeRangeDisplay()}
-          platformData={performanceData.platformChartData}
-          className="w-full"
-          onPlatformChange={handlePlatformChange}
-          selectedPlatform={platform}
-        />
+        <div className="w-full" style={{ minHeight: '400px' }}>
+          <PerformanceChart 
+            data={performanceData.chartData} 
+            timeRange={getTimeRangeDisplay()}
+            platformData={performanceData.platformChartData}
+            className="w-full h-full"
+            onPlatformChange={handlePlatformChange}
+            selectedPlatform={platform}
+          />
+        </div>
       </div>
 
       <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg mt-6 mb-3 flex items-start gap-3">
@@ -893,7 +895,7 @@ const Performance = () => {
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Peak DAU Day</span>
-              <span className="font-sans font-medium">Sundays (Avg: 3,212)</span>
+              <span className="font-sans font-medium">Sundays (Avg: 3,137)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Lowest DAU Day</span>
@@ -928,122 +930,6 @@ const Performance = () => {
               <span className="text-muted-foreground font-sans font-normal">App Issues</span>
               <span className="font-sans font-medium text-amber-500">5 days below 2,100 DAU (late Feb)</span>
             </li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Keyword Analysis Section */}
-      <div className="mt-8 mb-6">
-        <h2 className="text-2xl font-slab font-medium">Keyword Analysis</h2>
-        <p className="text-sm text-muted-foreground mt-1">Comparing rankings from Feb 17, 2025 to Mar 17, 2025</p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        <MetricCard
-          title="Total Keywords"
-          value="32"
-          change={14.3}
-          trend="up"
-          description="Keywords in Top 200 (as of Mar 17)"
-          icon={<Search className="h-5 w-5 text-redbox-purple" />}
-        />
-        <MetricCard
-          title="Top 10 Keywords"
-          value="5"
-          change={25}
-          trend="up"
-          description="Keywords in Top 10 positions"
-          icon={<TrendingUp className="h-5 w-5 text-redbox-green" />}
-        />
-        <MetricCard
-          title="Improved Rankings"
-          value="18"
-          change={38.5}
-          trend="up"
-          description="Keywords with positive Feb-Mar changes"
-          icon={<ArrowUpRight className="h-5 w-5 text-redbox-blue" />}
-        />
-        <MetricCard
-          title="Avg. Rank Improvement"
-          value="+6.2"
-          change={9.8}
-          trend="up"
-          description="Avg position change Feb-Mar 2025"
-          icon={<BarChart3 className="h-5 w-5 text-redbox-orange" />}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
-        <div className="bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-slab font-medium mb-4">Top Performing Keywords (Mar 17, 2025)</h3>
-          <ul className="space-y-3">
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">guess the football player</span>
-              <span className="font-sans font-medium">Rank: 33 <span className="text-green-500">(+22 from Feb)</span></span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">the 1 club game</span>
-              <span className="font-sans font-medium">Rank: 55 <span className="text-red-500">(-12 from Feb)</span></span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">football fan</span>
-              <span className="font-sans font-medium">Rank: 62 <span className="text-green-500">(+6 from Feb)</span></span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">guess the footballer</span>
-              <span className="font-sans font-medium">Rank: 63 <span className="text-red-500">(-2 from Feb)</span></span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">footy addicts</span>
-              <span className="font-sans font-medium">Rank: 69 <span className="text-red-500">(-6 from Feb)</span></span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">dibz</span>
-              <span className="font-sans font-medium">Rank: 6 <span className="text-green-500">(+1 from Feb)</span></span>
-            </li>
-          </ul>
-        </div>
-        <div className="bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-slab font-medium mb-4">Keyword Insights (Feb-Mar 2025)</h3>
-          <ul className="space-y-3">
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Best Volume Opportunity</span>
-              <span className="font-sans font-medium">one player games (V: 72, R: 88)</span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Emerging Keywords</span>
-              <span className="font-sans font-medium">onefootball (+37), super save (+in)</span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Top 10 Entry Date</span>
-              <span className="font-sans font-medium">dibz (entered Feb 25, 2025)</span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">Market Opportunity</span>
-              <span className="font-sans font-medium text-green-500">Low competition in 'football trivia'</span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">30-Day Trend</span>
-              <span className="font-sans font-medium">67% keywords improved Feb 17-Mar 17</span>
-            </li>
-            <li className="flex justify-between">
-              <span className="text-muted-foreground font-sans font-normal">New Keyword Rankings</span>
-              <span className="font-sans font-medium">5 new entries since Mar 1</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg mt-6 mb-6 flex items-start gap-3">
-        <InfoIcon className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
-        <div className="text-sm text-blue-800">
-          <p className="font-medium">Keyword Performance Summary (Feb 17 - Mar 17, 2025):</p>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>Keywords with "football" are showing strong performance, with avg rank position of 86.3 (improved from 93.7 in Feb)</li>
-            <li>Direct brand terms like "dibz" (Feb: #7, Mar: #6) and "super" (Feb: #49, Mar: #47) remain in top positions despite fluctuations</li>
-            <li>35% of ranked keywords have search volume above 30, indicating strong traffic potential</li>
-            <li>Newly ranked keywords showing immediate gains include "supering" (#28 as of Mar 17) and "one4all gift cards" (#147)</li>
-            <li>The "football fan" segment has high potential with lower competition (improved from unranked to #202 during this period)</li>
           </ul>
         </div>
       </div>
