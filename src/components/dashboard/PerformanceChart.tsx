@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import { cn } from '@/lib/utils';
@@ -78,6 +78,12 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
   // Use the appropriate data based on selected platform
   const displayData = platformData ? platformData[platform] : data;
 
+  // Debug logging to diagnose issues
+  useEffect(() => {
+    console.log('Chart platform:', platform);
+    console.log('Chart display data:', displayData);
+  }, [platform, displayData]);
+
   return (
     <div className={cn('aso-card p-6 h-[400px]', className)}>
       <div className="mb-4 flex items-center justify-between">
@@ -114,58 +120,63 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
           <div className="text-sm text-muted-foreground">{timeRange}</div>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height="90%">
-        <LineChart
-          data={displayData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-          <XAxis 
-            dataKey="date" 
-            tick={{ fontSize: 12 }}
-            tickLine={false}
-            axisLine={{ stroke: '#e5e7eb' }}
-          />
-          <YAxis 
-            tick={{ fontSize: 12 }}
-            tickLine={false}
-            axisLine={{ stroke: '#e5e7eb' }}
-            domain={['dataMin - 10', 'dataMax + 20']}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          {platform === 'combined' && platformData ? (
-            <>
+      {displayData && displayData.length > 0 ? (
+        <ResponsiveContainer width="100%" height="90%">
+          <LineChart
+            data={displayData}
+            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+            <XAxis 
+              dataKey="date" 
+              tick={{ fontSize: 12 }}
+              tickLine={false}
+              axisLine={{ stroke: '#e5e7eb' }}
+            />
+            <YAxis 
+              tick={{ fontSize: 12 }}
+              tickLine={false}
+              axisLine={{ stroke: '#e5e7eb' }}
+              domain={['dataMin - 10', 'dataMax + 20']}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            {platform === 'ios' && (
               <Line
                 type="monotone"
                 dataKey="iosDownloads"
-                name="iosDownloads"
                 stroke="#3b82f6" // blue-500
                 strokeWidth={2}
                 dot={{ r: 4, strokeWidth: 2, fill: 'white' }}
                 activeDot={{ r: 6, strokeWidth: 0, fill: '#3b82f6' }}
               />
+            )}
+            {platform === 'android' && (
               <Line
                 type="monotone"
                 dataKey="androidDownloads"
-                name="androidDownloads"
                 stroke="#22c55e" // green-500
                 strokeWidth={2}
                 dot={{ r: 4, strokeWidth: 2, fill: 'white' }}
                 activeDot={{ r: 6, strokeWidth: 0, fill: '#22c55e' }}
               />
-            </>
-          ) : (
-            <Line
-              type="monotone"
-              dataKey={platform === 'ios' ? 'iosDownloads' : platform === 'android' ? 'androidDownloads' : 'downloads'}
-              stroke={platform === 'ios' ? '#3b82f6' : platform === 'android' ? '#22c55e' : '#8200FF'}
-              strokeWidth={2}
-              dot={{ r: 4, strokeWidth: 2, fill: 'white' }}
-              activeDot={{ r: 6, strokeWidth: 0, fill: platform === 'ios' ? '#3b82f6' : platform === 'android' ? '#22c55e' : '#8200FF' }}
-            />
-          )}
-        </LineChart>
-      </ResponsiveContainer>
+            )}
+            {platform === 'combined' && (
+              <Line
+                type="monotone"
+                dataKey="downloads"
+                stroke="#8200FF"
+                strokeWidth={2}
+                dot={{ r: 4, strokeWidth: 2, fill: 'white' }}
+                activeDot={{ r: 6, strokeWidth: 0, fill: '#8200FF' }}
+              />
+            )}
+          </LineChart>
+        </ResponsiveContainer>
+      ) : (
+        <div className="h-full flex items-center justify-center">
+          <p className="text-muted-foreground">No data available for the selected time period</p>
+        </div>
+      )}
     </div>
   );
 };
