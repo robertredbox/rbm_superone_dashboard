@@ -17,22 +17,22 @@ const FontLinks = () => (
 );
 
 const Index = () => {
-  // SuperOne performance data - updated with realistic values
+  // SuperOne performance data - updated with realistic values in the correct format for PerformanceChart
   const performanceData = [
-    { date: 'Dec 19', downloads: 8, ranking: 0 },
-    { date: 'Dec 26', downloads: 12, ranking: 0 },
-    { date: 'Jan 2', downloads: 16, ranking: 0 },
-    { date: 'Jan 9', downloads: 23, ranking: 0 },
-    { date: 'Jan 16', downloads: 18, ranking: 0 },
-    { date: 'Jan 23', downloads: 31, ranking: 0 },
-    { date: 'Jan 30', downloads: 42, ranking: 0 },
-    { date: 'Feb 6', downloads: 56, ranking: 0 },
-    { date: 'Feb 13', downloads: 78, ranking: 0 },
-    { date: 'Feb 20', downloads: 92, ranking: 0 },
-    { date: 'Feb 27', downloads: 115, ranking: 0 },
-    { date: 'Mar 5', downloads: 136, ranking: 0 },
-    { date: 'Mar 12', downloads: 158, ranking: 0 },
-    { date: 'Mar 18', downloads: 172, ranking: 0 },
+    { date: 'Dec 19', downloads: 8 },
+    { date: 'Dec 26', downloads: 12 },
+    { date: 'Jan 2', downloads: 16 },
+    { date: 'Jan 9', downloads: 23 },
+    { date: 'Jan 16', downloads: 18 },
+    { date: 'Jan 23', downloads: 31 },
+    { date: 'Jan 30', downloads: 42 },
+    { date: 'Feb 6', downloads: 56 },
+    { date: 'Feb 13', downloads: 78 },
+    { date: 'Feb 20', downloads: 92 },
+    { date: 'Feb 27', downloads: 115 },
+    { date: 'Mar 5', downloads: 136 },
+    { date: 'Mar 12', downloads: 158 },
+    { date: 'Mar 18', downloads: 172 },
   ];
 
   // Calculate total downloads
@@ -185,27 +185,11 @@ const Index = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <div className="lg:col-span-2">
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
-            <h3 className="text-lg mb-4 font-slab font-medium">Download Trends</h3>
-            <div className="h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={performanceData} margin={{ top: 5, right: 30, left: 20, bottom: 30 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis 
-                    dataKey="date" 
-                    tick={{ fontSize: 11 }} 
-                    angle={-45}
-                    textAnchor="end"
-                    height={60}
-                  />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="downloads" name="Downloads" fill="#9333EA" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          <PerformanceChart 
+            data={performanceData} 
+            timeRange="Dec 19 - Mar 18"
+            className="h-auto"
+          />
         </div>
         <SentimentChart data={sentimentData} />
       </div>
