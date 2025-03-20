@@ -189,7 +189,8 @@ const Index = () => {
     { id: '7', term: 'onefootball', position: 195, change: -1, volume: 40, difficulty: 30 },
     { id: '8', term: 'football fan', position: 202, change: -13, volume: 18, difficulty: 45 },
     { id: '9', term: 'wwe supercard', position: 206, change: -1, volume: 39, difficulty: 40 },
-    { id: '10', term: 'wwe supercard game', position: 218, change: 0, volume: 14, difficulty: 35 }
+    { id: '10', term: 'football trivia', position: 214, change: 0, volume: 5, difficulty: 39 },
+    { id: '11', term: 'wwe supercard game', position: 218, change: 0, volume: 14, difficulty: 35 }
   ];
 
   // Get count of keywords in top 100
