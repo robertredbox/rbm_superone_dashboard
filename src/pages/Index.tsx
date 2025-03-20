@@ -17,30 +17,33 @@ const FontLinks = () => (
 );
 
 const Index = () => {
-  // SuperOne performance data
+  // SuperOne performance data - updated with realistic values
   const performanceData = [
-    { date: 'Dec 17', downloads: 3800, ranking: 215 },
-    { date: 'Dec 24', downloads: 4200, ranking: 203 },
-    { date: 'Dec 31', downloads: 5100, ranking: 189 },
-    { date: 'Jan 7', downloads: 5600, ranking: 175 },
-    { date: 'Jan 14', downloads: 6300, ranking: 162 },
-    { date: 'Jan 21', downloads: 7200, ranking: 145 },
-    { date: 'Jan 28', downloads: 7900, ranking: 130 },
-    { date: 'Feb 4', downloads: 8300, ranking: 120 },
-    { date: 'Feb 11', downloads: 8900, ranking: 110 },
-    { date: 'Feb 18', downloads: 9500, ranking: 95 },
-    { date: 'Feb 25', downloads: 10300, ranking: 88 },
-    { date: 'Mar 4', downloads: 11200, ranking: 78 },
-    { date: 'Mar 11', downloads: 12100, ranking: 65 },
-    { date: 'Mar 18', downloads: 13000, ranking: 55 },
+    { date: 'Dec 19', downloads: 8, ranking: 0 },
+    { date: 'Dec 26', downloads: 12, ranking: 0 },
+    { date: 'Jan 2', downloads: 16, ranking: 0 },
+    { date: 'Jan 9', downloads: 23, ranking: 0 },
+    { date: 'Jan 16', downloads: 18, ranking: 0 },
+    { date: 'Jan 23', downloads: 31, ranking: 0 },
+    { date: 'Jan 30', downloads: 42, ranking: 0 },
+    { date: 'Feb 6', downloads: 56, ranking: 0 },
+    { date: 'Feb 13', downloads: 78, ranking: 0 },
+    { date: 'Feb 20', downloads: 92, ranking: 0 },
+    { date: 'Feb 27', downloads: 115, ranking: 0 },
+    { date: 'Mar 5', downloads: 136, ranking: 0 },
+    { date: 'Mar 12', downloads: 158, ranking: 0 },
+    { date: 'Mar 18', downloads: 172, ranking: 0 },
   ];
 
-  // Revenue data
+  // Calculate total downloads
+  const totalDownloads = performanceData.reduce((sum, day) => sum + day.downloads, 0);
+  
+  // Revenue data based on real values
   const monthlyRevenueData = [
-    { month: 'Dec', ios: 64, android: 134 },
+    { month: 'Dec', ios: 3, android: 73 },
     { month: 'Jan', ios: 23, android: 76 },
-    { month: 'Feb', ios: 180, android: 284 },
-    { month: 'Mar', ios: 156, android: 316 }
+    { month: 'Feb', ios: 148, android: 370 },
+    { month: 'Mar', ios: 249, android: 371 }
   ];
 
   const [totalRevenue, setTotalRevenue] = useState({ ios: 0, android: 0, total: 0 });
@@ -56,14 +59,17 @@ const Index = () => {
     });
   }, []);
 
-  // SuperOne keywords data
+  // SuperOne keywords data - using realistic values
   const keywordsData = [
-    { id: '1', term: 'trivia game', position: 3, change: 2, volume: 55, difficulty: 32 },
-    { id: '5', term: 'trivia battle', position: 2, change: 1, volume: 40, difficulty: 28 },
-    { id: '10', term: 'fan battle', position: 1, change: 0, volume: 25, difficulty: 15 },
-    { id: '11', term: 'quiz cash prizes', position: 5, change: 2, volume: 30, difficulty: 38 },
-    { id: '9', term: 'football trivia', position: 4, change: -1, volume: 45, difficulty: 30 },
+    { id: '1', term: 'superone game', position: 12, change: 2, volume: 55, difficulty: 32 },
+    { id: '5', term: 'trivia battle', position: 23, change: 1, volume: 40, difficulty: 28 },
+    { id: '10', term: 'fan battle', position: 18, change: 0, volume: 25, difficulty: 15 },
+    { id: '11', term: 'quiz cash prizes', position: 35, change: 2, volume: 30, difficulty: 38 },
+    { id: '9', term: 'football trivia', position: 64, change: -1, volume: 45, difficulty: 30 },
   ];
+
+  // Get count of keywords in top 100
+  const topKeywords = keywordsData.filter(kw => kw.position <= 100).length;
 
   // SuperOne competitors data
   const competitorsData = [
@@ -105,12 +111,15 @@ const Index = () => {
     },
   ];
 
-  // SuperOne sentiment data based on review analysis
+  // SuperOne sentiment data based on review analysis - using more realistic values
   const sentimentData = [
-    { name: 'Positive', value: 79, color: '#4ade80' },
-    { name: 'Neutral', value: 8, color: '#a3a3a3' },
+    { name: 'Positive', value: 69, color: '#4ade80' },
+    { name: 'Neutral', value: 18, color: '#a3a3a3' },
     { name: 'Negative', value: 13, color: '#f87171' },
   ];
+
+  // Total reviews count
+  const totalReviews = 52;
 
   // Custom tooltip for revenue chart
   const RevenueTooltip = ({ active, payload, label }: any) => {
@@ -139,42 +148,34 @@ const Index = () => {
         <h2 className="text-2xl font-slab font-medium">Overview</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
-        <MetricCard
-          title="Revenue"
-          value={`$${totalRevenue.total}`}
-          change={24.3}
-          trend="up"
-          description="Total USD revenue"
-          icon={<DollarSign className="h-5 w-5 text-green-500" />}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Downloads"
-          value="3.7M"
-          change={18.3}
+          value={totalDownloads.toString()}
+          change={47.6}
           trend="up"
           description="Total downloads"
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="App Ranking"
-          value="#32"
-          change={5}
-          trend="up"
+          value="Unranked"
+          change={0}
+          trend="neutral"
           description="Current Games category ranking"
           icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Keyword Rankings"
-          value="27"
-          change={8}
+          value={topKeywords.toString()}
+          change={2}
           trend="up"
-          description="Keywords ranked in top 10"
+          description="Keywords ranked in top 100"
           icon={<Search className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
           title="Reviews"
-          value="27K"
+          value={totalReviews.toString()}
           change={12.4}
           trend="up"
           description="Total player reviews received"
@@ -182,16 +183,53 @@ const Index = () => {
         />
       </div>
 
-      {/* Revenue Overview Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="lg:col-span-2">
+          <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <h3 className="text-lg mb-4 font-slab font-medium">Download Trends</h3>
+            <div className="h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={performanceData} margin={{ top: 5, right: 30, left: 20, bottom: 30 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis 
+                    dataKey="date" 
+                    tick={{ fontSize: 11 }} 
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="downloads" name="Downloads" fill="#9333EA" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+        <SentimentChart data={sentimentData} />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <KeywordsTable keywords={keywordsData} className="lg:col-span-2" />
+        <div className="space-y-4">
+          <h3 className="text-lg font-slab font-medium">Top Competitors</h3>
+          {competitorsData.map((competitor) => (
+            <CompetitorCard key={competitor.id} competitor={competitor} />
+          ))}
+        </div>
+      </div>
+
+      {/* Revenue Overview Section - moved further down */}
       <div className="mb-6">
         <h2 className="text-xl font-slab font-medium mb-4">Revenue Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
             <h3 className="text-lg mb-2 font-slab font-medium">Total Revenue</h3>
-            <p className="text-3xl font-medium font-sans">${totalRevenue.total}</p>
+            <p className="text-3xl font-medium font-sans">${totalRevenue.total.toLocaleString()}</p>
             <div className="flex justify-between mt-2 text-sm">
-              <span>iOS: ${totalRevenue.ios}</span>
-              <span>Android: ${totalRevenue.android}</span>
+              <span>iOS: ${totalRevenue.ios.toLocaleString()}</span>
+              <span>Android: ${totalRevenue.android.toLocaleString()}</span>
             </div>
           </div>
           
@@ -204,11 +242,11 @@ const Index = () => {
               </li>
               <li className="flex items-start gap-2">
                 <div className="rounded-full bg-green-500 w-1.5 h-1.5 mt-1 flex-shrink-0"></div>
-                <span>Android revenue consistently outperforms iOS by {Math.round((totalRevenue.android / totalRevenue.total) * 100)}%</span>
+                <span>Android revenue accounts for {Math.round((totalRevenue.android / totalRevenue.total) * 100)}% of total revenue</span>
               </li>
               <li className="flex items-start gap-2">
                 <div className="rounded-full bg-blue-500 w-1.5 h-1.5 mt-1 flex-shrink-0"></div>
-                <span>February and March show strong revenue growth across both platforms</span>
+                <span>Revenue growth correlates with increasing download numbers in February and March</span>
               </li>
             </ul>
           </div>
@@ -232,25 +270,6 @@ const Index = () => {
           <div className="mt-2 text-xs text-center text-gray-500">
             <span>Note: Android values are converted from NOK. iOS data represents sales while Android data represents daily revenue.</span>
           </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <PerformanceChart 
-          data={performanceData} 
-          timeRange="Last 30 days"
-          className="lg:col-span-2"
-        />
-        <SentimentChart data={sentimentData} />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <KeywordsTable keywords={keywordsData} className="lg:col-span-2" />
-        <div className="space-y-4">
-          <h3 className="text-lg font-slab font-medium">Top Competitors</h3>
-          {competitorsData.map((competitor) => (
-            <CompetitorCard key={competitor.id} competitor={competitor} />
-          ))}
         </div>
       </div>
 
