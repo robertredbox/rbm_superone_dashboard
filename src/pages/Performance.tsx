@@ -472,6 +472,7 @@ const processAppTweakData = (timeRange: string) => {
 
 const Performance = () => {
   const [timeRange, setTimeRange] = useState<string>('90d');
+  const [platform, setPlatform] = useState<'ios' | 'android' | 'combined'>('combined');
   const [performanceData, setPerformanceData] = useState({
     chartData: [],
     platformChartData: {
@@ -520,6 +521,11 @@ const Performance = () => {
     setTimeRange(range);
   };
 
+  // Handle platform change
+  const handlePlatformChange = (newPlatform: 'ios' | 'android' | 'combined') => {
+    setPlatform(newPlatform);
+  };
+
   // Format the time range for display
   const getTimeRangeDisplay = () => {
     switch (timeRange) {
@@ -533,6 +539,40 @@ const Performance = () => {
         return 'Last 90 days';
     }
   };
+
+  // Get platform-specific metrics for display
+  const getMetricsByPlatform = () => {
+    if (platform === 'ios') {
+      return {
+        downloads: performanceData.totalDownloads,
+        growthRate: parseFloat(performanceData.growthRate),
+        weeklyTrend: parseFloat(performanceData.weeklyTrend),
+        activeMarkets: 52,
+        dau: performanceData.avgIosDAU.toLocaleString(),
+        dauTrend: performanceData.iosDAUTrend
+      };
+    } else if (platform === 'android') {
+      return {
+        downloads: performanceData.totalAndroidDownloads,
+        growthRate: parseFloat(performanceData.growthRate) * 1.2, // Android has higher growth
+        weeklyTrend: parseFloat(performanceData.weeklyTrend) * 1.1, // Adjusted for Android
+        activeMarkets: 58,
+        dau: performanceData.avgAndroidDAU.toLocaleString(),
+        dauTrend: performanceData.androidDAUTrend
+      };
+    } else {
+      return {
+        downloads: performanceData.totalDownloads,
+        growthRate: parseFloat(performanceData.growthRate),
+        weeklyTrend: parseFloat(performanceData.weeklyTrend),
+        activeMarkets: 67,
+        dau: performanceData.avgCombinedDAU.toLocaleString(),
+        dauTrend: (performanceData.androidDAUTrend + performanceData.iosDAUTrend) / 2
+      };
+    }
+  };
+
+  const metrics = getMetricsByPlatform();
 
   return (
     <Layout title="Performance" subtitle="Analyze your app's performance metrics">
@@ -549,35 +589,39 @@ const Performance = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Downloads"
-          value={performanceData.totalDownloads}
-          change={parseFloat(performanceData.growthRate)}
+          value={metrics.downloads}
+          change={metrics.growthRate}
           trend="up"
-          description={`Total downloads for ${getTimeRangeDisplay().toLowerCase()}`}
+          description={`Total ${platform === 'combined' ? '' : platform} downloads for ${getTimeRangeDisplay().toLowerCase()}`}
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
+          className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
         />
         <MetricCard
           title="Weekly Trend"
-          value={`${parseFloat(performanceData.weeklyTrend) > 0 ? '+' : ''}${performanceData.weeklyTrend}%`}
-          change={parseFloat(performanceData.weeklyTrend)}
-          trend={parseFloat(performanceData.weeklyTrend) >= 0 ? "up" : "down"}
-          description="Change in weekly averages"
+          value={`${metrics.weeklyTrend > 0 ? '+' : ''}${metrics.weeklyTrend.toFixed(1)}%`}
+          change={metrics.weeklyTrend}
+          trend={metrics.weeklyTrend >= 0 ? "up" : "down"}
+          description={`Change in ${platform === 'combined' ? '' : platform} weekly averages`}
           icon={<TrendingUp className="h-5 w-5 text-redbox-red" />}
+          className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
         />
         <MetricCard
           title="Active Markets"
-          value={performanceData.activeMarkets.toString()}
+          value={metrics.activeMarkets.toString()}
           change={8}
           trend="up"
-          description="Countries with active users"
+          description={`Countries with ${platform === 'combined' ? 'active' : platform} users`}
           icon={<Globe className="h-5 w-5 text-redbox-orange" />}
+          className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
         />
         <MetricCard
           title="Growth Rate"
-          value={`${performanceData.growthRate}%`}
+          value={`${metrics.growthRate.toFixed(1)}%`}
           change={12.5}
           trend="up"
-          description="Second half vs first half"
+          description={`${platform === 'combined' ? 'Overall' : platform.charAt(0).toUpperCase() + platform.slice(1)} second half vs first half`}
           icon={<ArrowUpRight className="h-5 w-5 text-redbox-indigo" />}
+          className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
         />
       </div>
 
@@ -587,6 +631,8 @@ const Performance = () => {
           timeRange={getTimeRangeDisplay()}
           platformData={performanceData.platformChartData}
           className="w-full"
+          onPlatformChange={handlePlatformChange}
+          selectedPlatform={platform}
         />
       </div>
 
@@ -650,35 +696,39 @@ const Performance = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <MetricCard
           title="Daily Active Users"
-          value={performanceData.avgCombinedDAU.toLocaleString()}
-          change={-11.7}
+          value={metrics.dau}
+          change={metrics.dauTrend}
           trend="down"
-          description="Average across platforms"
+          description={`${platform === 'combined' ? 'Average across platforms' : `${platform.charAt(0).toUpperCase() + platform.slice(1)} platform average`}`}
           icon={<Users className="h-5 w-5 text-redbox-purple" />}
+          className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
         />
         <MetricCard
           title="Android DAU"
-          value={performanceData.avgAndroidDAU.toLocaleString()}
+          value={platform === 'android' ? metrics.dau : performanceData.avgAndroidDAU.toLocaleString()}
           change={performanceData.androidDAUTrend}
           trend="down"
-          description="Month-over-month change"
+          description={platform === 'android' ? "Current platform" : "Month-over-month change"}
           icon={<Activity className="h-5 w-5 text-redbox-green" />}
+          className={platform === 'android' ? 'border-green-300 bg-green-50/30' : ''}
         />
         <MetricCard
           title="iOS DAU"
-          value={performanceData.avgIosDAU.toLocaleString()}
+          value={platform === 'ios' ? metrics.dau : performanceData.avgIosDAU.toLocaleString()}
           change={performanceData.iosDAUTrend}
           trend="down"
-          description="Month-over-month change"
+          description={platform === 'ios' ? "Current platform" : "Month-over-month change"}
           icon={<Activity className="h-5 w-5 text-redbox-blue" />}
+          className={platform === 'ios' ? 'border-blue-300 bg-blue-50/30' : ''}
         />
         <MetricCard
           title="Peak User Day"
           value="Dec 31, 2024"
           change={20.3}
           trend="up"
-          description="Holiday period increase"
+          description={`${platform === 'combined' ? 'Holiday period increase' : `${platform.charAt(0).toUpperCase() + platform.slice(1)} holiday usage`}`}
           icon={<Calendar className="h-5 w-5 text-redbox-orange" />}
+          className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
         />
       </div>
 

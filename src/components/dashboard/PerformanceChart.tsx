@@ -19,6 +19,8 @@ interface PerformanceChartProps {
     android: ChartData[];
     combined: ChartData[];
   };
+  selectedPlatform?: 'ios' | 'android' | 'combined';
+  onPlatformChange?: (platform: 'ios' | 'android' | 'combined') => void;
 }
 
 const CustomTooltip = ({
@@ -50,8 +52,28 @@ const CustomTooltip = ({
   return null;
 };
 
-const PerformanceChart: React.FC<PerformanceChartProps> = ({ data, timeRange, className, platformData }) => {
-  const [platform, setPlatform] = React.useState<'ios' | 'android' | 'combined'>('combined');
+const PerformanceChart: React.FC<PerformanceChartProps> = ({ 
+  data, 
+  timeRange, 
+  className, 
+  platformData, 
+  selectedPlatform = 'combined',
+  onPlatformChange 
+}) => {
+  // If not controlled externally, use local state
+  const [localPlatform, setLocalPlatform] = React.useState<'ios' | 'android' | 'combined'>('combined');
+  
+  // Use the appropriate platform based on whether we're controlled externally
+  const platform = onPlatformChange ? selectedPlatform : localPlatform;
+  
+  // Handle platform changes
+  const handlePlatformChange = (newPlatform: 'ios' | 'android' | 'combined') => {
+    if (onPlatformChange) {
+      onPlatformChange(newPlatform);
+    } else {
+      setLocalPlatform(newPlatform);
+    }
+  };
   
   // Use the appropriate data based on selected platform
   const displayData = platformData ? platformData[platform] : data;
@@ -64,7 +86,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ data, timeRange, cl
           {platformData && (
             <div className="flex items-center bg-gray-100 rounded-lg p-1">
               <button
-                onClick={() => setPlatform('ios')}
+                onClick={() => handlePlatformChange('ios')}
                 className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
                   platform === 'ios' ? 'bg-white text-blue-500 shadow-sm' : 'text-gray-500 hover:text-gray-700'
                 }`}
@@ -72,7 +94,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ data, timeRange, cl
                 iOS
               </button>
               <button
-                onClick={() => setPlatform('android')}
+                onClick={() => handlePlatformChange('android')}
                 className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
                   platform === 'android' ? 'bg-white text-green-500 shadow-sm' : 'text-gray-500 hover:text-gray-700'
                 }`}
@@ -80,7 +102,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ data, timeRange, cl
                 Android
               </button>
               <button
-                onClick={() => setPlatform('combined')}
+                onClick={() => handlePlatformChange('combined')}
                 className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
                   platform === 'combined' ? 'bg-white text-redbox-purple shadow-sm' : 'text-gray-500 hover:text-gray-700'
                 }`}
