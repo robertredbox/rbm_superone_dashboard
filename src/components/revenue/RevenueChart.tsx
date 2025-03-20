@@ -263,6 +263,9 @@ const RevenueChart = () => {
         <p className="text-muted-foreground font-sans font-normal">
           USD Revenue Data (Dec 19, 2024 - Mar 18, 2025)
         </p>
+        <div className="mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-amber-800 text-sm">
+          <strong>Note:</strong> Android values are converted from NOK to USD. iOS data represents sales while Android data represents daily revenue.
+        </div>
       </div>
       
       {/* Revenue Summary Cards */}
@@ -437,7 +440,7 @@ const RevenueChart = () => {
           </li>
           <li className="flex items-start gap-2">
             <div className="rounded-full bg-green-500 w-1.5 h-1.5 mt-2 flex-shrink-0"></div>
-            <span>Android revenue is ${revenueStats.android.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}, accounting for {revenueStats.androidPercentage.toFixed(1)}% of total revenue.</span>
+            <span>Android revenue is ${revenueStats.android.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} (converted from NOK), accounting for {revenueStats.androidPercentage.toFixed(1)}% of total revenue.</span>
           </li>
           <li className="flex items-start gap-2">
             <div className="rounded-full bg-blue-500 w-1.5 h-1.5 mt-2 flex-shrink-0"></div>
