@@ -4,6 +4,7 @@ import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import TimeSelector from '@/components/dashboard/TimeSelector';
 import MetricCard from '@/components/dashboard/MetricCard';
 import { Globe, ArrowUpRight, Download, TrendingUp, Users, Calendar, Activity, Clock, AlertCircle, Search, BarChart3, InfoIcon } from 'lucide-react';
+import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, ResponsiveContainer } from 'recharts';
 
 // Font links component to ensure proper font loading
 const FontLinks = () => (
@@ -596,12 +597,10 @@ const Performance = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         <MetricCard
           title="Downloads"
           value={metrics.downloads}
-          change={metrics.growthRate}
-          trend="up"
           description={`Total ${platform === 'combined' ? '' : platform} downloads for ${getTimeRangeDisplay().toLowerCase()}`}
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
           className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
@@ -609,8 +608,6 @@ const Performance = () => {
         <MetricCard
           title="Weekly Trend"
           value={`${metrics.weeklyTrend > 0 ? '+' : ''}${metrics.weeklyTrend.toFixed(1)}%`}
-          change={metrics.weeklyTrend}
-          trend={metrics.weeklyTrend >= 0 ? "up" : "down"}
           description={`Change in ${platform === 'combined' ? '' : platform} weekly averages`}
           icon={<TrendingUp className="h-5 w-5 text-redbox-red" />}
           className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
@@ -618,33 +615,98 @@ const Performance = () => {
         <MetricCard
           title="Active Markets"
           value={metrics.activeMarkets.toString()}
-          change={8}
-          trend="up"
           description={`Countries with ${platform === 'combined' ? 'active' : platform} users`}
           icon={<Globe className="h-5 w-5 text-redbox-orange" />}
-          className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
-        />
-        <MetricCard
-          title="Growth Rate"
-          value={`${metrics.growthRate.toFixed(1)}%`}
-          change={12.5}
-          trend="up"
-          description={`${platform === 'combined' ? 'Overall' : platform.charAt(0).toUpperCase() + platform.slice(1)} second half vs first half`}
-          icon={<ArrowUpRight className="h-5 w-5 text-redbox-indigo" />}
           className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
         />
       </div>
 
       <div className="grid grid-cols-1 gap-6">
-        <div className="w-full" style={{ minHeight: '400px' }}>
-          <PerformanceChart 
-            data={performanceData.chartData} 
-            timeRange={getTimeRangeDisplay()}
-            platformData={performanceData.platformChartData}
-            className="w-full h-full"
-            onPlatformChange={handlePlatformChange}
-            selectedPlatform={platform}
-          />
+        <div className="border border-gray-200 rounded-lg bg-white p-6" style={{ height: "500px" }}>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-lg font-medium">Download Trends</h3>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center bg-gray-100 rounded-lg p-1">
+                <button
+                  onClick={() => handlePlatformChange('ios')}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                    platform === 'ios' ? 'bg-white text-blue-500 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  iOS
+                </button>
+                <button
+                  onClick={() => handlePlatformChange('android')}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                    platform === 'android' ? 'bg-white text-green-500 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  Android
+                </button>
+                <button
+                  onClick={() => handlePlatformChange('combined')}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                    platform === 'combined' ? 'bg-white text-purple-500 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  Combined
+                </button>
+              </div>
+              <div className="text-sm text-gray-500">{getTimeRangeDisplay()}</div>
+            </div>
+          </div>
+          <div style={{ height: "400px" }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={performanceData.platformChartData[platform] || []}
+                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+                <XAxis 
+                  dataKey="date" 
+                  tick={{ fontSize: 12 }}
+                  tickLine={false}
+                  axisLine={{ stroke: '#e5e7eb' }}
+                />
+                <YAxis 
+                  tick={{ fontSize: 12 }}
+                  tickLine={false}
+                  axisLine={{ stroke: '#e5e7eb' }}
+                />
+                <Tooltip />
+                {platform === 'ios' && (
+                  <Line
+                    type="monotone"
+                    dataKey="iosDownloads"
+                    stroke="#3b82f6"
+                    strokeWidth={2}
+                    dot={{ r: 4, strokeWidth: 2, fill: 'white' }}
+                    activeDot={{ r: 6, strokeWidth: 0, fill: '#3b82f6' }}
+                  />
+                )}
+                {platform === 'android' && (
+                  <Line
+                    type="monotone"
+                    dataKey="androidDownloads"
+                    stroke="#22c55e"
+                    strokeWidth={2}
+                    dot={{ r: 4, strokeWidth: 2, fill: 'white' }}
+                    activeDot={{ r: 6, strokeWidth: 0, fill: '#22c55e' }}
+                  />
+                )}
+                {platform === 'combined' && (
+                  <Line
+                    type="monotone"
+                    dataKey="downloads"
+                    stroke="#8200FF"
+                    strokeWidth={2}
+                    dot={{ r: 4, strokeWidth: 2, fill: 'white' }}
+                    activeDot={{ r: 6, strokeWidth: 0, fill: '#8200FF' }}
+                  />
+                )}
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
@@ -713,8 +775,6 @@ const Performance = () => {
         <MetricCard
           title="Daily Active Users"
           value={metrics.dau}
-          change={metrics.dauTrend}
-          trend="down"
           description={`${platform === 'combined' ? 'Average across platforms' : `${platform.charAt(0).toUpperCase() + platform.slice(1)} platform average`}`}
           icon={<Users className="h-5 w-5 text-redbox-purple" />}
           className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
@@ -722,8 +782,6 @@ const Performance = () => {
         <MetricCard
           title="Android DAU"
           value={platform === 'android' ? metrics.dau : performanceData.avgAndroidDAU.toLocaleString()}
-          change={performanceData.androidDAUTrend}
-          trend="down"
           description={platform === 'android' ? "Current platform" : "Month-over-month change"}
           icon={<Activity className="h-5 w-5 text-redbox-green" />}
           className={platform === 'android' ? 'border-green-300 bg-green-50/30' : ''}
@@ -731,8 +789,6 @@ const Performance = () => {
         <MetricCard
           title="iOS DAU"
           value={platform === 'ios' ? metrics.dau : performanceData.avgIosDAU.toLocaleString()}
-          change={performanceData.iosDAUTrend}
-          trend="down"
           description={platform === 'ios' ? "Current platform" : "Month-over-month change"}
           icon={<Activity className="h-5 w-5 text-redbox-blue" />}
           className={platform === 'ios' ? 'border-blue-300 bg-blue-50/30' : ''}
@@ -740,8 +796,6 @@ const Performance = () => {
         <MetricCard
           title="Peak User Day"
           value="Dec 31, 2024"
-          change={20.3}
-          trend="up"
           description={`${platform === 'combined' ? 'Holiday period increase' : `${platform.charAt(0).toUpperCase() + platform.slice(1)} holiday usage`}`}
           icon={<Calendar className="h-5 w-5 text-redbox-orange" />}
           className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
@@ -805,32 +859,24 @@ const Performance = () => {
         <MetricCard
           title="Daily Sessions"
           value="14,545"
-          change={6.3}
-          trend="up"
           description="Average across platforms"
           icon={<Clock className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
           title="Android Sessions"
           value="7,271"
-          change={6.6}
-          trend="up"
           description="Daily average"
           icon={<Activity className="h-5 w-5 text-redbox-green" />}
         />
         <MetricCard
           title="iOS Sessions"
           value="7,274"
-          change={-2.8}
-          trend="down"
           description="Daily average"
           icon={<Activity className="h-5 w-5 text-redbox-blue" />}
         />
         <MetricCard
           title="Sessions per DAU"
           value="2.5"
-          change={0}
-          trend="neutral"
           description="Consistent across platforms"
           icon={<Calendar className="h-5 w-5 text-redbox-orange" />}
         />
