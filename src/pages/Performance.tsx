@@ -996,7 +996,7 @@ const Performance = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-slab font-medium mb-4">Android Growth Pattern</h3>
+              <h3 className="text-lg font-slab font-medium mb-4">Growth Pattern</h3>
               <ul className="space-y-3">
                 <li className="flex justify-between">
                   <span className="text-muted-foreground font-sans font-normal">Phase 1: Baseline</span>
@@ -1021,7 +1021,7 @@ const Performance = () => {
               </ul>
             </div>
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-slab font-medium mb-4">Android Performance Metrics</h3>
+              <h3 className="text-lg font-slab font-medium mb-4">Performance Metrics</h3>
               <ul className="space-y-3">
                 <li className="flex justify-between">
                   <span className="text-muted-foreground font-sans font-normal">Peak Day Value</span>
@@ -1047,53 +1047,53 @@ const Performance = () => {
             </div>
             
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-slab font-medium mb-4">Weekly Android Performance</h3>
+              <h3 className="text-lg font-slab font-medium mb-4">Top Countries</h3>
               <ul className="space-y-3">
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Week 1 (Dec 13-19)</span>
-                  <span className="font-sans font-medium">19.0/day</span>
+                  <span className="text-muted-foreground font-sans font-normal">Côte d'Ivoire</span>
+                  <span className="font-sans font-medium">656 (+146.62%)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Week 5 (Jan 10-16)</span>
-                  <span className="font-sans font-medium">10.1/day</span>
+                  <span className="text-muted-foreground font-sans font-normal">Togo</span>
+                  <span className="font-sans font-medium">356 (+503.39%)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Week 8 (Jan 31-Feb 6)</span>
-                  <span className="font-sans font-medium text-green-500">72.8/day</span>
+                  <span className="text-muted-foreground font-sans font-normal">Germany</span>
+                  <span className="font-sans font-medium">297 (-11.34%)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Week 11 (Feb 21-27)</span>
-                  <span className="font-sans font-medium">33.3/day</span>
+                  <span className="text-muted-foreground font-sans font-normal">Benin</span>
+                  <span className="font-sans font-medium">220 (+685.71%)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Week 13 (Mar 7-12)</span>
-                  <span className="font-sans font-medium">47.3/day</span>
+                  <span className="text-muted-foreground font-sans font-normal">Burkina Faso</span>
+                  <span className="font-sans font-medium">68 (+83.78%)</span>
                 </li>
               </ul>
             </div>
             
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-slab font-medium mb-4">Android Growth Analysis</h3>
+              <h3 className="text-lg font-slab font-medium mb-4">Regional Performance</h3>
               <ul className="space-y-3">
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Pre-Spike vs Post-Spike</span>
-                  <span className="font-sans font-medium text-green-500">+206% increase</span>
+                  <span className="text-muted-foreground font-sans font-normal">Total Visitors</span>
+                  <span className="font-sans font-medium">6,321 (+19.4%)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Month-over-Month Growth</span>
-                  <span className="font-sans font-medium">Dec: 13.3, Jan: 18.5, Feb: 41.3</span>
+                  <span className="text-muted-foreground font-sans font-normal">Total Acquisitions</span>
+                  <span className="font-sans font-medium">2,479 (+73.24%)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Jan to Feb Growth</span>
-                  <span className="font-sans font-medium text-green-500">+123.2%</span>
+                  <span className="text-muted-foreground font-sans font-normal">Highest Growth</span>
+                  <span className="font-sans font-medium text-green-500">Benin (+685.71%)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Feb to Mar Growth</span>
-                  <span className="font-sans font-medium">+10.7%</span>
+                  <span className="text-muted-foreground font-sans font-normal">Conversion Rate</span>
+                  <span className="font-sans font-medium">39.2% (visitors to acquisitions)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Overall Trend</span>
-                  <span className="font-sans font-medium">Strong positive, stabilizing at higher level</span>
+                  <span className="text-muted-foreground font-sans font-normal">Declining Markets</span>
+                  <span className="font-sans font-medium text-red-500">Germany, Romania, USA</span>
                 </li>
               </ul>
             </div>
