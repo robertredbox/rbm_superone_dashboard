@@ -525,6 +525,13 @@ const Performance = () => {
     // Process data when component mounts or time range changes
     const data = processAppTweakData(timeRange);
     setPerformanceData(data);
+    
+    // Debug output
+    console.log('Performance data updated:', {
+      ios: data.platformChartData.ios.length,
+      android: data.platformChartData.android.length,
+      combined: data.platformChartData.combined.length
+    });
   }, [timeRange]);
   
   // Handle time range change
@@ -658,7 +665,15 @@ const Performance = () => {
           <div style={{ height: "400px" }}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
-                data={performanceData.platformChartData[platform] || []}
+                data={platform === 'combined' 
+                  ? performanceData.platformChartData.combined.map(item => ({
+                      date: item.date,
+                      iosDownloads: item.iosDownloads || 0,
+                      androidDownloads: item.androidDownloads || 0,
+                      downloads: (item.iosDownloads || 0) + (item.androidDownloads || 0)
+                    }))
+                  : performanceData.platformChartData[platform] || []
+                }
                 margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
@@ -698,10 +713,33 @@ const Performance = () => {
                   <Line
                     type="monotone"
                     dataKey="downloads"
+                    name="downloads"
                     stroke="#8200FF"
                     strokeWidth={2}
                     dot={{ r: 4, strokeWidth: 2, fill: 'white' }}
                     activeDot={{ r: 6, strokeWidth: 0, fill: '#8200FF' }}
+                  />
+                )}
+                {platform === 'combined' && (
+                  <Line
+                    type="monotone"
+                    dataKey="iosDownloads"
+                    name="iOS"
+                    stroke="#3b82f6"
+                    strokeWidth={2}
+                    dot={false}
+                    activeDot={false}
+                  />
+                )}
+                {platform === 'combined' && (
+                  <Line
+                    type="monotone"
+                    dataKey="androidDownloads"
+                    name="Android"
+                    stroke="#22c55e"
+                    strokeWidth={2}
+                    dot={false}
+                    activeDot={false}
                   />
                 )}
               </LineChart>
