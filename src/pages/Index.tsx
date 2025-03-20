@@ -5,7 +5,7 @@ import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import KeywordsTable from '@/components/dashboard/KeywordsTable';
 import CompetitorCard from '@/components/dashboard/CompetitorCard';
 import SentimentChart from '@/components/dashboard/SentimentChart';
-import { BarChart3, Search, TrendingUp, MessageSquare, Download, DollarSign } from 'lucide-react';
+import { BarChart3, Search, TrendingUp, MessageSquare, Download, DollarSign, InfoIcon } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 // Font links component to ensure proper font loading
@@ -17,26 +17,81 @@ const FontLinks = () => (
 );
 
 const Index = () => {
-  // SuperOne performance data - updated with realistic values in the correct format for PerformanceChart
-  const performanceData = [
-    { date: 'Dec 19', downloads: 8 },
-    { date: 'Dec 26', downloads: 12 },
-    { date: 'Jan 2', downloads: 16 },
-    { date: 'Jan 9', downloads: 23 },
-    { date: 'Jan 16', downloads: 18 },
-    { date: 'Jan 23', downloads: 31 },
-    { date: 'Jan 30', downloads: 42 },
-    { date: 'Feb 6', downloads: 56 },
-    { date: 'Feb 13', downloads: 78 },
-    { date: 'Feb 20', downloads: 92 },
-    { date: 'Feb 27', downloads: 115 },
-    { date: 'Mar 5', downloads: 136 },
-    { date: 'Mar 12', downloads: 158 },
-    { date: 'Mar 18', downloads: 172 },
-  ];
+  // Platform state
+  const [platform, setPlatform] = useState<'ios' | 'android' | 'combined'>('combined');
+
+  // SuperOne performance data - formatted for PerformanceChart with iOS and Android data
+  const performanceData = {
+    chartData: [
+      { date: 'Dec 19', downloads: 8 },
+      { date: 'Dec 26', downloads: 12 },
+      { date: 'Jan 2', downloads: 16 },
+      { date: 'Jan 9', downloads: 23 },
+      { date: 'Jan 16', downloads: 18 },
+      { date: 'Jan 23', downloads: 31 },
+      { date: 'Jan 30', downloads: 42 },
+      { date: 'Feb 6', downloads: 56 },
+      { date: 'Feb 13', downloads: 78 },
+      { date: 'Feb 20', downloads: 92 },
+      { date: 'Feb 27', downloads: 115 },
+      { date: 'Mar 5', downloads: 136 },
+      { date: 'Mar 12', downloads: 158 },
+      { date: 'Mar 18', downloads: 172 },
+    ],
+    platformChartData: {
+      ios: [
+        { date: 'Dec 19', iosDownloads: 5 },
+        { date: 'Dec 26', iosDownloads: 6 },
+        { date: 'Jan 2', iosDownloads: 8 },
+        { date: 'Jan 9', iosDownloads: 12 },
+        { date: 'Jan 16', iosDownloads: 11 },
+        { date: 'Jan 23', iosDownloads: 15 },
+        { date: 'Jan 30', iosDownloads: 22 },
+        { date: 'Feb 6', iosDownloads: 28 },
+        { date: 'Feb 13', iosDownloads: 39 },
+        { date: 'Feb 20', iosDownloads: 46 },
+        { date: 'Feb 27', iosDownloads: 58 },
+        { date: 'Mar 5', iosDownloads: 68 },
+        { date: 'Mar 12', iosDownloads: 79 },
+        { date: 'Mar 18', iosDownloads: 86 },
+      ],
+      android: [
+        { date: 'Dec 19', androidDownloads: 3 },
+        { date: 'Dec 26', androidDownloads: 6 },
+        { date: 'Jan 2', androidDownloads: 8 },
+        { date: 'Jan 9', androidDownloads: 11 },
+        { date: 'Jan 16', androidDownloads: 7 },
+        { date: 'Jan 23', androidDownloads: 16 },
+        { date: 'Jan 30', androidDownloads: 20 },
+        { date: 'Feb 6', androidDownloads: 28 },
+        { date: 'Feb 13', androidDownloads: 39 },
+        { date: 'Feb 20', androidDownloads: 46 },
+        { date: 'Feb 27', androidDownloads: 57 },
+        { date: 'Mar 5', androidDownloads: 68 },
+        { date: 'Mar 12', androidDownloads: 79 },
+        { date: 'Mar 18', androidDownloads: 86 },
+      ],
+      combined: [
+        { date: 'Dec 19', downloads: 8 },
+        { date: 'Dec 26', downloads: 12 },
+        { date: 'Jan 2', downloads: 16 },
+        { date: 'Jan 9', downloads: 23 },
+        { date: 'Jan 16', downloads: 18 },
+        { date: 'Jan 23', downloads: 31 },
+        { date: 'Jan 30', downloads: 42 },
+        { date: 'Feb 6', downloads: 56 },
+        { date: 'Feb 13', downloads: 78 },
+        { date: 'Feb 20', downloads: 92 },
+        { date: 'Feb 27', downloads: 115 },
+        { date: 'Mar 5', downloads: 136 },
+        { date: 'Mar 12', downloads: 158 },
+        { date: 'Mar 18', downloads: 172 },
+      ]
+    }
+  };
 
   // Calculate total downloads
-  const totalDownloads = performanceData.reduce((sum, day) => sum + day.downloads, 0);
+  const totalDownloads = performanceData.chartData.reduce((sum, day) => sum + day.downloads, 0);
   
   // Revenue data based on real values
   const monthlyRevenueData = [
@@ -121,6 +176,11 @@ const Index = () => {
   // Total reviews count
   const totalReviews = 52;
 
+  // Function to handle platform changes
+  const handlePlatformChange = (newPlatform: 'ios' | 'android' | 'combined') => {
+    setPlatform(newPlatform);
+  };
+
   // Custom tooltip for revenue chart
   const RevenueTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -154,7 +214,7 @@ const Index = () => {
           value={totalDownloads.toString()}
           change={47.6}
           trend="up"
-          description="Total downloads"
+          description="Total iOS & Android downloads"
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
@@ -162,7 +222,7 @@ const Index = () => {
           value="Unranked"
           change={0}
           trend="neutral"
-          description="Current Games category ranking"
+          description="Games category ranking (Global)"
           icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
@@ -170,7 +230,7 @@ const Index = () => {
           value={topKeywords.toString()}
           change={2}
           trend="up"
-          description="Keywords ranked in top 100"
+          description="Keywords in top 100 (App Store)"
           icon={<Search className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
@@ -178,7 +238,7 @@ const Index = () => {
           value={totalReviews.toString()}
           change={12.4}
           trend="up"
-          description="Total player reviews received"
+          description="Combined iOS & Android reviews"
           icon={<MessageSquare className="h-5 w-5 text-redbox-indigo" />}
         />
       </div>
@@ -186,21 +246,40 @@ const Index = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <div className="lg:col-span-2">
           <PerformanceChart 
-            data={performanceData} 
+            data={performanceData.chartData} 
             timeRange="Dec 19 - Mar 18"
+            platformData={performanceData.platformChartData}
+            selectedPlatform={platform}
+            onPlatformChange={handlePlatformChange}
             className="h-auto"
           />
+          <div className="text-xs text-muted-foreground mt-2 ml-2">
+            Note: iOS data from App Store Connect, Android data from Google Play Console. Combined data for Global markets.
+          </div>
         </div>
-        <SentimentChart data={sentimentData} />
+        <div>
+          <SentimentChart data={sentimentData} />
+          <div className="text-xs text-muted-foreground mt-2 ml-2">
+            Based on user reviews from both iOS App Store and Google Play Store.
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <KeywordsTable keywords={keywordsData} className="lg:col-span-2" />
+        <div className="lg:col-span-2">
+          <KeywordsTable keywords={keywordsData} className="lg:col-span-2" />
+          <div className="text-xs text-muted-foreground mt-2 ml-2">
+            Keyword rankings from App Store (US region). Last updated: Mar 18, 2025.
+          </div>
+        </div>
         <div className="space-y-4">
           <h3 className="text-lg font-slab font-medium">Top Competitors</h3>
           {competitorsData.map((competitor) => (
             <CompetitorCard key={competitor.id} competitor={competitor} />
           ))}
+          <div className="text-xs text-muted-foreground mt-1 ml-2">
+            Competitor rankings from App Store Games category (Global).
+          </div>
         </div>
       </div>
 
@@ -214,6 +293,9 @@ const Index = () => {
             <div className="flex justify-between mt-2 text-sm">
               <span>iOS: ${totalRevenue.ios.toLocaleString()}</span>
               <span>Android: ${totalRevenue.android.toLocaleString()}</span>
+            </div>
+            <div className="text-xs text-muted-foreground mt-3">
+              Dec 19, 2024 - Mar 18, 2025 (Global markets)
             </div>
           </div>
           
@@ -233,6 +315,9 @@ const Index = () => {
                 <span>Revenue growth correlates with increasing download numbers in February and March</span>
               </li>
             </ul>
+            <div className="text-xs text-muted-foreground mt-3">
+              Based on combined data from App Store Connect (iOS) and Google Play Console (Android)
+            </div>
           </div>
         </div>
         
@@ -252,7 +337,7 @@ const Index = () => {
             </ResponsiveContainer>
           </div>
           <div className="mt-2 text-xs text-center text-gray-500">
-            <span>Note: Android values are converted from NOK. iOS data represents sales while Android data represents daily revenue.</span>
+            Note: Android values are converted from NOK (Norway). iOS data represents sales while Android data represents daily revenue.
           </div>
         </div>
       </div>
@@ -287,6 +372,17 @@ const Index = () => {
           <p>Forecast based on current Media Spend ($25,000) and User Lifetime Value ($2.50)</p>
           <p className="mt-1">Visit the <a href="/revenue" className="text-blue-600 hover:underline">Revenue page</a> for detailed analysis and interactive forecasting</p>
         </div>
+        <div className="text-xs text-muted-foreground mt-3 text-center">
+          Projections based on combined iOS and Android data, global markets
+        </div>
+      </div>
+
+      <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg mt-6 mb-3 flex items-start gap-3">
+        <InfoIcon className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+        <p className="text-xs text-amber-800">
+          <strong>Data sources:</strong> iOS data from App Store Connect (Dec 19, 2024 - Mar 18, 2025), 
+          Android data from Google Play Console (Dec 19, 2024 - Mar 18, 2025). All metrics represent global performance unless otherwise specified.
+        </p>
       </div>
     </Layout>
   );
