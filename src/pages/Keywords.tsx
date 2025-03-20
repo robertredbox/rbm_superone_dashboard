@@ -318,11 +318,11 @@ const Keywords = () => {
         <div className="text-sm text-blue-800">
           <p className="font-medium">Keyword Performance Summary (Feb 17 - Mar 17, 2025):</p>
           <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>67% of tracked keywords improved their ranking positions</li>
-            <li>Keywords with "football" are showing strong performance, with avg rank position of 86.3 (improved from 93.7 in Feb)</li>
-            <li>Direct brand terms like "dibz" (Feb: #7, Mar: #6) remain in top positions</li>
-            <li>Newly ranked keywords showing immediate gains include "supering" (#28 as of Mar 17)</li>
-            <li>The "football quiz" keyword has improved by +22 positions on Android and +12 on iOS</li>
+            <li>75% of iOS keywords and 78% of Android keywords showed positive movement</li>
+            <li>"football quiz" is the standout performer (+22 positions on Android, +12 on iOS)</li>
+            <li>Brand terms continue to perform well with "superone" at #1 and "dibz" at #6</li>
+            <li>Football and trivia-related terms showing strongest growth across both platforms</li>
+            <li>"affiliate program games" on Android showed impressive gains (+14 positions)</li>
           </ul>
         </div>
       </div>
@@ -486,11 +486,11 @@ const Keywords = () => {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm">
-              <li>• Focus on football-related terms with low difficulty</li>
-              <li>• Improve rankings for "the 1 club" (Volume: 49)</li>
-              <li>• Capitalize on "guess the football player" ranking (#31)</li>
-              <li>• Add more specific football trivia keywords</li>
-              <li>• Leverage position for "dibz" (Ranking #6)</li>
+              <li>• Maintain strong position for "superone" (#1) and "dibz" (#6)</li>
+              <li>• Improve rankings for "the 1 club" (Volume: 49, Position: #92)</li>
+              <li>• Capitalize on "guess the football player" (Position: #31, Change: +8)</li>
+              <li>• Continue optimizing "football trivia" (Position: #98, Change: +15)</li>
+              <li>• Target easy wins like "swipe trivia game" (Difficulty: 8, Change: +11)</li>
             </ul>
           </CardContent>
         </Card>
@@ -501,11 +501,11 @@ const Keywords = () => {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm">
-              <li>• Complete keyword overhaul needed with only 1 ranking term</li>
-              <li>• Target "guess the football player" (Difficulty: 1)</li>
-              <li>• Implement successful iOS keywords</li>
-              <li>• Consider changing category from "BUSINESS" to "GAMES"</li>
-              <li>• Focus on football quiz and trivia terms specifically</li>
+              <li>• Focus on "supering" (Position: #32) and "affiliate program games" (#28)</li>
+              <li>• Target "guess the football player" (Position: #45, Difficulty: 1)</li>
+              <li>• Build on "football quiz" momentum (Position: #112, Change: +22)</li>
+              <li>• Optimize for "trivia battle" (Position: #65, Change: +9)</li>
+              <li>• Improve "the ultimate trivia game" (Position: #37, Change: +6)</li>
             </ul>
           </CardContent>
         </Card>
