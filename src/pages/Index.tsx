@@ -230,15 +230,15 @@ const Index = () => {
     },
   ];
 
-  // SuperOne sentiment data based on review analysis - using more realistic values
+  // SuperOne sentiment data based on review analysis - UK market data
   const sentimentData = [
-    { name: 'Positive', value: 69, color: '#4ade80' },
-    { name: 'Neutral', value: 18, color: '#a3a3a3' },
-    { name: 'Negative', value: 13, color: '#f87171' },
+    { name: 'Positive', value: 91.1, color: '#4ade80' },
+    { name: 'Neutral', value: 0, color: '#a3a3a3' },
+    { name: 'Negative', value: 8.9, color: '#f87171' },
   ];
 
-  // Total reviews count
-  const totalReviews = 52;
+  // Total reviews count - UK market
+  const totalReviews = 847;
 
   // Function to handle platform changes
   const handlePlatformChange = (newPlatform: 'ios' | 'android' | 'combined') => {
@@ -303,7 +303,7 @@ const Index = () => {
         <div>
           <SentimentChart data={sentimentData} />
           <div className="text-xs text-muted-foreground mt-2 ml-2">
-            Based on user reviews from both iOS App Store and Google Play Store.
+            Based on user reviews from both iOS App Store and Google Play Store (UK Market).
           </div>
         </div>
         <div className="lg:col-span-2">
