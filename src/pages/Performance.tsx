@@ -389,7 +389,7 @@ const processAppTweakData = (timeRange: string) => {
   peakDate.setDate(timeAdjustedStartDate.getDate() + maxDownloadsIndex);
   const peakDateFormatted = `${peakDate.toLocaleString('en-US', { month: 'short' })} ${peakDate.getDate()}`;
   
-  // Android download analytics
+  // Calculate total android downloads
   const totalAndroidDownloads = androidDownloads.reduce((sum, val) => sum + val, 0);
   const formattedAndroidDownloads = totalAndroidDownloads > 1000 
     ? `${(totalAndroidDownloads / 1000).toFixed(1)}K` 
@@ -397,6 +397,12 @@ const processAppTweakData = (timeRange: string) => {
   const avgAndroidDownloads = Math.round(totalAndroidDownloads / androidDownloads.length);
   const maxAndroidDownloads = Math.max(...androidDownloads);
   const maxAndroidDownloadsIndex = androidDownloads.indexOf(maxAndroidDownloads);
+  
+  // Calculate combined downloads (iOS + Android)
+  const combinedDownloadsTotal = totalDownloadsSum + totalAndroidDownloads;
+  const formattedCombinedDownloads = combinedDownloadsTotal > 1000 
+    ? `${(combinedDownloadsTotal / 1000).toFixed(1)}K` 
+    : combinedDownloadsTotal.toString();
   
   // Android peak date calculation (different date range)
   const androidPeakDate = new Date(androidStartDate);
@@ -458,6 +464,8 @@ const processAppTweakData = (timeRange: string) => {
     avgAndroidDownloads,
     maxAndroidDownloads,
     androidPeakDate: androidPeakDateFormatted,
+    // Combined data
+    combinedDownloads: formattedCombinedDownloads,
     // DAU data
     avgAndroidDAU,
     avgIosDAU,
@@ -492,6 +500,8 @@ const Performance = () => {
     avgAndroidDownloads: 0,
     maxAndroidDownloads: 0,
     androidPeakDate: '',
+    // Combined data
+    combinedDownloads: '0',
     // DAU data
     avgAndroidDAU: 0,
     avgIosDAU: 0,
@@ -562,7 +572,7 @@ const Performance = () => {
       };
     } else {
       return {
-        downloads: '3.1K',
+        downloads: performanceData.combinedDownloads,
         growthRate: 33.1,
         weeklyTrend: 92.1,
         activeMarkets: 67,
