@@ -77,23 +77,6 @@ const AppProfile = () => {
         }
       }
     },
-    rankings: [
-      {
-        category_id: 7018, // Trivia
-        type: "free",
-        ranks: [55, 58, 62, 64, 67, 68, 64, 69, 72, 78, 82, 85, 88, 92, 95, 98, 102, 105, 110, 114, 108, 105, 102, 95, 88, 82, 75, 68, 62, 55]
-      },
-      {
-        category_id: 6014, // Games
-        type: "free",
-        ranks: [188, 192, 195, 198, 200, 205, 208, 212, 215, 218, 220, 222, 218, 215, 210, 205, 200, 195, 190, 185, 180, 175, 170, 165, 160, 155, 150, 145, 140, 135]
-      },
-      {
-        category_id: 6000, // Business
-        type: "free",
-        ranks: [120, 118, 115, 112, 110, 108, 105, 102, 100, 98, 95, 92, 90, 88, 85, 82, 80, 78, 75, 72, 70, 68, 65, 62, 60, 58, 55, 52, 50, 48]
-      }
-    ],
     reviews: [
       {
         title: "A Few Bugs, But Great Release",
@@ -146,11 +129,6 @@ const AppProfile = () => {
     ));
   };
 
-  // Find overall ranking in specific categories
-  const gamesRanking = appDetails.rankings.find(r => r.category_id === 6014)?.ranks.slice(-1)[0] || 'N/A';
-  const actionRanking = appDetails.rankings.find(r => r.category_id === 7001)?.ranks.slice(-1)[0] || 'N/A';
-  const arcadeRanking = appDetails.rankings.find(r => r.category_id === 7003)?.ranks.slice(-1)[0] || 'N/A';
-
   return (
     <Layout 
       title="App Profile" 
@@ -174,7 +152,7 @@ const AppProfile = () => {
             <div className="flex items-center space-x-1">
               {renderStars(appDetails.ratings.current_version.average)}
               <span className="text-sm text-muted-foreground ml-2 font-sans font-normal">
-                ({appDetails.ratings.current_version.count.toLocaleString()} ratings)
+                ({appDetails.ratings.current_version.count.toLocaleString()} iOS UK ratings)
               </span>
             </div>
             <p className="text-sm text-muted-foreground font-sans font-normal">
@@ -184,10 +162,10 @@ const AppProfile = () => {
         </div>
 
         {/* App Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg font-slab font-medium">Overall Rating</CardTitle>
+              <CardTitle className="text-lg font-slab font-medium">Overall Rating (iOS UK)</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col items-center">
@@ -200,34 +178,6 @@ const AppProfile = () => {
                 <p className="text-sm text-muted-foreground mt-2 font-sans font-normal">
                   out of 5 stars
                 </p>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg font-slab font-medium">Rankings</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-sm font-sans font-normal">Games</span>
-                  <Badge variant="outline">
-                    #{gamesRanking}
-                  </Badge>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-sm font-sans font-normal">Action</span>
-                  <Badge variant="outline">
-                    #{actionRanking}
-                  </Badge>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-sm font-sans font-normal">Arcade</span>
-                  <Badge variant="outline">
-                    #{arcadeRanking}
-                  </Badge>
-                </div>
               </div>
             </CardContent>
           </Card>
@@ -262,7 +212,7 @@ const AppProfile = () => {
           
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg font-slab font-medium">Rating Details</CardTitle>
+              <CardTitle className="text-lg font-slab font-medium">Rating Details (iOS UK)</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
@@ -360,7 +310,7 @@ const AppProfile = () => {
           <TabsContent value="reviews" className="mt-6">
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-slab font-medium mb-4">Recent Reviews</h3>
+                <h3 className="text-xl font-slab font-medium mb-4">Recent Reviews (iOS UK)</h3>
                 <div className="space-y-4">
                   {appDetails.reviews.map((review, index) => (
                     <div key={index} className="p-4 border rounded-lg">
