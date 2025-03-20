@@ -178,18 +178,18 @@ const Index = () => {
     });
   }, []);
 
-  // SuperOne keywords data - iOS UK market
+  // SuperOne keywords data - iOS & Android UK market
   const keywordsData = [
-    { id: '1', term: 'sportiz', position: 5, change: 0, volume: 5, difficulty: 32 },
-    { id: '2', term: 'dibz', position: 22, change: -4, volume: 26, difficulty: 28 },
-    { id: '3', term: 'fan club', position: 5, change: 0, volume: 22, difficulty: 22 },
-    { id: '4', term: 'dibs', position: 5, change: 0, volume: 24, difficulty: 21 },
-    { id: '5', term: 'guess the football player', position: 21, change: 1, volume: 55, difficulty: 35 },
-    { id: '6', term: 'ultimate football', position: 5, change: 0, volume: 54, difficulty: 38 },
-    { id: '7', term: 'the 1 club game', position: 31, change: 1, volume: 43, difficulty: 30 },
-    { id: '8', term: 'football fan', position: 5, change: -12, volume: 62, difficulty: 45 },
-    { id: '9', term: 'guess the footballer', position: 5, change: 0, volume: 61, difficulty: 40 },
-    { id: '10', term: 'footy addicts', position: 38, change: 0, volume: 63, difficulty: 39 },
+    { id: '1', term: 'supering', position: 9, change: 3, volume: 6, difficulty: 32 },
+    { id: '2', term: 'superhuman', position: 26, change: -1, volume: 27, difficulty: 28 },
+    { id: '3', term: 'one4all gift cards', position: 35, change: -1, volume: 36, difficulty: 22 },
+    { id: '4', term: 'supper', position: 5, change: -20, volume: 25, difficulty: 21 },
+    { id: '5', term: 'sponsor', position: 18, change: 0, volume: 18, difficulty: 35 },
+    { id: '6', term: 'super save', position: 7, change: 0, volume: 7, difficulty: 38 },
+    { id: '7', term: 'onefootball', position: 39, change: -1, volume: 40, difficulty: 30 },
+    { id: '8', term: 'football fan', position: 5, change: -13, volume: 18, difficulty: 45 },
+    { id: '9', term: 'wwe supercard', position: 38, change: -1, volume: 39, difficulty: 40 },
+    { id: '10', term: 'football trivia', position: 5, change: 0, volume: 5, difficulty: 39 },
   ];
 
   // Get count of keywords in top 100
@@ -286,14 +286,14 @@ const Index = () => {
         />
         <MetricCard
           title="App Ranking"
-          value="Unranked"
-          description="Games category ranking (Global)"
+          value="187"
+          description="Games category ranking (Android UK)"
           icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Keyword Rankings"
           value={topKeywords.toString()}
-          description="Keywords in top 100 (App Store - UK)"
+          description="Keywords in top 100 (Google Play - UK)"
           icon={<Search className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
@@ -314,7 +314,7 @@ const Index = () => {
         <div className="lg:col-span-2">
           <KeywordsTable keywords={keywordsData} />
           <div className="text-xs text-muted-foreground mt-2 ml-2">
-            Keyword rankings from App Store (UK region). Last updated: Mar 17, 2025.
+            Keyword rankings from Google Play Store (UK region). Last updated: Mar 17, 2025.
           </div>
         </div>
       </div>
