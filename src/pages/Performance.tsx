@@ -683,28 +683,20 @@ const Performance = () => {
             <h3 className="text-lg font-slab font-medium mb-4">Android Downloads Summary</h3>
             <ul className="space-y-3">
               <li className="flex justify-between">
-                <span className="text-muted-foreground font-sans font-normal">Total Store Listings</span>
-                <span className="font-sans font-medium">2.5K</span>
-              </li>
-              <li className="flex justify-between">
-                <span className="text-muted-foreground font-sans font-normal">Avg. Daily Listings</span>
+                <span className="text-muted-foreground font-sans font-normal">Avg. Daily Downloads</span>
                 <span className="font-sans font-medium">28</span>
               </li>
               <li className="flex justify-between">
-                <span className="text-muted-foreground font-sans font-normal">Peak Listing Day</span>
+                <span className="text-muted-foreground font-sans font-normal">Peak Download Day</span>
                 <span className="font-sans font-medium">Jan 31 (105)</span>
               </li>
               <li className="flex justify-between">
-                <span className="text-muted-foreground font-sans font-normal">Feb vs Dec</span>
-                <span className="font-sans font-medium text-green-500">+287% increased visibility</span>
+                <span className="text-muted-foreground font-sans font-normal">Top Market</span>
+                <span className="font-sans font-medium">Côte d'Ivoire (26.5%)</span>
               </li>
               <li className="flex justify-between">
-                <span className="text-muted-foreground font-sans font-normal">Top Acquisition Period</span>
+                <span className="text-muted-foreground font-sans font-normal">Peak Download Period</span>
                 <span className="font-sans font-medium text-green-500">Jan 29 - Feb 6</span>
-              </li>
-              <li className="flex justify-between">
-                <span className="text-muted-foreground font-sans font-normal">Lowest Activity Period</span>
-                <span className="font-sans font-medium">Dec 24 - Jan 15</span>
               </li>
             </ul>
           </div>
