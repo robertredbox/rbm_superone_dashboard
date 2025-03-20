@@ -604,19 +604,12 @@ const Performance = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
         <MetricCard
           title="Downloads"
           value={metrics.downloads}
           description={`Total ${platform === 'combined' ? '' : platform} downloads for ${getTimeRangeDisplay().toLowerCase()}`}
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
-          className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
-        />
-        <MetricCard
-          title="Weekly Trend"
-          value={`${metrics.weeklyTrend > 0 ? '+' : ''}${metrics.weeklyTrend.toFixed(1)}%`}
-          description={`Change in ${platform === 'combined' ? '' : platform} weekly averages`}
-          icon={<TrendingUp className="h-5 w-5 text-redbox-red" />}
           className={platform === 'ios' ? 'border-blue-300' : platform === 'android' ? 'border-green-300' : ''}
         />
         <MetricCard
