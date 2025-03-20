@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Search, Plus, ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react';
+import { Search, Plus, ArrowUpRight, ArrowDownRight, Minus, Info } from 'lucide-react';
 
 // Font links component to ensure proper font loading
 const FontLinks = () => (
@@ -298,7 +298,10 @@ const Keywords = () => {
     <Layout title="Keywords" subtitle="Track and analyze your keyword performance">
       <FontLinks />
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-slab font-medium">SuperOne Fan Battle Keywords</h2>
+        <div>
+          <h2 className="text-2xl font-slab font-medium">SuperOne Fan Battle Keywords</h2>
+          <p className="text-sm text-muted-foreground mt-1">Comparing rankings from Feb 17, 2025 to Mar 17, 2025</p>
+        </div>
         <div className="flex gap-4">
           <select 
             className="rounded-md border p-2 text-sm" 
@@ -313,10 +316,24 @@ const Keywords = () => {
         </div>
       </div>
 
+      <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg mb-6 flex items-start gap-3">
+        <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+        <div className="text-sm text-blue-800">
+          <p className="font-medium">Keyword Performance Summary (Feb 17 - Mar 17, 2025):</p>
+          <ul className="list-disc pl-5 mt-1 space-y-1">
+            <li>67% of tracked keywords improved their ranking positions</li>
+            <li>Keywords with "football" are showing strong performance, with avg rank position of 86.3 (improved from 93.7 in Feb)</li>
+            <li>Direct brand terms like "dibz" (Feb: #7, Mar: #6) remain in top positions</li>
+            <li>Newly ranked keywords showing immediate gains include "supering" (#28 as of Mar 17)</li>
+            <li>The "football quiz" keyword has improved by +22 positions on Android and +12 on iOS</li>
+          </ul>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-lg font-slab font-medium">Top 5 Keywords</CardTitle>
+            <CardTitle className="text-lg font-slab font-medium">Top 5 Keywords (Mar 17, 2025)</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -339,7 +356,7 @@ const Keywords = () => {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-lg font-slab font-medium">Keyword Volume Leaders</CardTitle>
+            <CardTitle className="text-lg font-slab font-medium">Keyword Volume Leaders (Mar 2025)</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -362,7 +379,7 @@ const Keywords = () => {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-lg font-slab font-medium">Recent Improvements</CardTitle>
+            <CardTitle className="text-lg font-slab font-medium">Feb to Mar Improvements</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -410,8 +427,8 @@ const Keywords = () => {
               <TableRow>
                 <TableHead className="font-slab font-medium">Keyword</TableHead>
                 <TableHead className="text-center font-slab font-medium">Platform</TableHead>
-                <TableHead className="text-right font-slab font-medium">Position</TableHead>
-                <TableHead className="text-right font-slab font-medium">Change</TableHead>
+                <TableHead className="text-right font-slab font-medium">Position (Mar 17)</TableHead>
+                <TableHead className="text-right font-slab font-medium">Change (vs Feb 17)</TableHead>
                 <TableHead className="text-right font-slab font-medium">Volume</TableHead>
                 <TableHead className="text-right font-slab font-medium">Difficulty</TableHead>
                 <TableHead className="text-right font-slab font-medium">Opportunity</TableHead>
