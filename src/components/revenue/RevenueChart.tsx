@@ -452,6 +452,11 @@ const RevenueChart = () => {
           </li>
         </ul>
       </div>
+
+      {/* Revenue Forecasting */}
+      <div className="mt-6">
+        <RevenueForecasting />
+      </div>
     </div>
   );
 };
