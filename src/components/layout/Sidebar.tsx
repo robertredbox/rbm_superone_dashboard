@@ -7,7 +7,8 @@ import {
   TrendingUp, 
   MessageSquare, 
   Home, 
-  Star 
+  Star,
+  DollarSign
 } from 'lucide-react';
 
 type NavItem = {
@@ -42,6 +43,11 @@ const Sidebar = () => {
       label: 'Competitors',
       href: '/competitors',
       icon: <TrendingUp className="h-5 w-5" />,
+    },
+    {
+      label: 'Revenue',
+      href: '/revenue',
+      icon: <DollarSign className="h-5 w-5" />,
     },
     {
       label: 'Reviews',
