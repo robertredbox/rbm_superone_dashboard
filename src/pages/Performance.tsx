@@ -657,7 +657,7 @@ const Performance = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
         {(platform === 'ios' || platform === 'combined') && (
           <div className="bg-card p-6 rounded-lg border border-border">
-            <h3 className="text-lg font-slab font-medium mb-4">iOS Downloads Summary</h3>
+            <h3 className="text-lg font-slab font-medium mb-4">iOS-Only Downloads Summary</h3>
             <ul className="space-y-3">
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Avg. Daily Downloads</span>
@@ -680,7 +680,7 @@ const Performance = () => {
         )}
         {(platform === 'android' || platform === 'combined') && (
           <div className="bg-card p-6 rounded-lg border border-border">
-            <h3 className="text-lg font-slab font-medium mb-4">Android Downloads Summary</h3>
+            <h3 className="text-lg font-slab font-medium mb-4">Android-Only Downloads Summary</h3>
             <ul className="space-y-3">
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Avg. Daily Downloads</span>
@@ -749,95 +749,47 @@ const Performance = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
         <div className="bg-card p-6 rounded-lg border border-border">
           <h3 className="text-lg font-slab font-medium mb-4">
-            {platform === 'ios' ? 'iOS' : platform === 'android' ? 'Android' : 'Overall'} Performance Summary
+            Overall Performance Summary (iOS + Android)
           </h3>
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Avg. Daily Downloads</span>
-              <span className="font-sans font-medium">
-                {platform === 'ios' 
-                  ? performanceData.avgDailyDownloads.toLocaleString()
-                  : platform === 'android'
-                    ? performanceData.avgAndroidDownloads.toLocaleString()
-                    : ((performanceData.avgDailyDownloads + performanceData.avgAndroidDownloads) / 2).toLocaleString()}
-              </span>
+              <span className="font-sans font-medium">31.5</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Peak Download Day</span>
-              <span className="font-sans font-medium">
-                {platform === 'ios' 
-                  ? `${performanceData.peakDownloadsDate} (${performanceData.peakDownloads.toLocaleString()})`
-                  : platform === 'android'
-                    ? `${performanceData.androidPeakDate} (${performanceData.maxAndroidDownloads})`
-                    : `Jan 30 (236)`}
-              </span>
+              <span className="font-sans font-medium">Jan 30 (236)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Top Market</span>
-              <span className="font-sans font-medium">
-                {platform === 'ios' 
-                  ? 'Germany (21.0%)'
-                  : platform === 'android'
-                    ? 'South Africa (18.7%)'
-                    : 'Germany (19.8%)'}
-              </span>
+              <span className="font-sans font-medium">Germany (19.8%)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Peak Download Period</span>
-              <span className="font-sans font-medium text-green-500">
-                {platform === 'ios' 
-                  ? 'Late Jan to Early Feb'
-                  : platform === 'android'
-                    ? 'Early Feb'
-                    : 'Late Jan to Early Feb'}
-              </span>
+              <span className="font-sans font-medium text-green-500">Late Jan to Early Feb</span>
             </li>
           </ul>
         </div>
         <div className="bg-card p-6 rounded-lg border border-border">
           <h3 className="text-lg font-slab font-medium mb-4">
-            {platform === 'ios' ? 'iOS' : platform === 'android' ? 'Android' : 'Overall'} Market Insights
+            Overall Market Insights (iOS + Android)
           </h3>
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Top Region</span>
-              <span className="font-sans font-medium">
-                {platform === 'ios' 
-                  ? 'Europe (51.3%)'
-                  : platform === 'android'
-                    ? 'Africa (37.2%)'
-                    : 'Europe (45.8%)'}
-              </span>
+              <span className="font-sans font-medium">Europe (45.8%)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Emerging Region</span>
-              <span className="font-sans font-medium">
-                {platform === 'ios' 
-                  ? 'South America (8.4%)'
-                  : platform === 'android'
-                    ? 'Africa (37.2%)'
-                    : 'Africa (15.2%)'}
-              </span>
+              <span className="font-sans font-medium">Africa (15.2%)</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Download Days</span>
-              <span className="font-sans font-medium text-green-500">
-                {platform === 'ios' 
-                  ? 'Fri, Sat, Mon'
-                  : platform === 'android'
-                    ? 'Sat, Sun, Wed'
-                    : 'Fri, Sat, Mon'}
-              </span>
+              <span className="font-sans font-medium text-green-500">Fri, Sat, Mon</span>
             </li>
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Top 3 Countries</span>
-              <span className="font-sans font-medium">
-                {platform === 'ios' 
-                  ? 'Germany, UK, Japan'
-                  : platform === 'android'
-                    ? 'South Africa, Nigeria, Kenya'
-                    : 'Germany, Côte d\'Ivoire, Japan'}
-              </span>
+              <span className="font-sans font-medium">Germany, Côte d'Ivoire, Japan</span>
             </li>
           </ul>
         </div>
@@ -884,7 +836,7 @@ const Performance = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
         <div className="bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-slab font-medium mb-4">Android Sessions Insights</h3>
+          <h3 className="text-lg font-slab font-medium mb-4">Android-Only Sessions Insights</h3>
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Average Daily Sessions</span>
@@ -909,7 +861,7 @@ const Performance = () => {
           </ul>
         </div>
         <div className="bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-slab font-medium mb-4">iOS Sessions Insights</h3>
+          <h3 className="text-lg font-slab font-medium mb-4">iOS-Only Sessions Insights</h3>
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Average Daily Sessions</span>
@@ -937,7 +889,7 @@ const Performance = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
         <div className="bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-slab font-medium mb-4">Android DAU Insights</h3>
+          <h3 className="text-lg font-slab font-medium mb-4">Android-Only DAU Insights</h3>
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Peak DAU Day</span>
@@ -958,7 +910,7 @@ const Performance = () => {
           </ul>
         </div>
         <div className="bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-slab font-medium mb-4">iOS DAU Insights</h3>
+          <h3 className="text-lg font-slab font-medium mb-4">iOS-Only DAU Insights</h3>
           <ul className="space-y-3">
             <li className="flex justify-between">
               <span className="text-muted-foreground font-sans font-normal">Peak DAU Day</span>
