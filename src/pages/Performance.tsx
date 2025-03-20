@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout';
 import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import TimeSelector from '@/components/dashboard/TimeSelector';
 import MetricCard from '@/components/dashboard/MetricCard';
-import { Globe, ArrowUpRight, Download, TrendingUp, Users, Calendar, Activity, Clock, AlertCircle } from 'lucide-react';
+import { Globe, ArrowUpRight, Download, TrendingUp, Users, Calendar, Activity, Clock, AlertCircle, Search, BarChart3, InfoIcon } from 'lucide-react';
 
 // Font links component to ensure proper font loading
 const FontLinks = () => (
@@ -931,6 +931,122 @@ const Performance = () => {
           </ul>
         </div>
       </div>
+
+      {/* Keyword Analysis Section */}
+      <div className="mt-8 mb-6">
+        <h2 className="text-2xl font-slab font-medium">Keyword Analysis</h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <MetricCard
+          title="Total Keywords"
+          value="32"
+          change={14.3}
+          trend="up"
+          description="Keywords in Top 200"
+          icon={<Search className="h-5 w-5 text-redbox-purple" />}
+        />
+        <MetricCard
+          title="Top 10 Keywords"
+          value="5"
+          change={25}
+          trend="up"
+          description="Keywords in Top 10 positions"
+          icon={<TrendingUp className="h-5 w-5 text-redbox-green" />}
+        />
+        <MetricCard
+          title="Improved Rankings"
+          value="18"
+          change={38.5}
+          trend="up"
+          description="Keywords with positive MoM changes"
+          icon={<ArrowUpRight className="h-5 w-5 text-redbox-blue" />}
+        />
+        <MetricCard
+          title="Avg. Rank Improvement"
+          value="+6.2"
+          change={9.8}
+          trend="up"
+          description="Average position improvement"
+          icon={<BarChart3 className="h-5 w-5 text-redbox-orange" />}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-6">
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-lg font-slab font-medium mb-4">Top Performing Keywords</h3>
+          <ul className="space-y-3">
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">guess the football player</span>
+              <span className="font-sans font-medium">Rank: 33 <span className="text-green-500">(+22)</span></span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">the 1 club game</span>
+              <span className="font-sans font-medium">Rank: 55 <span className="text-red-500">(-12)</span></span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">football fan</span>
+              <span className="font-sans font-medium">Rank: 62 <span className="text-green-500">(+6)</span></span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">guess the footballer</span>
+              <span className="font-sans font-medium">Rank: 63 <span className="text-red-500">(-2)</span></span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">footy addicts</span>
+              <span className="font-sans font-medium">Rank: 69 <span className="text-red-500">(-6)</span></span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">dibz</span>
+              <span className="font-sans font-medium">Rank: 6 <span className="text-green-500">(+1)</span></span>
+            </li>
+          </ul>
+        </div>
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-lg font-slab font-medium mb-4">Keyword Insights</h3>
+          <ul className="space-y-3">
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Best Volume Opportunity</span>
+              <span className="font-sans font-medium">one player games (V: 72, R: 88)</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Emerging Keywords</span>
+              <span className="font-sans font-medium">onefootball (+37), super save (+in)</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Brand Keywords</span>
+              <span className="font-sans font-medium">5 of Top 10 are branded terms</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Market Opportunity</span>
+              <span className="font-sans font-medium text-green-500">Low competition in 'football trivia'</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Monthly Trend</span>
+              <span className="font-sans font-medium">67% keywords improved ranking</span>
+            </li>
+            <li className="flex justify-between">
+              <span className="text-muted-foreground font-sans font-normal">Primary Category</span>
+              <span className="font-sans font-medium">Football/Soccer (76%)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg mt-6 mb-6 flex items-start gap-3">
+        <InfoIcon className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+        <div className="text-sm text-blue-800">
+          <p className="font-medium">Keyword Performance Summary (Feb-Mar 2025):</p>
+          <ul className="list-disc pl-5 mt-1 space-y-1">
+            <li>Keywords with "football" are showing strong performance, with avg rank position of 86.3</li>
+            <li>Direct brand terms like "dibz" and "super" remain in top positions despite fluctuations</li>
+            <li>35% of ranked keywords have search volume above 30, indicating strong traffic potential</li>
+            <li>Newly ranked keywords showing immediate gains include "supering" and "one4all gift cards"</li>
+            <li>The "football fan" segment has high potential with lower competition (202 vs unranked)</li>
+          </ul>
+        </div>
+      </div>
+
     </Layout>
   );
 };
