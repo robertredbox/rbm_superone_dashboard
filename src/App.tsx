@@ -10,6 +10,7 @@ import Competitors from "./pages/Competitors";
 import Reviews from "./pages/Reviews";
 import AppProfile from "./pages/AppProfile";
 import NotFound from "./pages/NotFound";
+import Revenue from "./pages/Revenue";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/competitors" element={<Competitors />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/app-profile" element={<AppProfile />} />
+          <Route path="/revenue" element={<Revenue />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
