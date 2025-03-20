@@ -90,17 +90,6 @@ const Sidebar = () => {
           ))}
         </ul>
       </nav>
-      <div className="border-t border-border p-4">
-        <div className="flex items-center gap-3 rounded-md bg-redbox-light-grey/50 p-3">
-          <div className="h-8 w-8 rounded-full bg-redbox-indigo flex items-center justify-center text-white font-medium">
-            RB
-          </div>
-          <div>
-            <div className="text-sm font-medium">Redbox Team</div>
-            <div className="text-xs text-muted-foreground">Premium Plan</div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
