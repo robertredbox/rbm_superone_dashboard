@@ -102,14 +102,8 @@ const USDRevenue = () => {
   
   // Calculate daily data with Android figures (estimated)
   const [dailyData, setDailyData] = useState<any[]>([]);
-  
-  // Weekly data (derived from daily)
   const [weeklyData, setWeeklyData] = useState<any[]>([]);
-  
-  // Monthly data
   const [monthlyData, setMonthlyData] = useState<any[]>([]);
-  
-  // Revenue stats
   const [revenueStats, setRevenueStats] = useState({
     ios: 0,
     android: 0,
@@ -117,83 +111,74 @@ const USDRevenue = () => {
     iosPercentage: 0,
     androidPercentage: 0
   });
+  const [platformDistribution, setPlatformDistribution] = useState([
+    { name: "Android", value: 0, percentage: "0%", color: "#34D399" },
+    { name: "iOS", value: 0, percentage: "0%", color: "#60A5FA" }
+  ]);
   
-  // Platform distribution data for pie chart
-  const [platformDistribution, setPlatformDistribution] = useState<any[]>([]);
+  // Weekly revenue data defined from source
+  const predefinedWeeklyData = [
+    {week: "W1: Jan 30-Feb 5", shortWeek: "W1", displayWeek: "Week 1", android: 134.58, ios: 52, total: 186.58},
+    {week: "W2: Feb 6-12", shortWeek: "W2", displayWeek: "Week 2", android: 132.01, ios: 72, total: 204.01},
+    {week: "W3: Feb 13-19", shortWeek: "W3", displayWeek: "Week 3", android: 124.70, ios: 40, total: 164.70},
+    {week: "W4: Feb 20-26", shortWeek: "W4", displayWeek: "Week 4", android: 159.51, ios: 59, total: 218.51},
+    {week: "W5: Feb 27-Mar 5", shortWeek: "W5", displayWeek: "Week 5", android: 134.99, ios: 57, total: 191.99},
+    {week: "W6: Mar 6-12", shortWeek: "W6", displayWeek: "Week 6", android: 153.25, ios: 65, total: 218.25},
+    {week: "W7: Mar 13-15", shortWeek: "W7", displayWeek: "Week 7", android: 85.00, ios: 28, total: 113.00}
+  ];
   
+  // Daily data for selected points for better readability
+  const predefinedDailyData = [
+    {date: "Jan 30", shortDate: "Jan 30", android: 6.94, ios: 5, total: 11.94},
+    {date: "Feb 3", shortDate: "Feb 3", android: 16.35, ios: 3, total: 19.35},
+    {date: "Feb 7", shortDate: "Feb 7", android: 12.72, ios: 13, total: 25.72},
+    {date: "Feb 11", shortDate: "Feb 11", android: 11.15, ios: 7, total: 18.15},
+    {date: "Feb 15", shortDate: "Feb 15", android: 24.03, ios: 6, total: 30.03},
+    {date: "Feb 19", shortDate: "Feb 19", android: 12.33, ios: 9, total: 21.33},
+    {date: "Feb 23", shortDate: "Feb 23", android: 27.25, ios: 11, total: 38.25},
+    {date: "Feb 27", shortDate: "Feb 27", android: 13.55, ios: 11, total: 24.55},
+    {date: "Mar 3", shortDate: "Mar 3", android: 17.97, ios: 5, total: 22.97},
+    {date: "Mar 7", shortDate: "Mar 7", android: 14.30, ios: 4, total: 18.30},
+    {date: "Mar 11", shortDate: "Mar 11", android: 24.36, ios: 14, total: 38.36},
+    {date: "Mar 15", shortDate: "Mar 15", android: 3.14, ios: 5, total: 8.14}
+  ];
+  
+  // Predefined total revenue from the source data
+  const predefinedTotalRevenue = {
+    ios: 373.00,
+    android: 924.04,
+    total: 1297.04,
+    iosPercentage: 28.8,
+    androidPercentage: 71.2
+  };
+  
+  // Predefined platform distribution
+  const predefinedPlatformDistribution = [
+    { name: "Android", value: 924.04, percentage: "71.2%", color: "#34D399" },
+    { name: "iOS", value: 373.00, percentage: "28.8%", color: "#60A5FA" }
+  ];
+
   useEffect(() => {
-    // Generate Android estimates based on iOS data (with some variation)
-    // Typically Android generates about 2.5x more revenue than iOS for this app
-    const enrichedDaily = salesData.map(day => {
-      const androidRevenue = Math.round(day.ios * 2.5 + (Math.random() * 5 - 2.5));
+    // Process the real sales data from App Store
+    const enrichedDaily = salesData.map((day) => {
+      // Calculate estimated Android revenue based on the iOS:Android ratio (approximately 1:2.5)
+      const androidRevenue = day.ios > 0 ? day.ios * 2.5 : 0;
       return {
-        date: day.date,
-        shortDate: day.date.split(", ")[0],
-        ios: day.ios,
-        android: Math.max(0, androidRevenue), // Ensure no negative values
-        total: day.ios + Math.max(0, androidRevenue)
+        ...day,
+        android: parseFloat(androidRevenue.toFixed(2)),
+        total: parseFloat((day.ios + androidRevenue).toFixed(2)),
+        // Add a shortDate format for display in charts
+        shortDate: day.date.split(", ")[0]
       };
     });
     
-    // Use most recent 30 days for display in daily chart
-    const last30Days = enrichedDaily.slice(0, 30);
-    setDailyData(last30Days.reverse()); // Reverse to get chronological order
+    // Update view with predefined data for demonstration
+    setDailyData(predefinedDailyData);
+    setWeeklyData(predefinedWeeklyData);
+    setRevenueStats(predefinedTotalRevenue);
+    setPlatformDistribution(predefinedPlatformDistribution);
     
-    // Create weekly data
-    const weeks = [];
-    for (let i = 0; i < enrichedDaily.length; i += 7) {
-      const weekSlice = enrichedDaily.slice(i, Math.min(i + 7, enrichedDaily.length));
-      if (weekSlice.length > 0) {
-        const weekStart = weekSlice[weekSlice.length - 1].date;
-        const weekEnd = weekSlice[0].date;
-        const weekLabel = `W${Math.floor(i/7) + 1}: ${weekStart.split(", ")[0]} - ${weekEnd.split(", ")[0]}`;
-        
-        const weekData = {
-          week: weekLabel,
-          shortWeek: `W${Math.floor(i/7) + 1}`,
-          displayWeek: `Week ${Math.floor(i/7) + 1}`,
-          ios: weekSlice.reduce((sum, day) => sum + day.ios, 0),
-          android: weekSlice.reduce((sum, day) => sum + day.android, 0),
-          total: weekSlice.reduce((sum, day) => sum + day.total, 0)
-        };
-        weeks.push(weekData);
-      }
-    }
-    setWeeklyData(weeks);
-    
-    // Create monthly data
-    const monthlyMap = new Map();
-    enrichedDaily.forEach(day => {
-      const month = day.date.split(" ")[0];
-      if (!monthlyMap.has(month)) {
-        monthlyMap.set(month, { month, ios: 0, android: 0, total: 0 });
-      }
-      const monthData = monthlyMap.get(month);
-      monthData.ios += day.ios;
-      monthData.android += day.android;
-      monthData.total += day.total;
-    });
-    setMonthlyData(Array.from(monthlyMap.values()));
-    
-    // Calculate total revenue
-    const totalIOS = enrichedDaily.reduce((sum, day) => sum + day.ios, 0);
-    const totalAndroid = enrichedDaily.reduce((sum, day) => sum + day.android, 0);
-    const totalRevenue = totalIOS + totalAndroid;
-    
-    setRevenueStats({
-      ios: totalIOS,
-      android: totalAndroid,
-      total: totalRevenue,
-      iosPercentage: Math.round((totalIOS / totalRevenue) * 100),
-      androidPercentage: Math.round((totalAndroid / totalRevenue) * 100)
-    });
-    
-    // Update platform distribution for pie chart
-    setPlatformDistribution([
-      { name: "Android", value: totalAndroid, percentage: `${Math.round((totalAndroid / totalRevenue) * 100)}%`, color: "#34D399" },
-      { name: "iOS", value: totalIOS, percentage: `${Math.round((totalIOS / totalRevenue) * 100)}%`, color: "#60A5FA" }
-    ]);
-    
+    // Simulate loading the full dataset
     setIsDataLoaded(true);
   }, []);
   
@@ -210,8 +195,8 @@ const USDRevenue = () => {
       }
       
       return (
-        <div className="bg-card p-3 rounded-lg shadow border border-border">
-          <p className="font-medium">{displayLabel}</p>
+        <div className="bg-white p-3 rounded shadow border border-gray-200">
+          <p className="font-semibold">{displayLabel}</p>
           {payload.map((entry: any, index: number) => (
             <p key={index} style={{ color: entry.stroke || entry.fill }}>
               {`${entry.name}: $${entry.value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`}
@@ -243,13 +228,15 @@ const USDRevenue = () => {
 
   return (
     <div className="bg-card p-6 rounded-lg border border-border">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Slab:wght@500&display=swap" rel="stylesheet" />
+      
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-xl mb-2 font-slab font-medium">
           Revenue Analysis
         </h2>
         <p className="text-muted-foreground font-sans font-normal">
-          USD Revenue by Platform (Dec 19, 2024 - Mar 18, 2025)
+          USD Revenue by Platform (Jan 30 - Mar 15, 2025)
         </p>
       </div>
       
@@ -276,33 +263,27 @@ const USDRevenue = () => {
       </div>
       
       {/* View Selector */}
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex space-x-2 mb-4">
         <button 
-          className={`px-4 py-2 rounded-md text-sm font-medium ${activeView === 'monthly' ? 'bg-primary text-primary-foreground' : 'bg-accent/50 text-foreground'}`}
-          onClick={() => setActiveView('monthly')}
-        >
-          Monthly View
-        </button>
-        <button 
-          className={`px-4 py-2 rounded-md text-sm font-medium ${activeView === 'weekly' ? 'bg-primary text-primary-foreground' : 'bg-accent/50 text-foreground'}`}
+          className={`px-4 py-2 rounded ${activeView === 'weekly' ? 'bg-indigo-600 text-white' : 'bg-gray-50 text-gray-800'}`}
           onClick={() => setActiveView('weekly')}
         >
           Weekly View
         </button>
         <button 
-          className={`px-4 py-2 rounded-md text-sm font-medium ${activeView === 'daily' ? 'bg-primary text-primary-foreground' : 'bg-accent/50 text-foreground'}`}
+          className={`px-4 py-2 rounded ${activeView === 'daily' ? 'bg-indigo-600 text-white' : 'bg-gray-50 text-gray-800'}`}
           onClick={() => setActiveView('daily')}
         >
           Daily View
         </button>
         <button 
-          className={`px-4 py-2 rounded-md text-sm font-medium ${activeView === 'distribution' ? 'bg-primary text-primary-foreground' : 'bg-accent/50 text-foreground'}`}
+          className={`px-4 py-2 rounded ${activeView === 'distribution' ? 'bg-indigo-600 text-white' : 'bg-gray-50 text-gray-800'}`}
           onClick={() => setActiveView('distribution')}
         >
           Platform Distribution
         </button>
         <button 
-          className={`px-4 py-2 rounded-md text-sm font-medium ${activeView === 'forecasting' ? 'bg-primary text-primary-foreground' : 'bg-accent/50 text-foreground'}`}
+          className={`px-4 py-2 rounded ${activeView === 'forecasting' ? 'bg-indigo-600 text-white' : 'bg-gray-50 text-gray-800'}`}
           onClick={() => setActiveView('forecasting')}
         >
           Forecasting
@@ -311,29 +292,6 @@ const USDRevenue = () => {
       
       {/* Charts */}
       <div className="bg-accent/20 p-4 rounded-lg">
-        {activeView === 'monthly' && (
-          <div>
-            <h3 className="text-lg mb-4 font-slab font-medium">Monthly Revenue</h3>
-            <div className="h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={monthlyData} margin={{ top: 5, right: 30, left: 20, bottom: 30 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis 
-                    dataKey="month" 
-                    tick={{ fontSize: 12 }} 
-                    height={50}
-                  />
-                  <YAxis />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Legend />
-                  <Bar dataKey="android" name="Android" fill="#34D399" />
-                  <Bar dataKey="ios" name="iOS" fill="#60A5FA" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        )}
-        
         {activeView === 'weekly' && (
           <div>
             <h3 className="text-lg mb-4 font-slab font-medium">Weekly Revenue</h3>
@@ -355,14 +313,14 @@ const USDRevenue = () => {
               </ResponsiveContainer>
             </div>
             <p className="text-sm text-muted-foreground mt-2 text-center">
-              {weeklyData.map(week => `${week.shortWeek}: ${week.week.split(": ")[1]}`).join(" • ")}
+              W1: Jan 30-Feb 5 • W2: Feb 6-12 • W3: Feb 13-19 • W4: Feb 20-26 • W5: Feb 27-Mar 5 • W6: Mar 6-12 • W7: Mar 13-15
             </p>
           </div>
         )}
         
         {activeView === 'daily' && (
           <div>
-            <h3 className="text-lg mb-4 font-slab font-medium">Daily Revenue Trends (Last 30 Days)</h3>
+            <h3 className="text-lg mb-4 font-slab font-medium">Daily Revenue Trends</h3>
             <div className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={dailyData} margin={{ top: 5, right: 30, left: 20, bottom: 25 }}>
@@ -378,7 +336,7 @@ const USDRevenue = () => {
               </ResponsiveContainer>
             </div>
             <p className="text-sm text-muted-foreground mt-2">
-              Note: Chart shows most recent 30 days of daily revenue data.
+              Note: This chart shows a subset of days for better readability.
             </p>
           </div>
         )}
@@ -427,24 +385,24 @@ const USDRevenue = () => {
         <ul className="space-y-2 text-sm text-blue-800">
           <li className="flex items-start gap-2">
             <div className="rounded-full bg-blue-500 w-1.5 h-1.5 mt-2 flex-shrink-0"></div>
-            <span>iOS revenue shows significant growth starting from late January 2025, increasing from near-zero to consistent daily transactions.</span>
+            <span>Android revenue represents {revenueStats.androidPercentage}% of total sales with ${revenueStats.android.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}.</span>
           </li>
           <li className="flex items-start gap-2">
             <div className="rounded-full bg-blue-500 w-1.5 h-1.5 mt-2 flex-shrink-0"></div>
-            <span>Peak revenue day was March 2nd with $22 in iOS sales, suggesting a successful promotion or feature.</span>
+            <span>Peak revenue was observed in Week 4 (Feb 20-26) and Week 6 (Mar 6-12) with over $218 in sales each week.</span>
           </li>
           <li className="flex items-start gap-2">
             <div className="rounded-full bg-blue-500 w-1.5 h-1.5 mt-2 flex-shrink-0"></div>
-            <span>February and March show stabilized revenue patterns, with total 90-day iOS revenue of ${revenueStats.ios}.</span>
+            <span>iOS revenue accounts for {revenueStats.iosPercentage}% of total revenue at ${revenueStats.ios.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}.</span>
           </li>
           <li className="flex items-start gap-2">
             <div className="rounded-full bg-blue-500 w-1.5 h-1.5 mt-2 flex-shrink-0"></div>
-            <span>Weekends typically show 15-20% higher revenue, suggesting targeted promotions during these periods could further boost sales.</span>
+            <span>Total combined revenue for the period is ${revenueStats.total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}, with weekly averages of approximately $185.</span>
           </li>
         </ul>
       </div>
       
-      {/* Revenue Forecasting Component (only visible when explicitly in that view) */}
+      {/* Revenue Forecasting Component (conditionally visible) */}
       {activeView !== 'forecasting' && (
         <div className="mt-6">
           <RevenueForecasting />
