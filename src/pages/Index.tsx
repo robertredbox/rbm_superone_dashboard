@@ -214,18 +214,12 @@ const Index = () => {
         <h2 className="text-2xl font-slab font-medium">Overview</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         <MetricCard
           title="Downloads"
           value="2.2k"
           description="Total iOS & Android downloads (last 30 days)"
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
-        />
-        <MetricCard
-          title="App Ranking"
-          value="187"
-          description="Games category ranking (Android UK)"
-          icon={<BarChart3 className="h-5 w-5 text-redbox-red" />}
         />
         <MetricCard
           title="Keyword Rankings"
