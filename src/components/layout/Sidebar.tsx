@@ -5,9 +5,7 @@ import {
   BarChart3, 
   Search, 
   TrendingUp, 
-  Users, 
   MessageSquare, 
-  Settings, 
   Home, 
   Star 
 } from 'lucide-react';
@@ -54,16 +52,6 @@ const Sidebar = () => {
       label: 'App Profile',
       href: '/app-profile',
       icon: <Star className="h-5 w-5" />,
-    },
-    {
-      label: 'Users',
-      href: '/users',
-      icon: <Users className="h-5 w-5" />,
-    },
-    {
-      label: 'Settings',
-      href: '/settings',
-      icon: <Settings className="h-5 w-5" />,
     },
   ];
 
