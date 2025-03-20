@@ -661,11 +661,11 @@ const Performance = () => {
             <ul className="space-y-3">
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Avg. Daily Downloads</span>
-                <span className="font-sans font-medium">{performanceData.avgDailyDownloads.toLocaleString()}</span>
+                <span className="font-sans font-medium">35</span>
               </li>
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Peak Download Day</span>
-                <span className="font-sans font-medium">{performanceData.peakDownloadsDate} ({performanceData.peakDownloads.toLocaleString()})</span>
+                <span className="font-sans font-medium">Jan 31 (186)</span>
               </li>
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Top Market</span>
@@ -684,15 +684,15 @@ const Performance = () => {
             <ul className="space-y-3">
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Total Store Listings</span>
-                <span className="font-sans font-medium">{performanceData.totalAndroidDownloads}</span>
+                <span className="font-sans font-medium">2.5K</span>
               </li>
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Avg. Daily Listings</span>
-                <span className="font-sans font-medium">{performanceData.avgAndroidDownloads.toLocaleString()}</span>
+                <span className="font-sans font-medium">28</span>
               </li>
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Peak Listing Day</span>
-                <span className="font-sans font-medium">{performanceData.androidPeakDate} ({performanceData.maxAndroidDownloads})</span>
+                <span className="font-sans font-medium">Jan 31 (105)</span>
               </li>
               <li className="flex justify-between">
                 <span className="text-muted-foreground font-sans font-normal">Feb vs Dec</span>
@@ -987,119 +987,6 @@ const Performance = () => {
           </ul>
         </div>
       </div>
-      
-      {platform === 'android' || platform === 'combined' ? (
-        <>
-          <div className="mt-8 mb-6">
-            <h2 className="text-2xl font-slab font-medium">Android Acquisition Trends</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-slab font-medium mb-4">Growth Pattern</h3>
-              <ul className="space-y-3">
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Phase 1: Baseline</span>
-                  <span className="font-sans font-medium">Dec 13-28 (Avg: 15.5/day)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Phase 2: Low Period</span>
-                  <span className="font-sans font-medium">Dec 29-Jan 15 (Avg: 9.1/day)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Phase 3: Initial Growth</span>
-                  <span className="font-sans font-medium">Jan 16-28 (Avg: 12.5/day)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Phase 4: Spike Period</span>
-                  <span className="font-sans font-medium text-green-500">Jan 29-Feb 6 (Avg: 72.2/day)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Phase 5: Stabilization</span>
-                  <span className="font-sans font-medium">Feb 7-Mar 12 (Avg: 36.4/day)</span>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-slab font-medium mb-4">Performance Metrics</h3>
-              <ul className="space-y-3">
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Peak Day Value</span>
-                  <span className="font-sans font-medium">105 (Feb 1, 2025)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Significant Spike Dates</span>
-                  <span className="font-sans font-medium">Jan 29 (81), Jan 30 (66), Feb 1 (105)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Lowest Day Value</span>
-                  <span className="font-sans font-medium">4 (Dec 26, Jan 23)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Feb Average</span>
-                  <span className="font-sans font-medium">41.3 listings/day</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Mar Average</span>
-                  <span className="font-sans font-medium">45.7 listings/day</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-slab font-medium mb-4">Top Countries</h3>
-              <ul className="space-y-3">
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Côte d'Ivoire</span>
-                  <span className="font-sans font-medium">656 (+146.62%)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Togo</span>
-                  <span className="font-sans font-medium">356 (+503.39%)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Germany</span>
-                  <span className="font-sans font-medium">297 (-11.34%)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Benin</span>
-                  <span className="font-sans font-medium">220 (+685.71%)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Burkina Faso</span>
-                  <span className="font-sans font-medium">68 (+83.78%)</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-slab font-medium mb-4">Regional Performance</h3>
-              <ul className="space-y-3">
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Total Visitors</span>
-                  <span className="font-sans font-medium">6,321 (+19.4%)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Total Acquisitions</span>
-                  <span className="font-sans font-medium">2,479 (+73.24%)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Highest Growth</span>
-                  <span className="font-sans font-medium text-green-500">Benin (+685.71%)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Conversion Rate</span>
-                  <span className="font-sans font-medium">39.2% (visitors to acquisitions)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground font-sans font-normal">Declining Markets</span>
-                  <span className="font-sans font-medium text-red-500">Germany, Romania, USA</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </>
-      ) : null}
     </Layout>
   );
 };
