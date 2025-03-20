@@ -100,6 +100,100 @@ const USDRevenue = () => {
     { date: "Dec 19, 2024", ios: 0 }
   ];
   
+  // Updated transaction history from screenshots (Dec 19, 2024 - Mar 18, 2025)
+  const updatedSalesData = [
+    { date: "Mar 18, 2025", ios: 17 },
+    { date: "Mar 17, 2025", ios: 10 },
+    { date: "Mar 16, 2025", ios: 14 },
+    { date: "Mar 15, 2025", ios: 5 },
+    { date: "Mar 14, 2025", ios: 12 },
+    { date: "Mar 13, 2025", ios: 11 },
+    { date: "Mar 12, 2025", ios: 16 },
+    { date: "Mar 11, 2025", ios: 14 },
+    { date: "Mar 10, 2025", ios: 8 },
+    { date: "Mar 9, 2025", ios: 8 },
+    { date: "Mar 8, 2025", ios: 3 },
+    { date: "Mar 7, 2025", ios: 4 },
+    { date: "Mar 6, 2025", ios: 12 },
+    { date: "Mar 5, 2025", ios: 2 },
+    { date: "Mar 4, 2025", ios: 3 },
+    { date: "Mar 3, 2025", ios: 5 },
+    { date: "Mar 2, 2025", ios: 22 },
+    { date: "Mar 1, 2025", ios: 4 },
+    { date: "Feb 28, 2025", ios: 10 },
+    { date: "Feb 27, 2025", ios: 11 },
+    { date: "Feb 26, 2025", ios: 13 },
+    { date: "Feb 25, 2025", ios: 6 },
+    { date: "Feb 24, 2025", ios: 4 },
+    { date: "Feb 23, 2025", ios: 11 },
+    { date: "Feb 22, 2025", ios: 9 },
+    { date: "Feb 21, 2025", ios: 11 },
+    { date: "Feb 20, 2025", ios: 5 },
+    { date: "Feb 19, 2025", ios: 9 },
+    { date: "Feb 18, 2025", ios: 5 },
+    { date: "Feb 17, 2025", ios: 4 },
+    { date: "Feb 16, 2025", ios: 6 },
+    { date: "Feb 15, 2025", ios: 6 },
+    { date: "Feb 14, 2025", ios: 4 },
+    { date: "Feb 13, 2025", ios: 6 },
+    { date: "Feb 12, 2025", ios: 16 },
+    { date: "Feb 11, 2025", ios: 7 },
+    { date: "Feb 10, 2025", ios: 2 },
+    { date: "Feb 9, 2025", ios: 14 },
+    { date: "Feb 8, 2025", ios: 8 },
+    { date: "Feb 7, 2025", ios: 13 },
+    { date: "Feb 6, 2025", ios: 12 },
+    { date: "Feb 5, 2025", ios: 8 },
+    { date: "Feb 4, 2025", ios: 8 },
+    { date: "Feb 3, 2025", ios: 3 },
+    { date: "Feb 2, 2025", ios: 7 },
+    { date: "Feb 1, 2025", ios: 10 },
+    { date: "Jan 31, 2025", ios: 11 },
+    { date: "Jan 30, 2025", ios: 5 },
+    { date: "Jan 29, 2025", ios: 2 },
+    { date: "Jan 28, 2025", ios: 0 },
+    { date: "Jan 27, 2025", ios: 1 },
+    { date: "Jan 26, 2025", ios: 0 },
+    { date: "Jan 25, 2025", ios: 0 },
+    { date: "Jan 24, 2025", ios: 0 },
+    { date: "Jan 23, 2025", ios: 0 },
+    { date: "Jan 22, 2025", ios: 0 },
+    { date: "Jan 21, 2025", ios: 0 },
+    { date: "Jan 20, 2025", ios: 0 },
+    { date: "Jan 19, 2025", ios: 1 },
+    { date: "Jan 18, 2025", ios: 0 },
+    { date: "Jan 17, 2025", ios: 0 },
+    { date: "Jan 16, 2025", ios: 0 },
+    { date: "Jan 15, 2025", ios: 0 },
+    { date: "Jan 14, 2025", ios: 0 },
+    { date: "Jan 13, 2025", ios: 0 },
+    { date: "Jan 12, 2025", ios: 0 },
+    { date: "Jan 11, 2025", ios: 1 },
+    { date: "Jan 10, 2025", ios: 0 },
+    { date: "Jan 9, 2025", ios: 0 },
+    { date: "Jan 8, 2025", ios: 0 },
+    { date: "Jan 7, 2025", ios: 0 },
+    { date: "Jan 6, 2025", ios: 0 },
+    { date: "Jan 5, 2025", ios: 0 },
+    { date: "Jan 4, 2025", ios: 0 },
+    { date: "Jan 3, 2025", ios: 0 },
+    { date: "Jan 2, 2025", ios: 1 },
+    { date: "Jan 1, 2025", ios: 0 },
+    { date: "Dec 31, 2024", ios: 0 },
+    { date: "Dec 30, 2024", ios: 0 },
+    { date: "Dec 29, 2024", ios: 0 },
+    { date: "Dec 28, 2024", ios: 1 },
+    { date: "Dec 27, 2024", ios: 0 },
+    { date: "Dec 26, 2024", ios: 1 },
+    { date: "Dec 25, 2024", ios: 1 },
+    { date: "Dec 24, 2024", ios: 0 },
+    { date: "Dec 23, 2024", ios: 0 },
+    { date: "Dec 22, 2024", ios: 0 },
+    { date: "Dec 21, 2024", ios: 0 },
+    { date: "Dec 20, 2024", ios: 0 },
+    { date: "Dec 19, 2024", ios: 0 }
+  ];
+  
   // Calculate daily data with Android figures (estimated)
   const [dailyData, setDailyData] = useState<any[]>([]);
   const [weeklyData, setWeeklyData] = useState<any[]>([]);
@@ -157,10 +251,104 @@ const USDRevenue = () => {
     { name: "Android", value: 924.04, percentage: "71.2%", color: "#34D399" },
     { name: "iOS", value: 373.00, percentage: "28.8%", color: "#60A5FA" }
   ];
+  
+  // Norwegian data from screenshots
+  const nokSalesData = [
+    { date: "Mar 18, 2025", nokValue: 33.61 },
+    { date: "Mar 17, 2025", nokValue: 343.51 },
+    { date: "Mar 16, 2025", nokValue: 356.57 },
+    { date: "Mar 15, 2025", nokValue: 328.62 },
+    { date: "Mar 14, 2025", nokValue: 476.15 },
+    { date: "Mar 13, 2025", nokValue: 383.55 },
+    { date: "Mar 12, 2025", nokValue: 309.87 },
+    { date: "Mar 11, 2025", nokValue: 255.81 },
+    { date: "Mar 10, 2025", nokValue: 168.63 },
+    { date: "Mar 9, 2025", nokValue: 162.88 },
+    { date: "Mar 8, 2025", nokValue: 221.99 },
+    { date: "Mar 7, 2025", nokValue: 150.18 },
+    { date: "Mar 6, 2025", nokValue: 379.73 },
+    { date: "Mar 5, 2025", nokValue: 212.04 },
+    { date: "Mar 4, 2025", nokValue: 139.16 },
+    { date: "Mar 3, 2025", nokValue: 188.72 },
+    { date: "Mar 2, 2025", nokValue: 225.59 },
+    { date: "Mar 1, 2025", nokValue: 336.17 },
+    { date: "Feb 28, 2025", nokValue: 172.42 },
+    { date: "Feb 27, 2025", nokValue: 142.27 },
+    { date: "Feb 26, 2025", nokValue: 348.11 },
+    { date: "Feb 25, 2025", nokValue: 204.02 },
+    { date: "Feb 24, 2025", nokValue: 212.50 },
+    { date: "Feb 23, 2025", nokValue: 286.10 },
+    { date: "Feb 22, 2025", nokValue: 208.29 },
+    { date: "Feb 21, 2025", nokValue: 169.57 },
+    { date: "Feb 20, 2025", nokValue: 246.26 },
+    { date: "Feb 19, 2025", nokValue: 129.49 },
+    { date: "Feb 18, 2025", nokValue: 214.53 },
+    { date: "Feb 17, 2025", nokValue: 47.30 },
+    { date: "Feb 16, 2025", nokValue: 141.45 },
+    { date: "Feb 15, 2025", nokValue: 252.31 },
+    { date: "Feb 14, 2025", nokValue: 299.96 },
+    { date: "Feb 13, 2025", nokValue: 214.28 },
+    { date: "Feb 12, 2025", nokValue: 234.51 },
+    { date: "Feb 11, 2025", nokValue: 137.09 },
+    { date: "Feb 10, 2025", nokValue: 192.93 },
+    { date: "Feb 9, 2025", nokValue: 190.93 },
+    { date: "Feb 8, 2025", nokValue: 143.96 },
+    { date: "Feb 7, 2025", nokValue: 133.99 },
+    { date: "Feb 6, 2025", nokValue: 373.13 },
+    { date: "Feb 5, 2025", nokValue: 171.00 },
+    { date: "Feb 4, 2025", nokValue: 171.72 },
+    { date: "Feb 3, 2025", nokValue: 171.65 },
+    { date: "Feb 2, 2025", nokValue: 225.81 },
+    { date: "Feb 1, 2025", nokValue: 400.73 },
+    { date: "Jan 31, 2025", nokValue: 199.27 },
+    { date: "Jan 30, 2025", nokValue: 72.83 },
+    { date: "Jan 29, 2025", nokValue: 11.96 },
+    { date: "Jan 28, 2025", nokValue: 12.81 },
+    { date: "Jan 27, 2025", nokValue: 188.25 },
+    { date: "Jan 26, 2025", nokValue: 62.18 },
+    { date: "Jan 25, 2025", nokValue: 11.98 },
+    { date: "Jan 24, 2025", nokValue: 88.05 },
+    { date: "Jan 23, 2025", nokValue: 13.30 },
+    { date: "Jan 22, 2025", nokValue: 38.40 },
+    { date: "Jan 21, 2025", nokValue: 12.60 },
+    { date: "Jan 20, 2025", nokValue: 38.34 },
+    { date: "Jan 19, 2025", nokValue: 12.79 },
+    { date: "Jan 18, 2025", nokValue: 89.59 },
+    { date: "Jan 17, 2025", nokValue: 51.24 },
+    { date: "Jan 16, 2025", nokValue: 38.40 },
+    { date: "Jan 15, 2025", nokValue: 12.78 },
+    { date: "Jan 14, 2025", nokValue: 51.16 },
+    { date: "Jan 13, 2025", nokValue: 63.76 },
+    { date: "Jan 12, 2025", nokValue: 38.52 },
+    { date: "Jan 11, 2025", nokValue: 38.55 },
+    { date: "Jan 10, 2025", nokValue: 38.31 },
+    { date: "Jan 9, 2025", nokValue: 25.52 },
+    { date: "Jan 8, 2025", nokValue: 63.75 },
+    { date: "Jan 7, 2025", nokValue: 38.55 },
+    { date: "Jan 6, 2025", nokValue: 38.55 },
+    { date: "Jan 5, 2025", nokValue: 38.73 },
+    { date: "Jan 4, 2025", nokValue: 90.37 },
+    { date: "Jan 3, 2025", nokValue: 103.28 },
+    { date: "Jan 2, 2025", nokValue: 38.75 },
+    { date: "Jan 1, 2025", nokValue: 38.75 },
+    { date: "Dec 31, 2024", nokValue: 136.89 },
+    { date: "Dec 30, 2024", nokValue: 102.35 },
+    { date: "Dec 29, 2024", nokValue: 154.60 },
+    { date: "Dec 28, 2024", nokValue: 141.63 },
+    { date: "Dec 27, 2024", nokValue: 167.36 },
+    { date: "Dec 26, 2024", nokValue: 77.42 },
+    { date: "Dec 25, 2024", nokValue: 77.47 },
+    { date: "Dec 24, 2024", nokValue: 0 },
+    { date: "Dec 23, 2024", nokValue: 0 },
+    { date: "Dec 22, 2024", nokValue: 0 },
+    { date: "Dec 21, 2024", nokValue: 0 },
+    { date: "Dec 20, 2024", nokValue: 0 },
+    { date: "Dec 19, 2024", nokValue: 0 }
+  ];
 
   useEffect(() => {
     // Process the real sales data from App Store
-    const enrichedDaily = salesData.map((day) => {
+    const enrichedDaily = updatedSalesData.map((day) => {
       // Calculate estimated Android revenue based on the iOS:Android ratio (approximately 1:2.5)
       const androidRevenue = day.ios > 0 ? day.ios * 2.5 : 0;
       return {
@@ -208,6 +396,23 @@ const USDRevenue = () => {
     return null;
   };
   
+  // Custom tooltip for NOK data
+  const NOKTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-3 rounded shadow border border-gray-200">
+          <p className="font-semibold">{label}</p>
+          {payload.map((entry: any, index: number) => (
+            <p key={index} style={{ color: entry.stroke || entry.fill }}>
+              {`${entry.name}: NOK ${entry.value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`}
+            </p>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
+  
   // Pie chart custom label
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, name }: any) => {
     const RADIAN = Math.PI / 180;
@@ -225,6 +430,15 @@ const USDRevenue = () => {
   if (!isDataLoaded) {
     return <div className="p-6 text-center">Loading revenue data...</div>;
   }
+
+  // Calculate total NOK revenue
+  const totalNOKRevenue = nokSalesData.reduce((sum, day) => sum + day.nokValue, 0);
+
+  // Prepare NOK data for the line chart (last 30 days for better visibility)
+  const last30DaysNOK = [...nokSalesData].slice(0, 30).map(item => ({
+    date: item.date.split(", ")[0],
+    nokValue: item.nokValue
+  }));
 
   return (
     <div className="bg-card p-6 rounded-lg border border-border">
@@ -281,6 +495,12 @@ const USDRevenue = () => {
           onClick={() => setActiveView('distribution')}
         >
           Platform Distribution
+        </button>
+        <button 
+          className={`px-4 py-2 rounded ${activeView === 'nok' ? 'bg-indigo-600 text-white' : 'bg-gray-50 text-gray-800'}`}
+          onClick={() => setActiveView('nok')}
+        >
+          NOK Revenue
         </button>
         <button 
           className={`px-4 py-2 rounded ${activeView === 'forecasting' ? 'bg-indigo-600 text-white' : 'bg-gray-50 text-gray-800'}`}
@@ -368,6 +588,39 @@ const USDRevenue = () => {
           </div>
         )}
         
+        {activeView === 'nok' && (
+          <div>
+            <h3 className="text-lg mb-4 font-slab font-medium">NOK Revenue (Norwegian Krone)</h3>
+            <div className="mb-6 bg-accent/30 p-4 rounded-lg">
+              <h4 className="font-slab font-medium mb-2">Total NOK Revenue</h4>
+              <p className="text-3xl font-medium font-sans">NOK {totalNOKRevenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+            </div>
+            <div className="h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={last30DaysNOK} margin={{ top: 5, right: 30, left: 20, bottom: 25 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" tick={{ fontSize: 11 }} />
+                  <YAxis />
+                  <Tooltip content={<NOKTooltip />} />
+                  <Legend />
+                  <Line 
+                    type="monotone" 
+                    dataKey="nokValue" 
+                    name="NOK Revenue" 
+                    stroke="#8B5CF6" 
+                    strokeWidth={2} 
+                    dot={{ r: 3 }}
+                    activeDot={{ r: 5 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+            <p className="text-sm text-muted-foreground mt-2">
+              Note: Chart shows most recent 30 days of NOK revenue data.
+            </p>
+          </div>
+        )}
+        
         {activeView === 'forecasting' && (
           <div>
             <h3 className="text-lg mb-4 font-slab font-medium">Revenue Forecasting Tool</h3>
@@ -397,7 +650,7 @@ const USDRevenue = () => {
           </li>
           <li className="flex items-start gap-2">
             <div className="rounded-full bg-blue-500 w-1.5 h-1.5 mt-2 flex-shrink-0"></div>
-            <span>Total combined revenue for the period is ${revenueStats.total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}, with weekly averages of approximately $185.</span>
+            <span>Total NOK revenue is {totalNOKRevenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} NOK for the period, with strong performance in March.</span>
           </li>
         </ul>
       </div>
