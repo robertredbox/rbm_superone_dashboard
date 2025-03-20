@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import RevenueForecasting from './RevenueForecasting';
 
-const USDRevenue = () => {
+const RevenueChart = () => {
   const [activeView, setActiveView] = useState('weekly');
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [dailyData, setDailyData] = useState<any[]>([]);
@@ -420,4 +420,4 @@ const USDRevenue = () => {
   );
 };
 
-export default USDRevenue; 
+export default RevenueChart; 
