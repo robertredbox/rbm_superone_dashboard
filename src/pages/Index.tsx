@@ -18,42 +18,10 @@ const FontLinks = () => (
 
 const Index = () => {
   // Platform state
-  const [platform, setPlatform] = useState<'ios' | 'android' | 'combined'>('combined');
+  const [platform, setPlatform] = useState<'ios' | 'android'>('ios');
 
   // Updated SuperOne performance data - showing last 30 days with realistic values
   const performanceData = {
-    chartData: [
-      { date: 'Feb 18', downloads: 45 },
-      { date: 'Feb 19', downloads: 52 },
-      { date: 'Feb 20', downloads: 48 },
-      { date: 'Feb 21', downloads: 57 },
-      { date: 'Feb 22', downloads: 63 },
-      { date: 'Feb 23', downloads: 72 },
-      { date: 'Feb 24', downloads: 68 },
-      { date: 'Feb 25', downloads: 59 },
-      { date: 'Feb 26', downloads: 64 },
-      { date: 'Feb 27', downloads: 76 },
-      { date: 'Feb 28', downloads: 83 },
-      { date: 'Mar 1', downloads: 92 },
-      { date: 'Mar 2', downloads: 87 },
-      { date: 'Mar 3', downloads: 74 },
-      { date: 'Mar 4', downloads: 68 },
-      { date: 'Mar 5', downloads: 72 },
-      { date: 'Mar 6', downloads: 78 },
-      { date: 'Mar 7', downloads: 85 },
-      { date: 'Mar 8', downloads: 93 },
-      { date: 'Mar 9', downloads: 89 },
-      { date: 'Mar 10', downloads: 76 },
-      { date: 'Mar 11', downloads: 82 },
-      { date: 'Mar 12', downloads: 87 },
-      { date: 'Mar 13', downloads: 96 },
-      { date: 'Mar 14', downloads: 102 },
-      { date: 'Mar 15', downloads: 97 },
-      { date: 'Mar 16', downloads: 85 },
-      { date: 'Mar 17', downloads: 92 },
-      { date: 'Mar 18', downloads: 99 },
-      { date: 'Mar 19', downloads: 95 },
-    ],
     platformChartData: {
       ios: [
         { date: 'Feb 18', iosDownloads: 21 },
@@ -118,38 +86,6 @@ const Index = () => {
         { date: 'Mar 17', androidDownloads: 47 },
         { date: 'Mar 18', androidDownloads: 50 },
         { date: 'Mar 19', androidDownloads: 48 },
-      ],
-      combined: [
-        { date: 'Feb 18', downloads: 45 },
-        { date: 'Feb 19', downloads: 52 },
-        { date: 'Feb 20', downloads: 48 },
-        { date: 'Feb 21', downloads: 57 },
-        { date: 'Feb 22', downloads: 63 },
-        { date: 'Feb 23', downloads: 72 },
-        { date: 'Feb 24', downloads: 68 },
-        { date: 'Feb 25', downloads: 59 },
-        { date: 'Feb 26', downloads: 64 },
-        { date: 'Feb 27', downloads: 76 },
-        { date: 'Feb 28', downloads: 83 },
-        { date: 'Mar 1', downloads: 92 },
-        { date: 'Mar 2', downloads: 87 },
-        { date: 'Mar 3', downloads: 74 },
-        { date: 'Mar 4', downloads: 68 },
-        { date: 'Mar 5', downloads: 72 },
-        { date: 'Mar 6', downloads: 78 },
-        { date: 'Mar 7', downloads: 85 },
-        { date: 'Mar 8', downloads: 93 },
-        { date: 'Mar 9', downloads: 89 },
-        { date: 'Mar 10', downloads: 76 },
-        { date: 'Mar 11', downloads: 82 },
-        { date: 'Mar 12', downloads: 87 },
-        { date: 'Mar 13', downloads: 96 },
-        { date: 'Mar 14', downloads: 102 },
-        { date: 'Mar 15', downloads: 97 },
-        { date: 'Mar 16', downloads: 85 },
-        { date: 'Mar 17', downloads: 92 },
-        { date: 'Mar 18', downloads: 99 },
-        { date: 'Mar 19', downloads: 95 },
       ]
     }
   };
@@ -247,7 +183,7 @@ const Index = () => {
   const totalReviews = 847;
 
   // Function to handle platform changes
-  const handlePlatformChange = (newPlatform: 'ios' | 'android' | 'combined') => {
+  const handlePlatformChange = (newPlatform: 'ios' | 'android') => {
     setPlatform(newPlatform);
   };
 
