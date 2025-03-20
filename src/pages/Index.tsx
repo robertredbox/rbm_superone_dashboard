@@ -178,13 +178,18 @@ const Index = () => {
     });
   }, []);
 
-  // SuperOne keywords data - using realistic values
+  // SuperOne keywords data - iOS UK market
   const keywordsData = [
-    { id: '1', term: 'superone game', position: 12, change: 2, volume: 55, difficulty: 32 },
-    { id: '5', term: 'trivia battle', position: 23, change: 1, volume: 40, difficulty: 28 },
-    { id: '10', term: 'fan battle', position: 18, change: 0, volume: 25, difficulty: 15 },
-    { id: '11', term: 'quiz cash prizes', position: 35, change: 2, volume: 30, difficulty: 38 },
-    { id: '9', term: 'football trivia', position: 64, change: -1, volume: 45, difficulty: 30 },
+    { id: '1', term: 'sportiz', position: 5, change: 0, volume: 5, difficulty: 32 },
+    { id: '2', term: 'dibz', position: 22, change: -4, volume: 26, difficulty: 28 },
+    { id: '3', term: 'fan club', position: 5, change: 0, volume: 22, difficulty: 22 },
+    { id: '4', term: 'dibs', position: 5, change: 0, volume: 24, difficulty: 21 },
+    { id: '5', term: 'guess the football player', position: 21, change: 1, volume: 55, difficulty: 35 },
+    { id: '6', term: 'ultimate football', position: 5, change: 0, volume: 54, difficulty: 38 },
+    { id: '7', term: 'the 1 club game', position: 31, change: 1, volume: 43, difficulty: 30 },
+    { id: '8', term: 'football fan', position: 5, change: -12, volume: 62, difficulty: 45 },
+    { id: '9', term: 'guess the footballer', position: 5, change: 0, volume: 61, difficulty: 40 },
+    { id: '10', term: 'footy addicts', position: 38, change: 0, volume: 63, difficulty: 39 },
   ];
 
   // Get count of keywords in top 100
@@ -288,7 +293,7 @@ const Index = () => {
         <MetricCard
           title="Keyword Rankings"
           value={topKeywords.toString()}
-          description="Keywords in top 100 (App Store)"
+          description="Keywords in top 100 (App Store - UK)"
           icon={<Search className="h-5 w-5 text-redbox-orange" />}
         />
         <MetricCard
@@ -309,7 +314,7 @@ const Index = () => {
         <div className="lg:col-span-2">
           <KeywordsTable keywords={keywordsData} />
           <div className="text-xs text-muted-foreground mt-2 ml-2">
-            Keyword rankings from App Store (US region). Last updated: Mar 18, 2025.
+            Keyword rankings from App Store (UK region). Last updated: Mar 17, 2025.
           </div>
         </div>
       </div>
