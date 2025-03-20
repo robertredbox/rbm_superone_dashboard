@@ -276,7 +276,7 @@ const Index = () => {
         <MetricCard
           title="Downloads"
           value="2.2k"
-          description="Total iOS & Android downloads"
+          description="Total iOS & Android downloads (last 30 days)"
           icon={<Download className="h-5 w-5 text-redbox-purple" />}
         />
         <MetricCard
@@ -300,42 +300,29 @@ const Index = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <div className="lg:col-span-2">
-          <PerformanceChart 
-            data={performanceData.chartData} 
-            timeRange="Feb 18 - Mar 19"
-            platformData={performanceData.platformChartData}
-            selectedPlatform={platform}
-            onPlatformChange={handlePlatformChange}
-            className="h-auto"
-          />
-          <div className="text-xs text-muted-foreground mt-2 ml-2">
-            Note: iOS data from App Store Connect, Android data from Google Play Console. Combined data for Global markets.
-          </div>
-        </div>
         <div>
           <SentimentChart data={sentimentData} />
           <div className="text-xs text-muted-foreground mt-2 ml-2">
             Based on user reviews from both iOS App Store and Google Play Store.
           </div>
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <div className="lg:col-span-2">
-          <KeywordsTable keywords={keywordsData} className="lg:col-span-2" />
+          <KeywordsTable keywords={keywordsData} />
           <div className="text-xs text-muted-foreground mt-2 ml-2">
             Keyword rankings from App Store (US region). Last updated: Mar 18, 2025.
           </div>
         </div>
-        <div className="space-y-4">
-          <h3 className="text-lg font-slab font-medium">Top Competitors</h3>
+      </div>
+
+      <div className="space-y-4 mb-6">
+        <h3 className="text-lg font-slab font-medium">Top Competitors</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {competitorsData.map((competitor) => (
             <CompetitorCard key={competitor.id} competitor={competitor} />
           ))}
-          <div className="text-xs text-muted-foreground mt-1 ml-2">
-            Competitor rankings from App Store Games category (Global).
-          </div>
+        </div>
+        <div className="text-xs text-muted-foreground mt-1 ml-2">
+          Competitor rankings from App Store Games category (Global).
         </div>
       </div>
 
