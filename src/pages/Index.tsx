@@ -178,18 +178,18 @@ const Index = () => {
     });
   }, []);
 
-  // SuperOne keywords data - iOS & Android UK market
+  // SuperOne keywords data - Android UK market
   const keywordsData = [
-    { id: '1', term: 'supering', position: 9, change: 3, volume: 6, difficulty: 32 },
-    { id: '2', term: 'superhuman', position: 26, change: -1, volume: 27, difficulty: 28 },
-    { id: '3', term: 'one4all gift cards', position: 35, change: -1, volume: 36, difficulty: 22 },
-    { id: '4', term: 'supper', position: 5, change: -20, volume: 25, difficulty: 21 },
-    { id: '5', term: 'sponsor', position: 18, change: 0, volume: 18, difficulty: 35 },
-    { id: '6', term: 'super save', position: 7, change: 0, volume: 7, difficulty: 38 },
-    { id: '7', term: 'onefootball', position: 39, change: -1, volume: 40, difficulty: 30 },
-    { id: '8', term: 'football fan', position: 5, change: -13, volume: 18, difficulty: 45 },
-    { id: '9', term: 'wwe supercard', position: 38, change: -1, volume: 39, difficulty: 40 },
-    { id: '10', term: 'football trivia', position: 5, change: 0, volume: 5, difficulty: 39 },
+    { id: '1', term: 'supering', position: 28, change: 3, volume: 6, difficulty: 32 },
+    { id: '2', term: 'superhuman', position: 136, change: -1, volume: 27, difficulty: 28 },
+    { id: '3', term: 'one4all gift cards', position: 147, change: -1, volume: 36, difficulty: 22 },
+    { id: '4', term: 'supper', position: 154, change: -20, volume: 25, difficulty: 21 },
+    { id: '5', term: 'sponsor', position: 160, change: 0, volume: 18, difficulty: 35 },
+    { id: '6', term: 'super save', position: 182, change: 0, volume: 7, difficulty: 38 },
+    { id: '7', term: 'onefootball', position: 195, change: -1, volume: 40, difficulty: 30 },
+    { id: '8', term: 'football fan', position: 202, change: -13, volume: 18, difficulty: 45 },
+    { id: '9', term: 'wwe supercard', position: 206, change: -1, volume: 39, difficulty: 40 },
+    { id: '10', term: 'wwe supercard game', position: 218, change: 0, volume: 14, difficulty: 35 }
   ];
 
   // Get count of keywords in top 100
